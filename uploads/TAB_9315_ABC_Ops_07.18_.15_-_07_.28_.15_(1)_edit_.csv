@@ -1,0 +1,10 @@
+Date,Ref/Check,Description,Amount,Balance,Memo,Category
+7/21/2015,,Alliance Payoff MMA to LOC Sweep,-66782.74,-65665.54,,
+7/21/2015,3,Check,-600,-66265.54,,
+7/21/2015,,Alliance Payoff LOC to MMA Sweep,66782.74,517.2,,
+7/21/2015,,Daily Ledger Bal,,517.2,,
+7/24/2015,,IB Transfer Deposit IB TR FROM ACCT *0817 Transfer Online to D,1000,1517.2,,
+7/24/2015,,ACH Withdrawal TRANSFLO EXPRESS PAYABLES DYNAMICS EFT DEPOS,-12.41,1504.79,,
+7/24/2015,,Daily Ledger Bal,,1504.79,,
+7/27/2015,,Daily Ledger Bal,,-91.78,,
+7/28/2015,,Over Limit Charge Item(s) Presented 07/27/2015,-20,-111.78,,

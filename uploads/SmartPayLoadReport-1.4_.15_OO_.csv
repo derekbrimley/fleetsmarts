@@ -1,0 +1,25 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+Lobos Academy,,CDL Test                      ,7.08305E+18,0,LOAD,1/4/2016 10:49,40,tyler_warren                  
+Lobos Academy,,cdl test                      ,7.08305E+18,0,LOAD,1/4/2016 10:49,40,tyler_warren                  
+Lobos Academy,,gas for van                   ,7.08305E+18,0,LOAD,1/4/2016 10:50,20,tyler_warren                  
+Sterling Davis,,PO 3490 Gas for van           ,7.08305E+18,0,LOAD,1/4/2016 10:30,25,phil_ross                     
+Sterling Davis,,PO 3490 Gas for van           ,7.08305E+18,0,RMVE,1/4/2016 11:14,-25,phil_ross                     
+Cephus Robinson,,PO 3498 Tolls                 ,7.08305E+18,0,LOAD,1/4/2016 17:32,15.65,phil_ross                     
+Kyle Fritsch,,3500,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Cassius Broadwater,,3508,7.08305E+18,0,LOAD,1/4/2016 18:18,25,nate_clonts                   
+Maxime Ductan,,3503,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Shawn Parriera,,3505,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Jquintryl Jackson,,3501,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Jimmy Liggins,,3504,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Michael Hilton,,PO 3493 Tolls                 ,7.08305E+18,0,LOAD,1/4/2016 17:59,14.75,phil_ross                     
+Steve Crutchfield,,3506,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Chris Grice,,3502,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Chad Whittington,,PO 3497 Settlement adjustment ,7.08305E+18,0,LOAD,1/4/2016 15:07,46.63,phil_ross                     
+Michael Okri,,PO 3496 PA for phone          ,7.08305E+18,0,LOAD,1/4/2016 15:03,150,phil_ross                     
+Eugene McCray,,3499,7.08305E+18,0,LOAD,1/4/2016 17:50,25,nate_clonts                   
+Oscar Blue,,PO 3495 Refund for receipts   ,7.08305E+18,0,RMVE,1/4/2016 13:57,-11.6,phil_ross                     
+Mike Matthews,,3507,7.08305E+18,0,LOAD,1/4/2016 17:56,25,nate_clonts                   
+Jonathan Cloney,,PO 3494 PA                    ,7.08305E+18,0,LOAD,1/4/2016 11:57,25,phil_ross                     
+Aaron Faircloth,,3509,7.08305E+18,0,LOAD,1/4/2016 19:16,50,nate_clonts                   
+Billy Mccord,,PO 3490 Gas for van           ,7.08305E+18,0,LOAD,1/4/2016 11:13,25,phil_ross                     
+Billy Mccord,,3512,7.08305E+18,0,LOAD,1/4/2016 23:27,25,nate_clonts                   

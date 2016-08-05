@@ -1,0 +1,31 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Reimbursment on tolls         ,,,,,,
+Jeff Garner,,,7083051215082100117      ,0.00,LOAD,2013-03-18 20:14,155.79,150821                        
+,,Additional tolls              ,,,,,,
+Jeff Garner,,,7083051215082100117      ,0.00,LOAD,2013-03-20 14:17,52.70,150821                        
+,,Payday 3.21                   ,,,,,,
+Jeff Garner,,,7083051215082100117      ,0.00,LOAD,2013-03-21 23:04,738.00,150821                        
+,,Advance for food              ,,,,,,
+MIKE GUTHRIE,,,7083051215082100265      ,0.00,LOAD,2013-03-21 14:02,50.00,150821                        
+,,Payday 6.21                   ,,,,,,
+MIKE GUTHRIE,,,7083051215082100265      ,0.00,LOAD,2013-03-21 22:59,600.00,150821                        
+,,Advance personal              ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-03-19 09:14,150.00,150821                        
+,,Money for Scott W             ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-03-21 13:11,50.00,150821                        
+,,Payroll 3.21                  ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-03-21 22:34,650.00,150821                        
+,,Advance for Scott             ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-03-25 13:15,100.00,kevin_morrill_km              
+,,Guess on pay                  ,,,,,,
+Eric Bills (new),,,7083051215082100315      ,0.00,LOAD,2013-03-25 19:54,400.00,kevin_morrill_km              
+,,Bridge toll advance           ,,,,,,
+Dusty Parra,,,7083051215082100364      ,0.00,LOAD,2013-03-18 11:20,25.00,150821                        
+,,30 for John 30                ,,,,,,
+Dusty Parra,,,7083051215082100364      ,0.00,LOAD,2013-03-19 10:35,60.00,150821                        
+,,Adance for John               ,,,,,,
+Dusty Parra,,,7083051215082100364      ,0.00,LOAD,2013-03-21 12:52,50.00,150821                        
+,,Payday 3.21                   ,,,,,,
+Dusty Parra,,,7083051215082100364      ,0.00,LOAD,2013-03-21 23:01,621.00,150821                        
+,,First pay 3.21                ,,,,,,
+Tyler Drolc,,,7083051215082100802      ,0.00,LOAD,2013-03-21 22:58,300.00,150821                        

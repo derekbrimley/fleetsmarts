@@ -1,0 +1,13 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Settlement                    ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-09-05 23:15,400.00,jake_robertson_km             
+,,PA Scott Wyly                 ,,,,,,
+Scott Wyly,,,7083051215082100877      ,0.00,LOAD,2013-09-05 16:25,25.00,jake_robertson_km             
+,,Settlement                    ,,,,,,
+Scott Wyly,,,7083051215082100877      ,0.00,LOAD,2013-09-05 23:14,800.00,jake_robertson_km             
+,,Settlement                    ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2013-09-05 23:15,800.00,jake_robertson_km             
+,,Pay Byron Bell.               ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-09-05 23:34,400.00,150821                        
+,,Pay Half bonus                ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-09-05 23:34,200.00,150821                        

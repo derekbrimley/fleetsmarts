@@ -1,0 +1,15 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,PA Carl Davis                 ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-20 16:59,25.00,david_favreau_jt              
+,,Reimbursement Hotel Darren C. ,,,,,,
+Darren Canter,,,7083051215084100081      ,0.00,LOAD,2014-01-20 14:58,52.00,darren_walton_jt              
+,,PA for Randy Larsen           ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-20 15:00,25.00,150841                        
+,,Transfered to new card. Sam J.,,,,,,
+Samuel Jones,,,7083051215084100131      ,0.00,LOAD,2014-01-20 17:20,755.97,ricky_k_jt                    
+,,PAY Training Bonus Edgar F    ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-01-20 15:37,600.00,david_favreau_jt              
+,,remaining Bonus James F. UTXL ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-20 16:46,100.00,ricky_k_jt                    
+,,Sam J. Transfer to other card ,,,,,,
+Sam Jones,,,7083051215084100842      ,0.00,RMVE,2014-01-20 17:19,-755.97,ricky_k_jt                    

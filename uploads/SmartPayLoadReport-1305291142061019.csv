@@ -1,0 +1,13 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,clear                         ,,,,,,
+Terry Spriggs,,,7083051215082100232      ,0.00,RMVE,2013-10-18 10:47,-8.40,jake_robertson_km             
+,,clear                         ,,,,,,
+Nephi,,,7083051215082100240      ,0.00,RMVE,2013-10-18 10:47,-2.24,jake_robertson_km             
+,,clear                         ,,,,,,
+Eric Bills (new),,,7083051215082100315      ,0.00,RMVE,2013-10-18 10:48,-25.08,jake_robertson_km             
+,,Pay For Byron Belle           ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-10-18 00:04,500.00,jake_robertson_km             
+,,Pay for Michael Kerr          ,,,,,,
+Michael Kerr,,,7083051215082101065      ,0.00,LOAD,2013-10-18 00:07,682.59,jake_robertson_km             
+,,BA for Tolls Michael Kerr     ,,,,,,
+Michael Kerr,,,7083051215082101065      ,0.00,LOAD,2013-10-18 10:49,23.00,jake_robertson_km             

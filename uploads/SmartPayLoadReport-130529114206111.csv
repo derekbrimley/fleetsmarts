@@ -1,0 +1,19 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Statement                     ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-10-31 19:24,400.00,jake_robertson_km             
+,,Statement                     ,,,,,,
+Daniel Lazz,,,7083051215082100794      ,0.00,LOAD,2013-10-31 19:23,660.00,jake_robertson_km             
+,,Statement                     ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-10-31 19:23,400.00,jake_robertson_km             
+,,Statement                     ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2013-10-31 19:24,400.00,jake_robertson_km             
+,,Reimburse for Taxi Byron Bell ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-10-31 11:54,77.00,jake_robertson_km             
+,,Pay for Byron Bell            ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-10-31 17:51,166.53,jake_robertson_km             
+,,CLEAR                         ,,,,,,
+Michael Kerr,,,7083051215082101065      ,0.00,RMVE,2013-10-31 16:52,-8.88,jake_robertson_km             
+,,PA Andrew                     ,,,,,,
+Andrew Lopez,,,7083051215082101073      ,0.00,LOAD,2013-10-31 18:27,25.00,will_cummings_km              
+,,Statement                     ,,,,,,
+Andrew Lopez,,,7083051215082101073      ,0.00,LOAD,2013-10-31 19:48,40.00,jake_robertson_km             

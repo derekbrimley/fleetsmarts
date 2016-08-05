@@ -1,0 +1,43 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Statement                     ,,,,,,
+Brian Anderson,,,7083051215084100016      ,0.00,LOAD,2014-01-09 21:03,445.75,jake_robertson_jt             
+,,PA Carl Davis                 ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-09 09:23,25.00,darren_walton_jt              
+,,Pay-Randy Larsen              ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-09 15:44,581.55,darren_walton_jt              
+,,Completion bonus              ,,,,,,
+Sterling Robles,,,7083051215084100263      ,0.00,LOAD,2014-01-09 21:01,300.00,jake_robertson_jt             
+,,,,,,,,
+Sterling Robles,,,7083051215084100263      ,0.00,LOAD,2014-01-09 21:01,300.00,jake_robertson_jt             
+,,Completion Bonus              ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-01-09 21:02,300.00,jake_robertson_jt             
+,,Statement                     ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-01-09 21:02,300.00,jake_robertson_jt             
+,,PA James Fondaw               ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-09 09:13,25.00,darren_walton_jt              
+,,BA scales James Fondaw        ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-09 19:35,25.00,will_cummings_jt              
+,,Reimburse for NM Permit Robert,,,,,,
+robert thorpe,,,7083051215084100933      ,0.00,LOAD,2014-01-09 17:16,54.60,150841                        
+,,Statement                     ,,,,,,
+robert thorpe,,,7083051215084100933      ,0.00,LOAD,2014-01-09 21:00,800.00,jake_robertson_jt             
+,,Statement                     ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-09 21:05,1095.52,jake_robertson_jt             
+,,PA Carlos Garcia              ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-01-09 19:44,25.00,will_cummings_jt              
+,,PAY Carlos Garcia             ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-01-09 23:30,361.71,darren_walton_jt              
+,,PA for Mike Malone            ,,,,,,
+Mike Malone,,,7083051215084101055      ,0.00,LOAD,2014-01-09 11:20,25.00,150841                        
+,,Statement                     ,,,,,,
+Mike Malone,,,7083051215084101055      ,0.00,LOAD,2014-01-09 21:04,400.00,jake_robertson_jt             
+,,Pay Bill Gallagher            ,,,,,,
+Bill Gallagher,,,7083051215084101063      ,0.00,LOAD,2014-01-09 23:33,500.00,darren_walton_jt              
+,,PAY Roger Schwartz            ,,,,,,
+Roger Schwartz,,,7083051215084101089      ,0.00,LOAD,2014-01-09 23:29,574.38,darren_walton_jt              
+,,Statement                     ,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,LOAD,2014-01-09 20:59,856.26,jake_robertson_jt             
+,,PA Randy Larsen               ,,,,,,
+Inactive,,,7083051215084101154      ,0.00,LOAD,2014-01-09 09:14,20.00,darren_walton_jt              
+,,clear card                    ,,,,,,
+Inactive,,,7083051215084101154      ,0.00,RMVE,2014-01-09 12:47,-0.44,150841                        

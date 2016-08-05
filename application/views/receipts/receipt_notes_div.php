@@ -1,0 +1,1 @@
+<?=str_replace("\n","<br>",$expense["receipt_notes"]);?>

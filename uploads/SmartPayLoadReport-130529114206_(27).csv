@@ -1,0 +1,7 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,NM Permit                     ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-06-25 14:19,60.00,jake_robertson_km             
+,,Advance                       ,,,,,,
+Scott Wyly,,,7083051215082100877      ,0.00,LOAD,2013-06-25 12:06,150.00,jake_robertson_km             
+,,Reverse Advance               ,,,,,,
+Scott Wyly,,,7083051215082100877      ,0.00,RMVE,2013-06-25 14:18,-150.00,jake_robertson_km             

@@ -1,0 +1,8 @@
+Date,Ref/Check,Description,Amount,Balance,Memo,Category
+7/20/2015,,IB Transfer Deposit IB TR FROM ACCT *9315 Transfer Online to D,20000,26972.45,,
+7/20/2015,,IB Debit IB TR TO ACCT *0108 Transfer Online from,-1600,25372.45,,
+7/20/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-1.62,25370.83,,
+7/20/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-106.91,25263.92,,
+7/20/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-571.79,24692.13,,
+7/20/2015,,Wire Out EFS (Coop),-17000,7692.13,,
+7/20/2015,,Daily Ledger Bal,,7692.13,,

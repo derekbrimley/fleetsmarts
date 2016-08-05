@@ -1,0 +1,67 @@
+body
+{
+	font-family:arial;
+	font-size:14px;
+	margin: 0 auto;
+}
+
+
+.logout
+{
+    color:White;
+    font-family: arial;
+    font-size: 14px;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+
+#title_version
+{
+    color:White;
+    font-family: arial;
+    font-size: 14px;
+    font-weight:bold;  
+    float:left;
+    margin-left: 20px;
+	margin-top: 5px;
+	
+}
+
+#username_div
+{
+    color:White;
+    font-family: arial;
+    font-size: 14px;
+    font-weight:bold;  
+    float:right;
+    margin-right: 20px;
+	margin-top: 5px;
+}
+
+
+
+#main_menu a
+{
+    background-color: #6295FC;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    color:white;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom:8px;
+    padding-right: 9px;
+    padding-left: 9px;  
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+#main_menu a:hover
+{
+    background-color:white;
+	color:#6295FC/*#DD4B39*/;
+}
+

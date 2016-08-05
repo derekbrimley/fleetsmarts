@@ -1,0 +1,12 @@
+"Date","Ref/Check","Description","Amount","Balance","Memo","Category"
+07/20/2015,,"IB Debit IB TR TO ACCT *3068 Transfer Online from",-20000,1117.20,,
+07/20/2015,,"Daily Ledger Bal",,1117.2,,
+07/21/2015,,"Alliance Payoff MMA to LOC Sweep",-66782.74,-65665.54,,
+07/21/2015,3,"Check",-600,-66265.54,,
+07/21/2015,,"Alliance Payoff LOC to MMA Sweep",66782.74,517.20,,
+07/21/2015,,"Daily Ledger Bal",,517.2,,
+07/24/2015,,"IB Transfer Deposit IB TR FROM ACCT *0817 Transfer Online to D",1000,1517.20,,
+07/24/2015,,"ACH Withdrawal TRANSFLO EXPRESS PAYABLES DYNAMICS EFT DEPOS",-12.41,1504.79,,
+07/24/2015,,"Daily Ledger Bal",,1504.79,,
+07/27/2015,,"Daily Ledger Bal",,-91.78,,
+07/28/2015,,"Over Limit Charge Item(s) Presented 07/27/2015",-20,-111.78,,

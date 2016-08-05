@@ -1,0 +1,23 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+Lobos Academy,,CDL Driving Tests             ,7.08305E+18,0,LOAD,12/18/2015 16:56,460,tyler_warren                  
+Lobos Academy,,,7.08305E+18,0,LOAD,12/18/2015 17:41,10,tyler_warren                  
+Kyle Fritsch,,3221,7.08305E+18,0,LOAD,12/18/2015 19:05,25,nate_clonts                   
+Samuel Jones,,PO 3193 Add Referral Bonus    ,7.08305E+18,0,LOAD,12/18/2015 16:57,100,phil_ross                     
+Maxime Ductan,,3219,7.08305E+18,0,LOAD,12/18/2015 18:37,25,nate_clonts                   
+Shawn Parriera,,PO 3212 Bags Shawn P          ,7.08305E+18,0,LOAD,12/18/2015 13:39,60,nate_clonts                   
+Shawn Parriera,,PO 3212 Taxi Shawn P          ,7.08305E+18,0,LOAD,12/18/2015 13:40,25,nate_clonts                   
+Shawn Parriera,,Taxi                          ,7.08305E+18,0,LOAD,12/18/2015 21:09,40,nate_clonts                   
+Shawn Parriera,,Taxi                          ,7.08305E+18,0,LOAD,12/18/2015 23:05,50,nate_clonts                   
+Jquintryl Jackson,,3217,7.08305E+18,0,LOAD,12/18/2015 17:39,25,nate_clonts                   
+Sam Jones - Don't Use,,PO 3193 Minus Referral Bonus  ,7.08305E+18,0,RMVE,12/18/2015 16:56,-100,phil_ross                     
+Christopher Barfield,,3222,7.08305E+18,0,LOAD,12/18/2015 19:05,25,nate_clonts                   
+Christopher Barfield,,3223,7.08305E+18,0,LOAD,12/18/2015 20:35,20,nate_clonts                   
+Christopher Barfield,,buy a tool.                   ,7.08305E+18,0,LOAD,12/18/2015 21:04,15,nate_clonts                   
+Jimmy Liggins,,3220,7.08305E+18,0,LOAD,12/18/2015 18:58,25,nate_clonts                   
+Jorge Delgado,,PO 3213 Taxi Jorge Delgado    ,7.08305E+18,0,LOAD,12/18/2015 15:50,25,nate_clonts                   
+Vincent Aleman,,3217,7.08305E+18,0,LOAD,12/18/2015 17:40,25,nate_clonts                   
+Rahma Adow,,3216,7.08305E+18,0,LOAD,12/18/2015 17:40,25,nate_clonts                   
+Lobo Test,,fuel                          ,7.08305E+18,0,LOAD,12/18/2015 21:42,25,nate_clonts                   
+Michael Devine,,PO 3211 Bags Mike Devine      ,7.08305E+18,0,LOAD,12/18/2015 13:34,60,nate_clonts                   
+Michael Devine,,3224,7.08305E+18,0,LOAD,12/18/2015 20:37,40,nate_clonts                   
+Eugene McCray,,Advance                       ,7.08305E+18,0,LOAD,12/18/2015 22:00,25,nate_clonts                   

@@ -1,0 +1,9 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Payday                        ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-06-07 11:33,300.00,jake_robertson_km             
+,,Chris's Payday                ,,,,,,
+DANIEL LAZZ,,,7083051215082100794      ,0.00,LOAD,2013-06-07 11:34,385.57,jake_robertson_km             
+,,Correction                    ,,,,,,
+John Christensen,,,7083051215082100885      ,0.00,RMVE,2013-06-07 10:57,-647.44,150821                        
+,,Correction                    ,,,,,,
+John Christensen,,,7083051215082100885      ,0.00,LOAD,2013-06-07 11:11,52.52,150821                        

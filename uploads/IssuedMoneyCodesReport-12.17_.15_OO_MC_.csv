@@ -1,0 +1,6 @@
+ID,Transfer Code,Original Amount,Amount Used,Remaining Balance,Fee,Currency,Issued To,Issued By,Issue Type,Issued Date,Use Time,Notes,Driver License,Driver State,Driver Id,Hubometer,Reefer Hours,License State,License Number,Odometer,PO Number,Trip Number,Trailer Number,Unit Number,Control Number,Birthday,Reefer Tempatur,PIN Number,Subfleet,Billing Id,First Inital,Last Name,Driver Name,SSN
+108659945,1654353221,68.32,0.00,0.00,1.50,USD,Steve ,pete_k,E_MANAGER,2015-12-13,2015-12-13,,,,,,,,,,,,,,,,,,,,,,,
+108666495,2852979368,108.24,108.24,0.00,1.50,USD,Lubin,nate_clonts,E_MANAGER,2015-12-14,2015-12-14,PO 3108 PIGTAIL Lubin,,,,,,,,,,,,,,,,,,,,,,
+108671962,2983681976,65.00,65.00,0.00,1.50,USD,Mike Matthews,nate_clonts,E_MANAGER,2015-12-15,2015-12-15,PO 3128 Data Mike Matthews,,,,,,,,,,,,,,,,,,,,,,
+108683931,3203191052,100.00,0.00,100.00,1.50,USD,Mike Okri,nate_clonts,E_MANAGER,2015-12-16,2015-12-16,PO 3155 Cashout Mike Okri,,,,,,,,,,,,,,,,,,,,,,
+108665032,3923973059,60.00,60.00,0.00,1.50,USD,Mike Matthews,nate_clonts,E_MANAGER,2015-12-14,2015-12-14,PO 3109 BAGS Mike Matthews,,,,,,,,,,,,,,,,,,,,,,

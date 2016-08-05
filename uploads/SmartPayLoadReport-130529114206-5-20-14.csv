@@ -1,0 +1,9 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Motel 6 Reimbursment          ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2014-03-20 08:51,44.06,kevin_morrill_km              
+,,Pay Dave J. 3.20.14 earned    ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2014-03-20 18:27,148.75,ricky_k_km                    
+,,Pay Dave J. 3.20.14 kick in   ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2014-03-20 18:28,527.92,ricky_k_km                    
+,,PAY Edgar R                   ,,,,,,
+Edgar R,,,7083051215082101099      ,0.00,LOAD,2014-03-20 23:47,600.00,jake_robertson_km             

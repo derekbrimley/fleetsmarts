@@ -1,0 +1,37 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,cab in vegas                  ,,,,,,
+MIKE GUTHRIE,,,7083051215082100265      ,0.00,LOAD,2013-05-03 18:22,50.00,john_meyer_km                 
+,,Advance                       ,,,,,,
+MIKE GUTHRIE,,,7083051215082100265      ,0.00,LOAD,2013-05-05 20:05,50.00,150821                        
+,,,,,,,,
+MIKE GUTHRIE,,,7083051215082100265      ,0.00,RMVE,2013-05-06 17:45,-49.34,150821                        
+,,Transfer from old card        ,,,,,,
+Mike Guthrie,,,7083051215082100505      ,0.00,LOAD,2013-05-06 17:45,49.34,150821                        
+,,,,,,,,
+Mike Guthrie,,,7083051215082100505      ,0.00,RMVE,2013-05-06 18:03,-49.34,150821                        
+,,,,,,,,
+robert brown,,,7083051215082100828      ,0.00,LOAD,2013-05-06 16:16,208.62,mike_whipple_km               
+,,Payday                        ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-05-03 16:56,300.00,kevin_morrill_km              
+,,personal advance              ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-04 14:04,25.00,john_meyer_km                 
+,,Personal Advance              ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-05 13:23,25.00,150821                        
+,,Business Advance              ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-05 15:56,40.39,150821                        
+,,Faxes                         ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-06 10:11,10.00,150821                        
+,,Pay Advance                   ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-06 17:29,25.00,150821                        
+,,Money for Mike G              ,,,,,,
+DAVE LYONIAS,,,7083051215082100851      ,0.00,LOAD,2013-05-06 18:03,49.34,150821                        
+,,,,,,,,
+HOWARD WAYNSBORO,,,7083051215082100869      ,0.00,LOAD,2013-05-07 18:43,1416.87,mike_whipple_km               
+,,,,,,,,
+Sherif Daoud,,,7083051215082100950      ,0.00,LOAD,2013-05-06 16:22,352.00,mike_whipple_km               
+,,,,,,,,
+Sherif Daoud,,,7083051215082100950      ,0.00,LOAD,2013-05-07 18:36,702.56,mike_whipple_km               
+,,,,,,,,
+JAMSHID ALEI YEGANEH,,,7083051215082100968      ,0.00,LOAD,2013-05-06 16:24,249.32,mike_whipple_km               
+,,Pay                           ,,,,,,
+BEN OSTROM,,,7083051215082101008      ,0.00,LOAD,2013-05-03 14:54,650.00,150821                        

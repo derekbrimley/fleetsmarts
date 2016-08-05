@@ -1,0 +1,41 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,PA Carl Davis                 ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-14 09:17,25.00,david_favreau_jt              
+,,BA Tolls Carl Davis           ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-14 12:01,100.00,david_favreau_jt              
+,,PA Kenneth Iven               ,,,,,,
+Kenneth Iven,,,7083051215084100073      ,0.00,LOAD,2014-01-14 12:49,25.00,darren_walton_jt              
+,,Reimbursement Propane Randy   ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-14 09:17,45.00,darren_walton_jt              
+,,BA Propane Randy Larsen       ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-14 21:32,30.00,matt_graham_jt                
+,,BA Scales Edgar Faulkner      ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-01-14 17:43,45.00,matt_graham_jt                
+,,BA Tolls James                ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-14 08:30,30.00,darren_walton_jt              
+,,Reimburse for WV Toll Tom Carr,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:45,6.75,150841                        
+,,Reimburse for KA Toll Tom Carr,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:45,7.00,150841                        
+,,Reimburse for WV Toll Tom Carr,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:46,6.75,150841                        
+,,Reimburse for WV Toll Tom Carr,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:47,6.75,150841                        
+,,Reimburse for Scale Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:48,10.00,150841                        
+,,Reimburse for Scale Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:48,10.00,150841                        
+,,Reimburse for Hotel Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:49,50.66,150841                        
+,,Reimburse for Hotel Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:51,42.36,150841                        
+,,Reimburse for Hotel Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:51,44.39,150841                        
+,,Reimburse for Hotel (times 2) ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:52,114.06,150841                        
+,,Reimburse for Hotel Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:53,66.24,150841                        
+,,Reimburse for Hotel Tom Carr  ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:53,50.62,150841                        
+,,Reimburse for Mudflap Tom carr,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-14 11:54,65.35,150841                        

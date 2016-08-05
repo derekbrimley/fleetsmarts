@@ -1,0 +1,1 @@
+<?php echo form_dropdown('estimate_dropdown_'.$i,$estimate_options,"Select",'id="estimate_dropdown_'.$i.'" onChange="" style="width:90px; position:relative; right:2px;"');?>

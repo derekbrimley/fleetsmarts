@@ -1,0 +1,11 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Pay                           ,,,,,,
+Rodney Nelson,,,7083051215082300071      ,0.00,LOAD,2013-04-29 13:42,800.00,150823                        
+,,New Mexico permit             ,,,,,,
+Paul Holstrom,,,7083051215082300089      ,0.00,LOAD,2013-04-23 09:01,65.00,150823                        
+,,Tolls                         ,,,,,,
+Paul Holstrom,,,7083051215082300089      ,0.00,LOAD,2013-04-29 17:02,116.00,150823                        
+,,pay day                       ,,,,,,
+SAMUEL JONES,,,7083051215082300188      ,0.00,LOAD,2013-04-25 23:26,450.00,150823                        
+,,,,,,,,
+SAMUEL JONES,,,7083051215082300188      ,0.00,RMVE,2013-04-26 13:09,-450.00,150823                        

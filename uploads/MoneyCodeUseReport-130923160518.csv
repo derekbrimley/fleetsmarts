@@ -1,0 +1,10 @@
+Ref#,Voided,Issue Type,Issued By,Issued To,Issued Date,Fee,Original Amt,Bill Date,Check Num,Date Used,Amount Used,Currency,One Time ,Exact Amt,Expire Date,Notes
+101723855,No,E_MANAGER,150841,antione smith,2013-09-22,1.50,60.00,2013-09-22,322078914,2013-09-22,60.00,USD,No,No,,new mexico permit
+101727233,No,E_MANAGER,150841,James Posey,2013-09-23,1.50,100.00,2013-09-23,509945814,2013-09-23,100.00,USD,No,No,,Pay
+101728293,No,E_MANAGER,150841,Commercial Truck,2013-09-23,1.50,400.00,2013-09-23,245781981,2013-09-23,400.00,USD,No,No,,Repair for Trailer A4
+101728891,No,E_MANAGER,ricky_k_jt,Alex Morales,2013-09-23,1.50,750.00,2013-09-23,543758139,2013-09-23,750.00,USD,No,No,,Pay ending 9.13
+101729015,No,E_MANAGER,jake_robertson_,Tom Byers,2013-09-23,1.50,400.00,2013-09-23,372322008,2013-09-23,400.00,USD,No,No,,Settlement
+101729125,No,E_MANAGER,ricky_k_jt,Alex Morales,2013-09-23,1.50,213.00,2013-09-23,543758112,2013-09-23,213.00,USD,No,No,,Reimbursement restacking 
+101729163,No,E_MANAGER,ricky_k_jt,Alex Morales,2013-09-23,1.50,77.00,2013-09-23,543758103,2013-09-23,77.00,USD,No,No,,Reimburse for ticket
+101729183,No,E_MANAGER,ricky_k_jt,Alex Morales,2013-09-23,1.50,53.00,2013-09-23,543758076,2013-09-23,53.00,USD,No,No,,Lumper fee 3724639
+101729195,No,E_MANAGER,ricky_k_jt,Alex Morales,2013-09-23,1.50,20.00,2013-09-23,543758085,2013-09-23,20.00,USD,No,No,,BA oil for truck

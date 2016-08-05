@@ -1,0 +1,5 @@
+Ref#,Voided,Issue Type,Issued By,Issued To,Issued Date,Fee,Original Amt,Bill Date,Check Num,Date Used,Amount Used,Currency,One Time ,Exact Amt,Expire Date,Notes
+101490599,No,E_MANAGER,nate_clonts_km,Joe Cupelle,2013-08-13,1.50,25.00,2013-08-13,329650632,2013-08-13,25.00,USD,No,No,,PA
+101500407,No,E_MANAGER,jake_robertson_,Joe Cuppelle,2013-08-15,1.50,25.00,2013-08-15,528206994,2013-08-15,25.00,USD,No,No,,PA
+101506117,No,E_MANAGER,jake_robertson_,Joe Cupelle,2013-08-16,1.50,300.00,2013-08-16,528206985,2013-08-16,300.00,USD,No,No,,Payday
+101506119,No,E_MANAGER,jake_robertson_,Joe Cupelle,2013-08-16,1.50,53.68,2013-08-17,524685852,2013-08-17,53.68,USD,No,No,,Payday

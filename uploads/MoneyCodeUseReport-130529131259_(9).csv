@@ -1,0 +1,11 @@
+Ref#,Voided,Issue Type,Issued By,Issued To,Issued Date,Fee,Original Amt,Bill Date,Check Num,Date Used,Amount Used,Currency,One Time ,Exact Amt,Expire Date,Notes
+101601165,No,E_MANAGER,ricky_k_km,James Fondaw,2013-09-02,1.50,25.00,2013-09-02,507685923,2013-09-02,25.00,USD,No,No,,PA James F.
+101601371,No,E_MANAGER,matt_graham_k,Derek Lawrence,2013-09-02,1.50,25.00,2013-09-02,524534643,2013-09-02,25.00,USD,No,No,,PA Derek
+101601261,No,E_MANAGER,ricky_k_km,Norreddine Senucci,2013-09-02,1.50,30.00,2013-09-02,329650929,2013-09-02,30.00,USD,No,No,,PA Norreddine S.
+101602269,No,E_MANAGER,will_cummings_,Randy Larsen,2013-09-02,1.50,100.00,2013-09-02,369040014,2013-09-02,100.00,USD,No,No,,
+101602387,No,E_MANAGER,will_cummings_,Randy Larsen,2013-09-02,1.50,146.00,2013-09-02,108556542,2013-09-02,146.00,USD,No,No,,Capstone Lumper Fee
+101603117,No,E_MANAGER,will_cummings_,Randy Larsen,2013-09-03,1.50,86.00,2013-09-03,369040023,2013-09-03,86.00,USD,No,No,,Blood Thinners
+101606937,No,E_MANAGER,jake_robertson_,Tom Beyers,2013-09-03,1.50,20.00,2013-09-03,538464744,2013-09-03,20.00,USD,No,No,,BA Out-of-Pocket Fuel 
+101624737,No,E_MANAGER,jake_robertson_,Sam Dyer,2013-09-05,1.50,300.00,2013-09-06,362200518,2013-09-06,300.00,USD,No,No,,Settlement
+101624739,No,E_MANAGER,jake_robertson_,Tom Byers,2013-09-05,1.50,300.00,2013-09-06,538464213,2013-09-06,200.00,USD,No,No,,Settlement
+101624739,No,E_MANAGER,jake_robertson_,Tom Byers,2013-09-05,0.00,300.00,2013-09-06,538464879,2013-09-06,98.00,USD,No,No,,Settlement

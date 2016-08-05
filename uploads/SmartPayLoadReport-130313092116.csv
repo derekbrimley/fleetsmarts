@@ -1,0 +1,9 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Pay                           ,,,,,,
+Scott Spalding,,,7083051215082300063      ,0.00,LOAD,2013-03-07 15:06,300.00,150823                        
+,,,,,,,,
+Scott Spalding,,,7083051215082300063      ,0.00,RMVE,2013-03-07 15:31,-303.90,150823                        
+,,pay                           ,,,,,,
+Rodney Nelson,,,7083051215082300071      ,0.00,LOAD,2013-03-09 19:07,250.00,150823                        
+,,$20 toll and $5.60 mail       ,,,,,,
+Rodney Nelson,,,7083051215082300071      ,0.00,LOAD,2013-03-12 17:55,25.60,150823                        

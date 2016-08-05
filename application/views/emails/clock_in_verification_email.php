@@ -1,0 +1,1 @@
+<a href="http://fleetsmarts.integratedlogicsticssolutions.co/index.php/time_clock/clock_in_verification?id=<?=$clock_in_id?>">Click this link to verifiy that you are at your computer.</a>

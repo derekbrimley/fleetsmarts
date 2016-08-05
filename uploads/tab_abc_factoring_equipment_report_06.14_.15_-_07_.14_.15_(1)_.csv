@@ -1,0 +1,10 @@
+"Date","Ref/Check","Description","Amount","Balance","Memo","Category"
+06/24/2015,,"Daily Ledger Bal",,0,,
+07/01/2015,,"IB Transfer Deposit IB TR FROM ACCT *9315 Transfer Online to D",663,663.00,,
+07/01/2015,,"ACH Withdrawal EXT TRF ONLINE",-663,0.00,,
+07/01/2015,,"Daily Ledger Bal",,0,,
+07/06/2015,,"IB Transfer Deposit IB TR FROM ACCT *9315 Transfer Online to D",100,100.00,,
+07/06/2015,,"Daily Ledger Bal",,100,,
+07/07/2015,,"Alliance Payoff MMA to LOC Sweep",-663,-563.00,,
+07/07/2015,,"Alliance Payoff LOC to MMA Sweep",663,100.00,,
+07/07/2015,,"Daily Ledger Bal",,100,,

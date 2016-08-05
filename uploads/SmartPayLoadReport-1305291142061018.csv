@@ -1,0 +1,17 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Pay Ronnie Johnson            ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-10-17 22:53,442.33,jake_robertson_km             
+,,Pay Daniel Lazz               ,,,,,,
+Daniel Lazz,,,7083051215082100794      ,0.00,LOAD,2013-10-17 22:51,1040.14,jake_robertson_km             
+,,Pay Jerry Baker               ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-10-17 22:55,477.44,jake_robertson_km             
+,,Pay Dave Jones                ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2013-10-17 22:55,1099.34,jake_robertson_km             
+,,ba for New Mexico Permit      ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-10-17 13:30,50.00,jake_robertson_km             
+,,BA for New Mexico Permit      ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,RMVE,2013-10-17 13:53,-25.00,jake_robertson_km             
+,,BA for new Mexico Permit      ,,,,,,
+BYRON BELL,,,7083051215082101032      ,0.00,LOAD,2013-10-17 13:54,5.00,jake_robertson_km             
+,,Pay Ron Gondek                ,,,,,,
+Ron  Gondek,,,7083051215082101040      ,0.00,LOAD,2013-10-17 22:52,450.00,jake_robertson_km             

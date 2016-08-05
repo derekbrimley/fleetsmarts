@@ -1,0 +1,12 @@
+Date,Ref/Check,Description,Amount,Balance,Memo,Category
+8/21/2015,,IB Transfer Deposit IB TR FROM ACCT *3068 Transfer Online to D,4200,8222.27,,
+8/21/2015,,ACH Withdrawal ADP PAYROLL FEES ADP - FEES,-56.75,8165.52,,
+8/21/2015,,Daily Ledger Bal,,8165.52,,
+8/24/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-7.63,8157.89,,
+8/24/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-962.42,7195.47,,
+8/24/2015,,ACH Withdrawal ADP TX/FINCL SVC ADP - TAX,-3177.29,4018.18,,
+8/24/2015,,Daily Ledger Bal,,4018.18,,
+8/25/2015,,IB Transfer Deposit IB TR FROM ACCT *3068 Transfer Online to D,5001,9019.18,,
+8/25/2015,,Alliance Payoff MMA to LOC Sweep,-4204.09,4815.09,,
+8/25/2015,,Alliance Payoff LOC to MMA Sweep,4204.09,9019.18,,
+8/25/2015,,Daily Ledger Bal,,9019.18,,

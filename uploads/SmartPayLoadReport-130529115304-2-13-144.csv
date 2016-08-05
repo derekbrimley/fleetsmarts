@@ -1,0 +1,64 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Pay Brian Anderson            ,,,,,,
+Brian Anderson,,,7083051215084100016      ,0.00,LOAD,2014-02-13 23:31,94.20,darren_walton_jt              
+,,Kick In Brian Anderson        ,,,,,,
+Brian Anderson,,,7083051215084100016      ,0.00,LOAD,2014-02-13 23:32,505.80,darren_walton_jt              
+,,BA Hotel Anthony Montiel + ATM,,,,,,
+anthony montiel,,,7083051215084100040      ,0.00,LOAD,2014-02-13 09:17,60.50,darren_walton_jt              
+,,Pay Anthony M (KI)            ,,,,,,
+anthony montiel,,,7083051215084100040      ,0.00,LOAD,2014-02-13 23:24,600.00,darren_walton_jt              
+,,PA-Darren Canter              ,,,,,,
+Darren Canter,,,7083051215084100081      ,0.00,LOAD,2014-02-13 07:50,25.00,darren_walton_jt              
+,,Kick In Pay-Darren Canter     ,,,,,,
+Darren Canter,,,7083051215084100081      ,0.00,LOAD,2014-02-13 21:41,300.00,darren_walton_jt              
+,,Pay for Randy Larsen          ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-02-13 15:06,277.00,150841                        
+,,Pay for Randy Larsen          ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-02-13 16:18,4.00,150841                        
+,,Pay Miguel C 11.13 earned     ,,,,,,
+Miguel Castro,,,7083051215084100115      ,0.00,LOAD,2014-02-13 21:56,152.77,ricky_k_jt                    
+,,Pay Miguel C 11.13 kick in    ,,,,,,
+Miguel Castro,,,7083051215084100115      ,0.00,LOAD,2014-02-13 21:57,247.23,ricky_k_jt                    
+,,Pay Sam Jones                 ,,,,,,
+Samuel Jones,,,7083051215084100131      ,0.00,LOAD,2014-02-13 23:18,966.44,darren_walton_jt              
+,,Pay Mark C (KI)               ,,,,,,
+Mark Champagne,,,7083051215084100149      ,0.00,LOAD,2014-02-13 23:11,400.00,darren_walton_jt              
+,,Pay Carl M 11.13 earned       ,,,,,,
+Carl McCain,,,7083051215084100156      ,0.00,LOAD,2014-02-13 21:52,104.70,ricky_k_jt                    
+,,Pay Carl M 11.13 kick in      ,,,,,,
+Carl McCain,,,7083051215084100156      ,0.00,LOAD,2014-02-13 21:52,445.30,ricky_k_jt                    
+,,Pay Jerry Baker               ,,,,,,
+Jerry Baker,,,7083051215084100164      ,0.00,LOAD,2014-02-13 23:33,515.12,darren_walton_jt              
+,,Pay Victor V (KI)             ,,,,,,
+Victor Vunueza,,,7083051215084100255      ,0.00,LOAD,2014-02-13 23:20,600.00,darren_walton_jt              
+,,Pay Edgar F                   ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-02-13 23:29,155.20,darren_walton_jt              
+,,Kick in Edgar F               ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-02-13 23:30,444.80,darren_walton_jt              
+,,Pay Tom Carr (KI)             ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-02-13 23:11,800.00,darren_walton_jt              
+,,Pay Carlos G 11.13 earned     ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-02-13 21:58,239.86,ricky_k_jt                    
+,,Pay Carlos G. 11.13 kick in   ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-02-13 22:00,360.14,ricky_k_jt                    
+,,Take back. to much pay 11.13  ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,RMVE,2014-02-13 22:01,-50.00,ricky_k_jt                    
+,,cash advance                  ,,,,,,
+Joe Cuppella,,,7083051215084101022      ,0.00,LOAD,2014-02-13 09:41,25.00,jacob_snyder_jt               
+,,Pay Joe C 11.13 earned        ,,,,,,
+Joe Cuppella,,,7083051215084101022      ,0.00,LOAD,2014-02-13 21:53,264.16,ricky_k_jt                    
+,,pay Joe C 11.13 kic in        ,,,,,,
+Joe Cuppella,,,7083051215084101022      ,0.00,LOAD,2014-02-13 21:54,135.84,ricky_k_jt                    
+,,Settlement Pay-Bill Gallagher ,,,,,,
+Bill Gallagher,,,7083051215084101063      ,0.00,LOAD,2014-02-13 21:38,1.00,darren_walton_jt              
+,,Kick In Pay-Bill Gallagher    ,,,,,,
+Bill Gallagher,,,7083051215084101063      ,0.00,LOAD,2014-02-13 21:39,499.00,darren_walton_jt              
+,,Settlement Pay-Kelly T        ,,,,,,
+Kelly Tognarelli,,,7083051215084101097      ,0.00,LOAD,2014-02-13 21:43,91.00,darren_walton_jt              
+,,Kick In Pay-Kelly T           ,,,,,,
+Kelly Tognarelli,,,7083051215084101097      ,0.00,LOAD,2014-02-13 21:45,409.00,darren_walton_jt              
+,,Pay Tom B. ,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,LOAD,2014-02-13 22:03,549.97,ricky_k_jt                    
+,,11.13 earned       ,,,,,,
+,,Pay Tom B. 11.13 kick in      ,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,LOAD,2014-02-13 22:04,100.04,ricky_k_jt                    

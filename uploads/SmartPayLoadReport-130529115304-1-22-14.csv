@@ -1,0 +1,27 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,PA Anthony                    ,,,,,,
+anthony montiel,,,7083051215084100040      ,0.00,LOAD,2014-01-22 18:36,25.00,will_cummings_jt              
+,,PA Carl Davis                 ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-22 17:06,25.00,david_favreau_jt              
+,,,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,RMVE,2014-01-22 19:06,-25.00,will_cummings_jt              
+,,PA Carl                       ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-22 19:59,25.00,will_cummings_jt              
+,,BA Hotel Mike Arens           ,,,,,,
+Mike Arens,,,7083051215084100099      ,0.00,LOAD,2014-01-22 13:49,105.00,darren_walton_jt              
+,,Reimbursement-trailerA19 Sam J,,,,,,
+Samuel Jones,,,7083051215084100131      ,0.00,LOAD,2014-01-22 17:51,310.00,darren_walton_jt              
+,,PA Victor                     ,,,,,,
+Victor Vinueza,,,7083051215084100255      ,0.00,LOAD,2014-01-22 19:07,25.00,will_cummings_jt              
+,,BA Trip Pak James Fondaw      ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-22 15:37,20.00,darren_walton_jt              
+,,PA James Fondaw               ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-22 15:37,25.00,darren_walton_jt              
+,,BA Tolls James                ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-22 19:38,10.00,will_cummings_jt              
+,,PA Victor                     ,,,,,,
+Victor Vinueza,,,7083051215084100917      ,0.00,LOAD,2014-01-22 18:37,25.00,will_cummings_jt              
+,,Statement                     ,,,,,,
+Tom Carr,,,7083051215084100966      ,0.00,LOAD,2014-01-22 13:29,600.00,jake_robertson_jt             
+,,PA Mike Malone                ,,,,,,
+Mike Malone,,,7083051215084101055      ,0.00,LOAD,2014-01-22 11:07,25.00,darren_walton_jt              

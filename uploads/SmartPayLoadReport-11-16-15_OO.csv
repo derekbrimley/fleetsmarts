@@ -1,0 +1,66 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+Steven Lichty,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,803.07,phil_ross                     
+Steven Lichty,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,214.8,phil_ross                     
+Steven Lichty,,2483,7.08305E+18,0,LOAD,11/16/2015 18:00,54.1,nate_clonts                   
+Lobos Academy,,retest 2 cdl tests           ,7.08305E+18,0,LOAD,11/16/2015 11:00,100,tyler_warren                  
+Sterling Davis,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,828.8,phil_ross                     
+Cephus Robinson,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,192.58,phil_ross                     
+Cephus Robinson,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,227.84,phil_ross                     
+Paul Stewart,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,388.3,phil_ross                     
+Paul Stewart,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,773.79,phil_ross                     
+Travis Sievers,,Fee                           ,7.08305E+18,0,LOAD,11/16/2015 1:00,50,pete_k                        
+Travis Sievers,,Wrong card                    ,7.08305E+18,0,RMVE,11/16/2015 3:00,-50,pete_k                        
+Travis Sievers,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,1185.41,phil_ross                     
+Travis Sievers,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,627.49,phil_ross                     
+Old:Christopher Barfield,,move to new card              ,7.08305E+18,0,RMVE,11/16/2015 17:00,-17.44,tyler_warren                  
+Old:Christopher Barfield,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,336.56,phil_ross                     
+Old:Christopher Barfield,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-26.82,phil_ross                     
+Old:Christopher Barfield,,2481,7.08305E+18,0,LOAD,11/16/2015 17:00,25,nate_clonts                   
+Old:Christopher Barfield,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 18:00,26.82,phil_ross                     
+Old:Christopher Barfield,,Earned                        ,7.08305E+18,0,RMVE,11/16/2015 18:00,-336.53,phil_ross                     
+Old:Christopher Barfield,,PO 2481                       ,7.08305E+18,0,RMVE,11/16/2015 18:00,-25,phil_ross                     
+Yogi Reece,,2478,7.08305E+18,0,LOAD,11/16/2015 17:00,25,nate_clonts                   
+Kyle Fritsch,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,215.47,phil_ross                     
+Kyle Fritsch,,Kick In                       ,7.08305E+18,0,LOAD,11/16/2015 17:00,234.7,phil_ross                     
+Kyle Fritsch,,Earned                        ,7.08305E+18,0,RMVE,11/16/2015 17:00,-37.77,phil_ross                     
+LOST CARD: Samuel Jones,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,976.72,phil_ross                     
+LOST CARD: Samuel Jones,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,488.36,phil_ross                     
+Warren Wilson,,2484,7.08305E+18,0,LOAD,11/16/2015 18:00,105,nate_clonts                   
+Mark McAlister,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,1464.99,phil_ross                     
+Mark McAlister,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-764.99,phil_ross                     
+Brian Burton,,Surrending for abandoning vehi,7.08305E+18,0,RMVE,11/16/2015 10:00,-3.21,phil_ross                     
+Cassius Broadwater,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-493.8,phil_ross                     
+Cassius Broadwater,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,987.6,phil_ross                     
+Kris Lorenz,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,349.6,phil_ross                     
+Kris Lorenz,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-185.98,phil_ross                     
+Maxime Ductan,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-501.29,phil_ross                     
+Maxime Ductan,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,598.29,phil_ross                     
+Maxime Ductan,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-53.88,phil_ross                     
+Maxime Ductan,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,414.44,phil_ross                     
+Maxime Ductan,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,53.88,phil_ross                     
+Maxime Ductan,,Earned                        ,7.08305E+18,0,RMVE,11/16/2015 17:00,-414.44,phil_ross                     
+Chris Anderson,,Remove for Zach/Chris agreemen,7.08305E+18,0,RMVE,11/16/2015 14:00,-364.71,phil_ross                     
+Chris Anderson,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,539.83,phil_ross                     
+Chris Anderson,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-268.83,phil_ross                     
+Chris Anderson,,Repayment                     ,7.08305E+18,0,RMVE,11/16/2015 17:00,-271,phil_ross                     
+Willliam Barclay,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,390.46,phil_ross                     
+Steve Roy,,2479,7.08305E+18,0,LOAD,11/16/2015 17:00,25,nate_clonts                   
+Steve Roy,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,257.78,phil_ross                     
+Maurice Cuffie,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 18:00,214.08,phil_ross                     
+Maurice Cuffie,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 18:00,-117.08,phil_ross                     
+Henry Ivey,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-654.98,phil_ross                     
+Henry Ivey,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,1225.98,phil_ross                     
+Dale Rhymer,,2480,7.08305E+18,0,LOAD,11/16/2015 17:00,25,nate_clonts                   
+Theolander Wilson,,Gate fee                      ,7.08305E+18,0,LOAD,11/16/2015 1:00,50,pete_k                        
+Theolander Wilson,,2476,7.08305E+18,0,LOAD,11/16/2015 17:00,25,nate_clonts                   
+Christopher Barfield,,transfer from old card        ,7.08305E+18,0,LOAD,11/16/2015 17:00,17.44,tyler_warren                  
+Christopher Barfield,,PO 2481                       ,7.08305E+18,0,LOAD,11/16/2015 18:00,25,phil_ross                     
+Christopher Barfield,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 18:00,-26.82,phil_ross                     
+Christopher Barfield,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 18:00,336.56,phil_ross                     
+John Free,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,842.6,phil_ross                     
+John Free,,Lobos                         ,7.08305E+18,0,LOAD,11/16/2015 17:00,425.52,phil_ross                     
+John Free,,Student Repayment             ,7.08305E+18,0,RMVE,11/16/2015 17:00,-250,phil_ross                     
+Darian Herrington,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,414.44,phil_ross                     
+Darian Herrington,,Lobos                         ,7.08305E+18,0,RMVE,11/16/2015 17:00,-53.88,phil_ross                     
+Michael Granata,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,232.76,phil_ross                     
+Raul Rodriguez,,Earned                        ,7.08305E+18,0,LOAD,11/16/2015 17:00,540.42,phil_ross                     

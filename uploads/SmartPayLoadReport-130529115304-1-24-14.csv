@@ -1,0 +1,25 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,PA Mike Arens                 ,,,,,,
+Mike Arens,,,7083051215084100099      ,0.00,LOAD,2014-01-24 10:22,25.00,darren_walton_jt              
+,,Pay Mike A. ending 1/17/14    ,,,,,,
+Mike Arens,,,7083051215084100099      ,0.00,LOAD,2014-01-24 13:23,300.00,ricky_k_jt                    
+,,Pay for Randy Larsen          ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-24 11:39,60.00,150841                        
+,,BA for Truck Wash 39033       ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-24 16:23,17.00,150841                        
+,,BA Truck Wash for Paul S.     ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-24 16:40,17.50,ricky_k_jt                    
+,,pay Sam J. ending 1.17.14     ,,,,,,
+Samuel Jones,,,7083051215084100131      ,0.00,LOAD,2014-01-24 16:22,80.00,ricky_k_jt                    
+,,Pay Carl M ending 1.17.14     ,,,,,,
+Carl McCain,,,7083051215084100156      ,0.00,LOAD,2014-01-24 12:11,170.00,ricky_k_jt                    
+,,Reimburs Carl M Load locks    ,,,,,,
+Carl McCain,,,7083051215084100156      ,0.00,LOAD,2014-01-24 17:57,23.00,ricky_k_jt                    
+,,took off what was paid        ,,,,,,
+Sterling Robles,,,7083051215084100263      ,0.00,RMVE,2014-01-24 08:34,-515.70,ricky_k_jt                    
+,,Taken off. Broke contract     ,,,,,,
+Sterling Robles,,,7083051215084100263      ,0.00,RMVE,2014-01-24 09:59,-605.87,ricky_k_jt                    
+,,reimburse James F. Oil Anti  ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-24 16:33,84.00,ricky_k_jt                    
+,,Reimburs Carls G. Lumper      ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-01-24 17:57,178.00,ricky_k_jt                    

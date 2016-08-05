@@ -1,0 +1,51 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Statement                     ,,,,,,
+Brian Anderson,,,7083051215084100016      ,0.00,LOAD,2014-01-16 22:44,400.00,jake_robertson_jt             
+,,BA Scale Anthony M            ,,,,,,
+anthony montiel,,,7083051215084100040      ,0.00,LOAD,2014-01-16 13:51,25.00,david_favreau_jt              
+,,PAY Anthony Montiel           ,,,,,,
+anthony montiel,,,7083051215084100040      ,0.00,LOAD,2014-01-16 23:40,630.00,david_favreau_jt              
+,,PA Carl Davis                 ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-16 13:50,25.00,david_favreau_jt              
+,,Pay Carl Davis                ,,,,,,
+Carl CAAAAAARRRRRLLLLLL,,,7083051215084100057      ,0.00,LOAD,2014-01-16 23:45,175.00,david_favreau_jt              
+,,Pay Kenneth ending 01.10.14   ,,,,,,
+Kenneth Iven,,,7083051215084100073      ,0.00,LOAD,2014-01-16 21:42,300.00,ricky_k_jt                    
+,,BA for Cab Mike Arens         ,,,,,,
+Mike Arens,,,7083051215084100099      ,0.00,LOAD,2014-01-16 12:14,40.00,ricky_k_jt                    
+,,BA for Lami Labels Randy L.   ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-16 11:11,30.00,150841                        
+,,Pay-Randy Larsen              ,,,,,,
+Randy Larsen,,,7083051215084100107      ,0.00,LOAD,2014-01-16 16:13,615.00,darren_walton_jt              
+,,Pay Victor Vineuza            ,,,,,,
+Victor Vinueza,,,7083051215084100255      ,0.00,LOAD,2014-01-16 23:47,220.00,david_favreau_jt              
+,,Statement                     ,,,,,,
+Sterling Robles,,,7083051215084100263      ,0.00,LOAD,2014-01-16 22:42,415.09,jake_robertson_jt             
+,,Statement                     ,,,,,,
+Edgar Faulkner,,,7083051215084100271      ,0.00,LOAD,2014-01-16 22:43,600.00,jake_robertson_jt             
+,,BA James F. Tolls             ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-16 11:17,85.00,ricky_k_jt                    
+,,Pay James F. 01.10.14         ,,,,,,
+James Fondaw,,,7083051215084100834      ,0.00,LOAD,2014-01-16 21:40,607.00,ricky_k_jt                    
+,,Pay Carlos G. Ending 1.10.14  ,,,,,,
+Carlos Garcia,,,7083051215084100982      ,0.00,LOAD,2014-01-16 21:57,365.00,ricky_k_jt                    
+,,PA Mike Malone                ,,,,,,
+Mike Malone,,,7083051215084101055      ,0.00,LOAD,2014-01-16 13:31,25.00,darren_walton_jt              
+,,Statement                     ,,,,,,
+Mike Malone,,,7083051215084101055      ,0.00,LOAD,2014-01-16 22:45,315.00,jake_robertson_jt             
+,,Pay Bill G. Ending 1.10.14    ,,,,,,
+Bill Gallagher,,,7083051215084101063      ,0.00,LOAD,2014-01-16 22:03,500.00,ricky_k_jt                    
+,,BA Tolls James F.             ,,,,,,
+Roger Schwartz,,,7083051215084101089      ,0.00,LOAD,2014-01-16 10:50,85.00,ricky_k_jt                    
+,,wrong person                  ,,,,,,
+Roger Schwartz,,,7083051215084101089      ,0.00,RMVE,2014-01-16 11:16,-85.00,ricky_k_jt                    
+,,Pay Roger S. ending 1.10.14   ,,,,,,
+Roger Schwartz,,,7083051215084101089      ,0.00,LOAD,2014-01-16 22:00,765.00,ricky_k_jt                    
+,,Pay Kelly T. ending 1.10.14   ,,,,,,
+Kelly Tognarelli,,,7083051215084101097      ,0.00,LOAD,2014-01-16 22:04,500.00,ricky_k_jt                    
+,,BA Lumper Tom Byers           ,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,LOAD,2014-01-16 13:12,75.00,darren_walton_jt              
+,,,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,RMVE,2014-01-16 13:19,-75.00,darren_walton_jt              
+,,Statement                     ,,,,,,
+Tom Byers,,,7083051215084101105      ,0.00,LOAD,2014-01-16 22:42,800.00,jake_robertson_jt             

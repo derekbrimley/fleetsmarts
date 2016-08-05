@@ -1,0 +1,21 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+Lobos Academy,,,7.08305E+18,0,LOAD,11/3/2015 10:00,60,tyler_warren                  
+Mark Clayton,,wrong card                    ,7.08305E+18,0,RMVE,11/3/2015 11:00,-300,ezra_white                    
+Paul Stewart,,Earned Paul Stewart           ,7.08305E+18,0,LOAD,11/3/2015 12:00,764.58,nate_clonts                   
+Paul Stewart,,Lobos Paul Stewart            ,7.08305E+18,0,LOAD,11/3/2015 12:00,407.86,nate_clonts                   
+Paul Stewart,,PO 2146 TOLL Paul Stewart     ,7.08305E+18,0,LOAD,11/3/2015 12:00,6.75,nate_clonts                   
+LOST CARD: Samuel Jones,,Move $ to Sam's new card      ,7.08305E+18,0,RMVE,11/3/2015 17:00,-951.84,nate_clonts                   
+Warren Wilson,,PO 2149 PO 2148               ,7.08305E+18,0,LOAD,11/3/2015 14:00,34.3,ezra_white                    
+Warren Wilson,,PO 2161 Tolls                 ,7.08305E+18,0,LOAD,11/3/2015 21:00,105,will_cummings                 
+Mark McAlister,,Earned                        ,7.08305E+18,0,LOAD,11/3/2015 11:00,815.73,ezra_white                    
+Mark McAlister,,Lobos                         ,7.08305E+18,0,RMVE,11/3/2015 11:00,-515.73,ezra_white                    
+Brian Burton,,PO 2159 PA                    ,7.08305E+18,0,LOAD,11/3/2015 19:00,25,will_cummings                 
+Eric Solomon,,Earned                        ,7.08305E+18,0,LOAD,11/3/2015 11:00,993.4,ezra_white                    
+Eric Solomon,,Lobos                         ,7.08305E+18,0,RMVE,11/3/2015 11:00,-622.4,ezra_white                    
+Maxime Ductan,,PO 2160                       ,7.08305E+18,0,LOAD,11/3/2015 19:00,25,will_cummings                 
+Maurice Cuffie,,PO 2158 PA                    ,7.08305E+18,0,LOAD,11/3/2015 19:00,25,will_cummings                 
+Christopher Carlo,,gas for trip from OR          ,7.08305E+18,0,LOAD,11/3/2015 12:00,25,tyler_warren                  
+Sam Jones,,PO 2145                       ,7.08305E+18,0,LOAD,11/3/2015 11:00,62.01,ezra_white                    
+Sam Jones,,Move $ from Sam's Old card    ,7.08305E+18,0,LOAD,11/3/2015 17:00,951.84,nate_clonts                   
+John Free,,PO 2147                       ,7.08305E+18,0,LOAD,11/3/2015 16:00,100,ezra_white                    
+Michael Granata,,Earned                        ,7.08305E+18,0,LOAD,11/3/2015 11:00,888.51,ezra_white                    

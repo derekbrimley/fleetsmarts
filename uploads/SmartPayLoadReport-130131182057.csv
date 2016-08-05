@@ -1,0 +1,9 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,unable to locate              ,,,,,,
+Scott Spalding,,,7083051215082300063      ,0.00,RMVE,2013-01-29 20:14,-614.00,150823                        
+,,reload                        ,,,,,,
+Scott Spalding,,,7083051215082300063      ,0.00,LOAD,2013-01-29 23:50,614.00,150823                        
+,,refund for supplies           ,,,,,,
+Scott Spalding,,,7083051215082300063      ,0.00,LOAD,2013-01-31 17:17,194.12,150823                        
+,,Tolls                         ,,,,,,
+Paul Holstrom,,,7083051215082300089      ,0.00,LOAD,2013-01-28 16:23,236.85,150823                        

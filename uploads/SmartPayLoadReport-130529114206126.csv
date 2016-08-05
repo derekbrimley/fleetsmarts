@@ -1,0 +1,17 @@
+Driver Name,Driver ID,Reference,Card Number,Fee,Type,Date,Amount,User
+,,Statement                     ,,,,,,
+Ronnie Johnson,,,7083051215082100299      ,0.00,LOAD,2013-12-05 22:14,200.00,jake_robertson_km             
+,,BA Motel in Harrisburg        ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-12-05 13:42,58.00,150821                        
+,,Pay Jerry B 12/5              ,,,,,,
+Jerry Baker,,,7083051215082100836      ,0.00,LOAD,2013-12-05 21:32,280.00,ricky_k_km                    
+,,BA Trailer Parking Dave Jones ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2013-12-05 09:46,12.00,jake_robertson_km             
+,,Statement                     ,,,,,,
+DAVE JONES,,,7083051215082101016      ,0.00,LOAD,2013-12-05 22:15,1040.77,jake_robertson_km             
+,,Pay Ron G. 12.5               ,,,,,,
+Ron  Gondek,,,7083051215082101040      ,0.00,LOAD,2013-12-05 21:31,700.00,ricky_k_km                    
+,,Statement                     ,,,,,,
+Edgar R,,,7083051215082101099      ,0.00,LOAD,2013-12-05 22:15,300.00,jake_robertson_km             
+,,Statement                     ,,,,,,
+Ramon Hidalgo,,,7083051215082101107      ,0.00,LOAD,2013-12-05 22:14,300.00,jake_robertson_km             

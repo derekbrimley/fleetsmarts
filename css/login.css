@@ -1,0 +1,59 @@
+#login_box
+{
+	height: 300px;
+	width: 400px;
+	background: #C8C8C8;
+	padding:20px;
+	margin: 0 auto;
+	margin-top: 100px;
+	border-radius: 15px;
+	box-shadow: 10px 10px 5px #888;
+}
+
+#inner_box
+{
+	font-family:arial;
+	font-size:14px;
+	width: 200px;
+	margin: 0 auto;
+	margin-top:50px;
+	
+}
+
+.sign_in_button
+{
+	border: none; 
+	margin: 0 auto; 
+	width:200px; 
+	height:30px; 
+	background:#0073EA; 
+	color:white;
+	border-radius: 2px;
+}
+
+.Sign_in_button:hover
+{
+	background:#6295FC;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

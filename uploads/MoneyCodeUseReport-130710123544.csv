@@ -1,0 +1,8 @@
+Ref#,Voided,Issue Type,Issued By,Issued To,Issued Date,Fee,Original Amt,Bill Date,Check Num,Date Used,Amount Used,Currency,One Time ,Exact Amt,Expire Date,Notes
+101307389,No,E_MANAGER,150841,John Christenson,2013-07-11,1.50,130.00,2013-07-11,510570522,2013-07-11,130.00,USD,No,No,,Lumper fee
+101307573,No,E_MANAGER,darren_walton_j,Joe Cupell,2013-07-11,1.50,118.50,2013-07-11,355754034,2013-07-11,118.00,USD,No,No,,Pay
+101307561,No,E_MANAGER,darren_walton_j,Roger Shwartz,2013-07-11,1.50,300.00,2013-07-11,510570549,2013-07-11,300.00,USD,No,No,,Pay
+101307555,No,E_MANAGER,darren_walton_j,Cometrick Wright,2013-07-11,1.50,300.00,2013-07-12,352463247,2013-07-12,300.00,USD,No,No,,Pay
+101307551,No,E_MANAGER,darren_walton_j,Brian Woodall,2013-07-11,1.50,128.57,2013-07-12,145730727,2013-07-12,128.57,USD,No,No,,Pay
+101331583,No,E_MANAGER,150841,Roger Schwartz,2013-07-15,1.50,17.50,2013-07-15,510570585,2013-07-15,17.50,USD,No,No,,Pay Roger S for prev void cod
+101333489,No,E_MANAGER,david_favreau_jt,Roger Shwartz,2013-07-16,1.50,25.00,2013-07-16,510570594,2013-07-16,25.00,USD,No,No,,PA Roger Shwartz

@@ -299,9 +299,9 @@ class Public_functions extends CI_Controller
 				$longitude = $asset['longitude'];
 				
 				$message = "Truck $truck_number is going $speed MPH as of $readable_datetime.\nThe odometer is at $odometer.\nThe power is $power.\nThe coordinates are $latitude, $longitude.";
-				$channel = "notifications";
+				$channel = "truck_" . $truck_number;
 
-				send_slack_message($message,$channel="notifications");
+				send_slack_message($message,$channel);
 			}
 			
 		}
@@ -669,6 +669,12 @@ class Public_functions extends CI_Controller
 					$trippak['scan_datetime'] = date('Y-m-d H:i:s');
 					db_insert_trippak($trippak);
 
+					$readable_datetime = date('F j, Y, g:i a');
+					$message = "Trippak uploaded from truck number $truck_number at $readable_datetime";
+					$channel = "#trippak";
+					
+					send_slack_message($message,$channel);
+					
 					$trippak_object = db_select_trippak($trippak);
 					$trippak_id = $trippak_object['id'];
 
@@ -950,7 +956,62 @@ class Public_functions extends CI_Controller
 //		print_r($logged_in_users_email);
 		
 	}
+	
+//	function add_truck_channels(){
+//		$where = null;
+//		$where['dropdown_status'] = 'Show';
+//		$trucks = db_select_trucks($where);
+//		
+//		foreach($trucks as $truck){
+//			echo "truck_" . $truck['truck_number']." channel created!<br>";
+//			create_slack_channel("truck_" . $truck['truck_number']);
+//		}
+//	}
+//	
+	function add_trailer_channels(){
+		$where = null;
+		$where = "trailer.id > 80 AND trailer_status = 'On the road'";
+		$trailers = db_select_trailers($where);
+		
+		foreach($trailers as $trailer){
+			create_slack_channel("trailer_" . $trailer['trailer_number']);
+			echo "trailer_" . $trailer['trailer_number']." channel created!<br>";
+		}
+	}
 
+	function create_slack_channel($name)
+	{
+//		KEY: xoxp-4249413880-4273184029-66844202993-71954a5c59
+		$token = 'xoxp-4249413880-4273184029-66844202993-71954a5c59';
+//		$name = 'test_channel';
+		
+		$channels_json_string = file_get_contents('https://slack.com/api/channels.list?token=' . $token);
+		
+		$parsed_channels_json = json_decode($channels_json_string,TRUE);
+		
+//		print_r($parsed_channels);
+		$current_channels = array();
+		foreach($parsed_channels_json['channels'] as $key => $channel){
+			echo "Channel: " . $channel['name'] . "<br>";
+			$current_channels[] = $channel['name'];
+		}
+		
+		if(!in_array($name,$current_channels))
+		{
+			$c = curl_init('https://slack.com/api/channels.create?name=' . $name . '&token=' . $token);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_POST, true);
+			$result = curl_exec($c);
+			curl_close($c);
+
+			echo $result;
+		}
+		else
+		{
+			echo "channel $name already in the system.<br>";
+		}
+	}
+	
 	//CHRON TO GET IBRIGHT DATA FROM IBRIGHT API
 	function get_ibright_data()
 	{
@@ -1126,9 +1187,9 @@ class Public_functions extends CI_Controller
 			$readable_datetime_occurred = date('F j, Y, g:i a',strtotime($datetime_occurred)); 
 			
 			$message = "Trailer $trailer_number is $status as of $readable_datetime_occurred.\nThe fuel level is at $fuel_level%.\nThe battery voltage is at $battery_voltage.\nThe coordinates are $latitude, $longitude.\nSet temperature: $set_temperature;\nReturn temperature: $return_temperature;\nSupply temperature: $supply_temperature;\nAmbient temperature: $ambient_temperature.";
-			$channel = "notifications";
+			$channel = "trailer_" . $trailer_number;
 			
-			send_slack_message($message,$channel="notifications");
+			send_slack_message($message,$channel);
 //			print_r($reefer_info_json);
 //			echo "<br><br>";
 //			print_r($temperature_info_json);

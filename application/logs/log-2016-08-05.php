@@ -2220,3 +2220,719 @@ DEBUG - 2016-08-05 14:14:53 --> FTP Class Initialized
 DEBUG - 2016-08-05 14:14:56 --> File loaded: application/views/time_clock/clock_in_response.php
 DEBUG - 2016-08-05 14:14:56 --> Final output sent to browser
 DEBUG - 2016-08-05 14:14:56 --> Total execution time: 2.7819
+DEBUG - 2016-08-05 22:29:08 --> Config Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Hooks Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 22:29:08 --> URI Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Router Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Output Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Security Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Input Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 22:29:08 --> Language Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Loader Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 22:29:08 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 22:29:08 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 22:29:08 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 22:29:08 --> Database Driver Class Initialized
+ERROR - 2016-08-05 22:29:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 22:29:08 --> Session Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 22:29:08 --> Session routines successfully run
+DEBUG - 2016-08-05 22:29:08 --> Jquery Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 22:29:08 --> Email Class Initialized
+DEBUG - 2016-08-05 22:29:08 --> Controller Class Initialized
+DEBUG - 2016-08-05 14:29:08 --> FTP Class Initialized
+DEBUG - 2016-08-05 14:29:15 --> Final output sent to browser
+DEBUG - 2016-08-05 14:29:15 --> Total execution time: 7.5295
+DEBUG - 2016-08-05 22:50:47 --> Config Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Hooks Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 22:50:47 --> URI Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Router Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> No URI present. Default controller set.
+DEBUG - 2016-08-05 22:50:47 --> Output Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Security Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Input Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 22:50:47 --> Language Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Loader Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 22:50:47 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 22:50:47 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 22:50:47 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 22:50:47 --> Database Driver Class Initialized
+ERROR - 2016-08-05 22:50:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 22:50:47 --> Session Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 22:50:47 --> Session routines successfully run
+DEBUG - 2016-08-05 22:50:47 --> Jquery Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 22:50:47 --> Email Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> Controller Class Initialized
+DEBUG - 2016-08-05 22:50:47 --> File loaded: application/views/home_view.php
+DEBUG - 2016-08-05 22:50:47 --> Final output sent to browser
+DEBUG - 2016-08-05 22:50:47 --> Total execution time: 0.2813
+DEBUG - 2016-08-05 22:50:48 --> Config Class Initialized
+DEBUG - 2016-08-05 22:50:48 --> Hooks Class Initialized
+DEBUG - 2016-08-05 22:50:48 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 22:50:48 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 22:50:48 --> URI Class Initialized
+DEBUG - 2016-08-05 22:50:48 --> Router Class Initialized
+ERROR - 2016-08-05 22:50:48 --> 404 Page Not Found --> js
+DEBUG - 2016-08-05 23:33:18 --> Config Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:33:18 --> URI Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Router Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Output Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Security Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Input Class Initialized
+DEBUG - 2016-08-05 23:33:18 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:33:19 --> Language Class Initialized
+DEBUG - 2016-08-05 23:33:19 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:33:19 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:33:19 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:33:19 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:33:19 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:33:19 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:33:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:33:19 --> Session Class Initialized
+DEBUG - 2016-08-05 23:33:19 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:33:19 --> Session routines successfully run
+DEBUG - 2016-08-05 23:33:19 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:33:19 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:33:19 --> Email Class Initialized
+DEBUG - 2016-08-05 23:33:19 --> Controller Class Initialized
+ERROR - 2016-08-05 23:33:19 --> Severity: Notice  --> Undefined variable: data C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 969
+DEBUG - 2016-08-05 23:33:20 --> Final output sent to browser
+DEBUG - 2016-08-05 23:33:20 --> Total execution time: 1.3027
+DEBUG - 2016-08-05 23:33:50 --> Config Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:33:50 --> URI Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Router Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Output Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Security Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Input Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:33:50 --> Language Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:33:50 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:33:51 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:33:51 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:33:51 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:33:51 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:33:51 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:33:51 --> Session Class Initialized
+DEBUG - 2016-08-05 23:33:51 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:33:51 --> Session routines successfully run
+DEBUG - 2016-08-05 23:33:51 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:33:51 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:33:51 --> Email Class Initialized
+DEBUG - 2016-08-05 23:33:51 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:33:51 --> Final output sent to browser
+DEBUG - 2016-08-05 23:33:51 --> Total execution time: 0.4125
+DEBUG - 2016-08-05 23:34:01 --> Config Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:34:01 --> URI Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Router Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Output Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Security Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Input Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:34:01 --> Language Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:34:01 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:34:01 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:34:01 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:34:01 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:34:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:34:01 --> Session Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:34:01 --> Session routines successfully run
+DEBUG - 2016-08-05 23:34:01 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:34:01 --> Email Class Initialized
+DEBUG - 2016-08-05 23:34:01 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:34:02 --> Final output sent to browser
+DEBUG - 2016-08-05 23:34:02 --> Total execution time: 0.6953
+DEBUG - 2016-08-05 23:35:31 --> Config Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:35:31 --> URI Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Router Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Output Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Security Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Input Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:35:31 --> Language Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:35:31 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:35:31 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:35:31 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:35:31 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:35:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:35:31 --> Session Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:35:31 --> Session routines successfully run
+DEBUG - 2016-08-05 23:35:31 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:35:31 --> Email Class Initialized
+DEBUG - 2016-08-05 23:35:31 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:35:32 --> Final output sent to browser
+DEBUG - 2016-08-05 23:35:32 --> Total execution time: 0.5732
+DEBUG - 2016-08-05 23:36:48 --> Config Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:36:48 --> URI Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Router Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Output Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Security Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Input Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:36:48 --> Language Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:36:48 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:36:48 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:36:48 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:36:48 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:36:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:36:48 --> Session Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:36:48 --> Session routines successfully run
+DEBUG - 2016-08-05 23:36:48 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:36:48 --> Email Class Initialized
+DEBUG - 2016-08-05 23:36:48 --> Controller Class Initialized
+ERROR - 2016-08-05 23:36:50 --> Severity: Warning  --> Invalid argument supplied for foreach() C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 974
+DEBUG - 2016-08-05 23:36:50 --> Final output sent to browser
+DEBUG - 2016-08-05 23:36:50 --> Total execution time: 2.3059
+DEBUG - 2016-08-05 23:37:49 --> Config Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:37:49 --> URI Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Router Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Output Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Security Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Input Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:37:49 --> Language Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:37:49 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:37:49 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:37:49 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:37:49 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:37:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:37:49 --> Session Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:37:49 --> Session routines successfully run
+DEBUG - 2016-08-05 23:37:49 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:37:49 --> Email Class Initialized
+DEBUG - 2016-08-05 23:37:49 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:37:50 --> Final output sent to browser
+DEBUG - 2016-08-05 23:37:50 --> Total execution time: 1.1043
+DEBUG - 2016-08-05 23:37:56 --> Config Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:37:56 --> URI Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Router Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Output Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Security Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Input Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:37:56 --> Language Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:37:56 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:37:56 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:37:56 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:37:56 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:37:56 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:37:56 --> Session Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:37:56 --> Session routines successfully run
+DEBUG - 2016-08-05 23:37:56 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:37:56 --> Email Class Initialized
+DEBUG - 2016-08-05 23:37:56 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:37:58 --> Final output sent to browser
+DEBUG - 2016-08-05 23:37:58 --> Total execution time: 1.9572
+DEBUG - 2016-08-05 23:38:05 --> Config Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:38:05 --> URI Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Router Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Output Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Security Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Input Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:38:05 --> Language Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:38:05 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:38:05 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:38:05 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:38:05 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:38:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:38:05 --> Session Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:38:05 --> Session routines successfully run
+DEBUG - 2016-08-05 23:38:05 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:38:05 --> Email Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:38:05 --> Final output sent to browser
+DEBUG - 2016-08-05 23:38:05 --> Total execution time: 0.2673
+DEBUG - 2016-08-05 23:41:02 --> Config Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:41:02 --> URI Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Router Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Output Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Security Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Input Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:41:02 --> Language Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:41:02 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:41:02 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:41:02 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:41:02 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:41:02 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:41:02 --> Session Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:41:02 --> Session routines successfully run
+DEBUG - 2016-08-05 23:41:02 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:41:02 --> Email Class Initialized
+DEBUG - 2016-08-05 23:41:02 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:41:03 --> Final output sent to browser
+DEBUG - 2016-08-05 23:41:03 --> Total execution time: 1.2120
+DEBUG - 2016-08-05 23:41:47 --> Config Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:41:47 --> URI Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Router Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Output Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Security Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Input Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:41:47 --> Language Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:41:47 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:41:47 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:41:47 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:41:47 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:41:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:41:47 --> Session Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:41:47 --> Session routines successfully run
+DEBUG - 2016-08-05 23:41:47 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:41:47 --> Email Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:41:47 --> Final output sent to browser
+DEBUG - 2016-08-05 23:41:47 --> Total execution time: 0.5788
+DEBUG - 2016-08-05 23:42:05 --> Config Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:42:05 --> URI Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Router Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Output Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Security Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Input Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:42:05 --> Language Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:42:05 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:42:05 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:42:05 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:42:05 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:42:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:42:05 --> Session Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:42:05 --> Session routines successfully run
+DEBUG - 2016-08-05 23:42:05 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:42:05 --> Email Class Initialized
+DEBUG - 2016-08-05 23:42:05 --> Controller Class Initialized
+ERROR - 2016-08-05 23:42:06 --> Severity: Notice  --> Undefined index: name C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+DEBUG - 2016-08-05 23:42:06 --> Final output sent to browser
+DEBUG - 2016-08-05 23:42:06 --> Total execution time: 1.4948
+DEBUG - 2016-08-05 23:42:16 --> Config Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:42:16 --> URI Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Router Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Output Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Security Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Input Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:42:16 --> Language Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:42:16 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:42:16 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:42:16 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:42:16 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:42:16 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:42:17 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:42:17 --> Session Class Initialized
+DEBUG - 2016-08-05 23:42:17 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:42:17 --> Session routines successfully run
+DEBUG - 2016-08-05 23:42:17 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:42:17 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:42:17 --> Email Class Initialized
+DEBUG - 2016-08-05 23:42:17 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:42:17 --> Final output sent to browser
+DEBUG - 2016-08-05 23:42:17 --> Total execution time: 0.7918
+DEBUG - 2016-08-05 23:43:07 --> Config Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:43:07 --> URI Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Router Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Output Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Security Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Input Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:43:07 --> Language Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:43:07 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:43:07 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:43:07 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:43:07 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:43:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:43:07 --> Session Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:43:07 --> Session routines successfully run
+DEBUG - 2016-08-05 23:43:07 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:43:07 --> Email Class Initialized
+DEBUG - 2016-08-05 23:43:07 --> Controller Class Initialized
+ERROR - 2016-08-05 23:43:07 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 971
+ERROR - 2016-08-05 23:43:07 --> Severity: Warning  --> Invalid argument supplied for foreach() C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 971
+DEBUG - 2016-08-05 23:43:07 --> Final output sent to browser
+DEBUG - 2016-08-05 23:43:07 --> Total execution time: 0.7182
+DEBUG - 2016-08-05 23:43:40 --> Config Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:43:40 --> URI Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Router Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Output Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Security Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Input Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:43:40 --> Language Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:43:40 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:43:40 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:43:40 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:43:40 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:43:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:43:40 --> Session Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:43:40 --> Session routines successfully run
+DEBUG - 2016-08-05 23:43:40 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:43:40 --> Email Class Initialized
+DEBUG - 2016-08-05 23:43:40 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:43:41 --> Final output sent to browser
+DEBUG - 2016-08-05 23:43:41 --> Total execution time: 1.2937
+DEBUG - 2016-08-05 23:45:02 --> Config Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:45:02 --> URI Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Router Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Output Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Security Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Input Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:45:02 --> Language Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:45:02 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:45:02 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:45:02 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:45:02 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:45:02 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:45:02 --> Session Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:45:02 --> Session routines successfully run
+DEBUG - 2016-08-05 23:45:02 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:45:02 --> Email Class Initialized
+DEBUG - 2016-08-05 23:45:02 --> Controller Class Initialized
+ERROR - 2016-08-05 23:45:02 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+DEBUG - 2016-08-05 23:45:02 --> Final output sent to browser
+DEBUG - 2016-08-05 23:45:02 --> Total execution time: 0.7771
+DEBUG - 2016-08-05 23:45:58 --> Config Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:45:58 --> URI Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Router Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Output Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Security Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Input Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:45:58 --> Language Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:45:58 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:45:58 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:45:58 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:45:58 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:45:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:45:58 --> Session Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:45:58 --> Session routines successfully run
+DEBUG - 2016-08-05 23:45:58 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:45:58 --> Email Class Initialized
+DEBUG - 2016-08-05 23:45:58 --> Controller Class Initialized
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:45:59 --> Severity: Notice  --> Undefined index: ok C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+DEBUG - 2016-08-05 23:45:59 --> Final output sent to browser
+DEBUG - 2016-08-05 23:45:59 --> Total execution time: 0.7357
+DEBUG - 2016-08-05 23:46:37 --> Config Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:46:37 --> URI Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Router Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Output Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Security Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Input Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:46:37 --> Language Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:46:37 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:46:37 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:46:37 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:46:37 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:46:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:46:37 --> Session Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:46:37 --> Session routines successfully run
+DEBUG - 2016-08-05 23:46:37 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:46:37 --> Email Class Initialized
+DEBUG - 2016-08-05 23:46:37 --> Controller Class Initialized
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+ERROR - 2016-08-05 23:46:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 972
+DEBUG - 2016-08-05 23:46:38 --> Final output sent to browser
+DEBUG - 2016-08-05 23:46:38 --> Total execution time: 1.0648
+DEBUG - 2016-08-05 23:46:46 --> Config Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:46:46 --> URI Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Router Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Output Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Security Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Input Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:46:46 --> Language Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:46:46 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:46:47 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:46:47 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:46:47 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:46:47 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:46:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:46:47 --> Session Class Initialized
+DEBUG - 2016-08-05 23:46:47 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:46:47 --> Session routines successfully run
+DEBUG - 2016-08-05 23:46:47 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:46:47 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:46:47 --> Email Class Initialized
+DEBUG - 2016-08-05 23:46:47 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:46:47 --> Final output sent to browser
+DEBUG - 2016-08-05 23:46:47 --> Total execution time: 0.5654
+DEBUG - 2016-08-05 23:46:58 --> Config Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:46:58 --> URI Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Router Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Output Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Security Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Input Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:46:58 --> Language Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:46:58 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:46:58 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:46:58 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:46:58 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:46:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:46:58 --> Session Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:46:58 --> Session routines successfully run
+DEBUG - 2016-08-05 23:46:58 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:46:58 --> Email Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:46:58 --> Final output sent to browser
+DEBUG - 2016-08-05 23:46:58 --> Total execution time: 0.5960
+DEBUG - 2016-08-05 23:55:19 --> Config Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:55:19 --> URI Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Router Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Output Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Security Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Input Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:55:19 --> Language Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:55:19 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:55:19 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:55:19 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:55:19 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:55:19 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:55:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:55:20 --> Session Class Initialized
+DEBUG - 2016-08-05 23:55:20 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:55:20 --> Session routines successfully run
+DEBUG - 2016-08-05 23:55:20 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:55:20 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:55:20 --> Email Class Initialized
+DEBUG - 2016-08-05 23:55:20 --> Controller Class Initialized
+ERROR - 2016-08-05 23:55:20 --> Severity: Notice  --> Undefined variable: data C:\xampp\htdocs\fleetsmarts\application\controllers\public_functions.php 982
+DEBUG - 2016-08-05 23:55:21 --> Final output sent to browser
+DEBUG - 2016-08-05 23:55:21 --> Total execution time: 1.6417
+DEBUG - 2016-08-05 23:56:10 --> Config Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:56:10 --> URI Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Router Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Output Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Security Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Input Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:56:10 --> Language Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:56:10 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:56:10 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:56:10 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:56:10 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:56:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:56:10 --> Session Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:56:10 --> Session routines successfully run
+DEBUG - 2016-08-05 23:56:10 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:56:10 --> Email Class Initialized
+DEBUG - 2016-08-05 23:56:10 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:56:11 --> Final output sent to browser
+DEBUG - 2016-08-05 23:56:11 --> Total execution time: 0.6036
+DEBUG - 2016-08-05 23:56:30 --> Config Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:56:30 --> URI Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Router Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Output Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Security Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Input Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:56:30 --> Language Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:56:30 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:56:30 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:56:30 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:56:30 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:56:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:56:30 --> Session Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:56:30 --> Session routines successfully run
+DEBUG - 2016-08-05 23:56:30 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:56:30 --> Email Class Initialized
+DEBUG - 2016-08-05 23:56:30 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:56:31 --> Final output sent to browser
+DEBUG - 2016-08-05 23:56:31 --> Total execution time: 0.8884
+DEBUG - 2016-08-05 23:57:07 --> Config Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Hooks Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Utf8 Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> UTF-8 Support Enabled
+DEBUG - 2016-08-05 23:57:07 --> URI Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Router Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Output Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Security Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Input Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-08-05 23:57:07 --> Language Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Loader Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Helper loaded: url_helper
+DEBUG - 2016-08-05 23:57:07 --> Helper loaded: form_helper
+DEBUG - 2016-08-05 23:57:07 --> Helper loaded: custom_helper
+DEBUG - 2016-08-05 23:57:07 --> Helper loaded: db_helper
+DEBUG - 2016-08-05 23:57:07 --> Database Driver Class Initialized
+ERROR - 2016-08-05 23:57:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fleetsmarts\system\database\drivers\mysql\mysql_driver.php 88
+DEBUG - 2016-08-05 23:57:07 --> Session Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Helper loaded: string_helper
+DEBUG - 2016-08-05 23:57:07 --> Session routines successfully run
+DEBUG - 2016-08-05 23:57:07 --> Jquery Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Javascript Class Initialized and loaded.  Driver used: jquery
+DEBUG - 2016-08-05 23:57:07 --> Email Class Initialized
+DEBUG - 2016-08-05 23:57:07 --> Controller Class Initialized
+DEBUG - 2016-08-05 23:57:08 --> Final output sent to browser
+DEBUG - 2016-08-05 23:57:08 --> Total execution time: 1.2485

@@ -9376,7 +9376,7 @@
 		return $new_clock_in['id'];
 	}
 
-	function 	send_clock_in_verification_email($email,$clock_in_id,$user_id)
+	function send_clock_in_verification_email($email,$clock_in_id,$user_id)
 	{
 		$CI =& get_instance();
 		date_default_timezone_set('America/Denver');
@@ -9448,7 +9448,41 @@
 		echo "<br>Result: " . $result;
 	}
 	
-	
+	function create_slack_channel($name)
+	{
+//		KEY: xoxp-4249413880-4273184029-66844202993-71954a5c59
+		$token = 'xoxp-4249413880-4273184029-66844202993-71954a5c59';
+//		$name = 'test_channel';
+		
+		$channels_json_string = file_get_contents('https://slack.com/api/channels.list?token=' . $token);
+		
+		$parsed_channels_json = json_decode($channels_json_string,TRUE);
+		
+//		print_r($parsed_channels);
+		$current_channels = array();
+		foreach($parsed_channels_json['channels'] as $key => $channel){
+//			echo "Channel: " . $channel['name'] . "<br>";
+			$current_channels[] = $channel['name'];
+		}
+//		echo "Current channels:<br>";
+//		print_r($current_channels);
+//		echo "New channel: " . $name . "<br>";
+		if(!in_array($name,$current_channels))
+		{
+			echo "new channel not in current channels<br>";
+			$c = curl_init('https://slack.com/api/channels.create?name=' . $name . '&token=' . $token);
+			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($c, CURLOPT_POST, true);
+			$result = curl_exec($c);
+			curl_close($c);
+
+			echo $result;
+		}
+		else
+		{
+			echo "<br>channel $name already in the system.<br>";
+		}
+	}
 	
 	
 	

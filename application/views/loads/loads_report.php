@@ -1,9 +1,53 @@
+<?php
+	$ricky_dispatcher_text = '';
+	$ezra_dispatcher_text = '';
+	$james_dispatcher_text = '';
+	$tayor_dispatcher_text = '';
+?>
 <script>
 	$("#scrollable_content").height($(window).height() - 195);
 </script>
 <div id="main_content_header" style="">
 	<span style="font-weight:bold;">Loads</span>
 	<span id="last_update" style="font-size:14px; font-weight:normal;">Updated: </span>
+	<span style="font-size:14px; font-weight:normal;margin:5px;">
+		RK =
+		<?php if(!empty($ricky_dispatchers)): ?>
+			<?php foreach($ricky_dispatchers as $ricky_dispatcher): ?>
+				<?php
+					$ricky_dispatcher_text .= $ricky_dispatcher . ',';
+				?>
+			<?php endforeach ?>
+			<?= rtrim($ricky_dispatcher_text,',')?>
+		<?php endif ?>
+		| EW =
+		<?php if(!empty($ezra_dispatchers)): ?>
+			<?php foreach($ezra_dispatchers as $ezra_dispatcher): ?>
+				<?php
+					$ezra_dispatcher_text .= $ezra_dispatcher . ',';
+				?>
+			<?php endforeach ?>
+			<?= rtrim($ezra_dispatcher_text,',')?>
+		<?php endif ?>
+		| JB =
+		<?php if(!empty($james_dispatchers)): ?>
+			<?php foreach($james_dispatchers as $james_dispatcher): ?>
+				<?php
+					$james_dispatcher_text .= $james_dispatcher . ',';
+				?>
+			<?php endforeach ?>
+			<?= rtrim($james_dispatcher_text,',')?>
+		<?php endif ?>
+		| TR =
+		<?php if(!empty($taylor_dispatchers)): ?>
+			<?php foreach($taylor_dispatchers as $taylor_dispatcher): ?>
+				<?php
+					$tayor_dispatcher_text .= $taylor_dispatcher . ',';
+				?>
+			<?php endforeach ?>
+			<?= rtrim($tayor_dispatcher_text,',')?>
+		<?php endif ?>
+	</span>
 	<div style="float:right; width:25px;">
 		<img id="filter_loading_icon" name="filter_loading_icon" src="/images/loading.gif" style="float:right; height:20px; padding-top:5px; display:none;" />
 		<img id="refresh_list" name="refresh_list" src="/images/refresh.png" title="Refresh Log" style="cursor:pointer; float:right; height:20px; padding-top:5px;" onclick="load_list()" />
@@ -22,7 +66,7 @@
 		<td style="width:40px;" VALIGN="top">FM</td>
 		<td style="width:40px;" VALIGN="top">DM</td>
 		<td style="width:70px;" VALIGN="top">Carrier</td>
-		<td style="width:55px; padding-left:5px;;" VALIGN="top">Driver</td>
+		<td style="width:55px; padding-left:5px;" VALIGN="top">Driver</td>
 		<td style="width:45px;" VALIGN="top">Truck</td>
 		<td style="width:45px;" VALIGN="top">Trailer</td>
 		<td style="width:60px;" VALIGN="top">Load #</td>

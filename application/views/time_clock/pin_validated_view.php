@@ -46,9 +46,7 @@
 	$(document).ready(function(){
 		
 		
-		
 	});
-	
 	
 	//SUBMIT PUNCH
 	function submit_punch(in_out)
@@ -122,36 +120,37 @@
 		Punch Log
 	</div>
 	<div style="width:500px; margin:auto;">
-		<table style="width:500px; margin:auto; margin-top:15px;  font-size:16px;">
-		<?php
-			$i = 0;
-		?>
-		<?php foreach($punches as $punch):?>
+		<table style="width:500px; margin:auto; margin-top:15px;font-size:16px;">
 			<?php
-				$i++;
+				$i = 0;
 			?>
-			<tr style="height:30px;">
-				<td style="width:40px;">
-					<?php if($i == 1):?>
-						<?php if($punch["in_out"] == "In"):?>
-							<img src="/images/green_dot.png" style="height:20px; position:relative; top:3px;"/>
-						<?php else:?>
-							<img src="/images/red_dot.png" style="height:20px; position:relative; top:3px;"/>
-						<?php endif;?>
-					<?php endif;?>
-				</td>
-				<td style="width:60px;">
-					<?=$punch["in_out"]?>
-				</td>
-				<td style="width:200px;">
-					<?=$user["person"]["full_name"]?>
-				</td>
-				<td style="width:200px;">
-					<?=date('m/d/y H:i:s',strtotime($punch["datetime"]))?>
-				</td>
-			</tr>
-		<?php endforeach;?>
+			<?php if(!empty($punches)): ?>
+				<?php foreach($punches as $punch):?>
+					<?php
+						$i++;
+					?>
+					<tr style="height:30px;">
+						<td style="width:40px;">
+							<?php if($i == 1):?>
+								<?php if($punch["in_out"] == "In"):?>
+									<img src="/images/green_dot.png" style="height:20px; position:relative; top:3px;"/>
+								<?php else:?>
+									<img src="/images/red_dot.png" style="height:20px; position:relative; top:3px;"/>
+								<?php endif;?>
+							<?php endif;?>
+						</td>
+						<td style="width:60px;">
+							<?=$punch["in_out"]?>
+						</td>
+						<td style="width:200px;">
+							<?=$user["person"]["full_name"]?>
+						</td>
+						<td style="width:200px;">
+							<?=date('m/d/y H:i:s',strtotime($punch["datetime"]))?>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			<?php endif ?>
 		</table>
 	</div>
 </div>
-

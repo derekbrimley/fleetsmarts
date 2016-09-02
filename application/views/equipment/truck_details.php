@@ -293,6 +293,10 @@
 				<td><?=number_format($truck['next_dry_service']); ?></td>
 			</tr>
 			<tr>
+				<td>Tank Capacity</td>
+				<td><?=number_format($truck['fuel_tank_capacity']); ?> gallons</td>
+			</tr>
+			<tr>
 				<td>Notes</td>
 				<td><?=$truck['truck_notes'];?></td>
 			</tr>

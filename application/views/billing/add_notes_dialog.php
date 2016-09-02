@@ -12,14 +12,14 @@
 						$initials = substr($note_user["person"]["f_name"],0,1).substr($note_user["person"]["l_name"],0,1);
 					?>
 					<tr>
-						<td style="padding-top:10px;">
+						<td title="<?=$note_user["person"]["f_name"].' '.$note_user["person"]["l_name"]?>" style="padding-top:10px;">
 							<?=$initials?>
 						</td>
 						<td style="padding-top:10px; padding-left:10px; width:85px;">
 							<?=date("m/d/y H:i",strtotime($note["note_datetime"]))?>
 						<td>
 						<td style="padding-top:10px; padding-left:10px;">
-							<?=$note["note_text"]?>
+							<?=htmlspecialchars($note["note_text"])?>
 						</td>
 					</tr>
 				<?php endforeach;?>

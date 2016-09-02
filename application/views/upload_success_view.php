@@ -29,5 +29,5 @@
 </html>
 
 <script>
-	//setInterval(function(){close()},1000);
+	setInterval(function(){close()},1000);
 </script>

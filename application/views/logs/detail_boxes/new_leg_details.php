@@ -477,7 +477,7 @@
 				<td style="">
 					Carrier
 				</td>
-				<td class="details_<?=$log_entry_id?>" style="text-align:right;">
+				<td class="details_<?=$log_entry_id?> ellipsis" style="text-align:right; max-width:110px; min-width:110px;">
 					<?=$leg["carrier"]["company_side_bar_name"];?>
 				</td>
 				<td class="edit_<?=$log_entry_id?>" style="text-align:right;">

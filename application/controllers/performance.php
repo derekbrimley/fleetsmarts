@@ -28,9 +28,9 @@ class Performance extends MY_Controller
 		
 		//GET OPTIONS FOR FLEET MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Fleet Manager";
+		//$where['role'] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where);
-		
 		$fleet_manager_dropdown_options = array();
 		$fleet_manager_dropdown_options['All'] = "All Fleet Managers";
 		foreach ($fleet_managers as $manager)
@@ -41,9 +41,9 @@ class Performance extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
-		
 		$driver_manager_dropdown_options = array();
 		$driver_manager_dropdown_options['All'] = "All Driver Managers";
 		foreach ($driver_managers as $manager)
@@ -129,7 +129,7 @@ class Performance extends MY_Controller
 		
 		//echo $where;
 		$performance_reviews = null;
-		$performance_reviews = db_select_performance_reviews($where,"entry_datetime DESC");
+		$performance_reviews = db_select_performance_reviews($where,"truck_number");
 		
 		$data['performance_reviews'] = $performance_reviews;
 		$this->load->view('performance/performance_div',$data);
@@ -159,45 +159,46 @@ class Performance extends MY_Controller
 		$where["id"] = $log_entry["truck_id"];
 		$truck = db_select_truck($where);
 		
-		$pr_stats = get_performance_stats($pr["end_week_id"]);
+		// $pr_stats = get_performance_stats($pr["end_week_id"]);
 		
-		//UPDATE PERFORMANCE REVIEW WITH UPDATED CALCULATIONS
-		$performance_review = null;
-		$performance_review["truck_id"] = $log_entry["truck_id"];
-		$performance_review["fm_id"] = $truck["fm_id"];
-		$performance_review["end_week_id"] = $log_entry["id"];
-		$performance_review["hours"] = $pr_stats["hours"];
-		$performance_review["map_miles"] = $pr_stats["map_miles"];
-		$performance_review["odometer_miles"] = $pr_stats["odometer_miles"];
-		$performance_review["mpg"] = $pr_stats["mpg"];
-		$performance_review["total_revenue"] = $pr_stats["total_revenue"];
-		$performance_review["standard_expenses"] = $pr_stats["standard_expenses"];
-		$performance_review["carrier_revenue"] = $pr_stats["carrier_revenue"];
+		// //UPDATE PERFORMANCE REVIEW WITH UPDATED CALCULATIONS
+		// $performance_review = null;
+		// $performance_review["truck_id"] = $log_entry["truck_id"];
+		// $performance_review["fm_id"] = $truck["fm_id"];
+		// $performance_review["end_week_id"] = $log_entry["id"];
+		// $performance_review["hours"] = $pr_stats["hours"];
+		// $performance_review["map_miles"] = $pr_stats["map_miles"];
+		// $performance_review["odometer_miles"] = $pr_stats["odometer_miles"];
+		// $performance_review["mpg"] = $pr_stats["mpg"];
+		// $performance_review["total_revenue"] = $pr_stats["total_revenue"];
+		// $performance_review["standard_expenses"] = $pr_stats["standard_expenses"];
+		// $performance_review["carrier_revenue"] = $pr_stats["carrier_revenue"];
 		
-		//UPDATE EXISTING PR
-		$where = null;
-		$where["id"] = $pr_id;
-		db_update_performance_review($performance_review,$where);
+		// //UPDATE EXISTING PR
+		// $where = null;
+		// $where["id"] = $pr_id;
+		// db_update_performance_review($performance_review,$where);
 		
-		//GET PREVIOUS END WEEK FOR THIS DRIVER
-		$where = null;
-		$where = " (log_entry.truck_id = ".$truck["id"].") AND entry_type = 'End Week' AND entry_datetime = ( SELECT MAX(entry_datetime) FROM log_entry WHERE (truck_id = ".$truck["id"].") AND entry_type = 'End Week' AND entry_datetime < '".$log_entry["entry_datetime"]."')";
-		$previous_end_week = db_select_log_entry($where);
+		// //GET PREVIOUS END WEEK FOR THIS DRIVER
+		// $where = null;
+		// $where = " (log_entry.truck_id = ".$truck["id"].") AND entry_type = 'End Week' AND entry_datetime = ( SELECT MAX(entry_datetime) FROM log_entry WHERE (truck_id = ".$truck["id"].") AND entry_type = 'End Week' AND entry_datetime < '".$log_entry["entry_datetime"]."')";
+		// $previous_end_week = db_select_log_entry($where);
 		
-		//GET ALL SHIFT REPORTS (log_entries) FOR CHECKLIST
-		$where = null;
-		$where = " truck_id = ".$truck["id"]." AND entry_type = 'Shift Report' AND entry_datetime < '".$log_entry["entry_datetime"]."' ";
-		if(!empty($previous_end_week))
-		{
-			$where = $where." AND entry_datetime > '".$previous_end_week["entry_datetime"]."'";
-		}
+		// //GET ALL SHIFT REPORTS (log_entries) FOR CHECKLIST
+		// $where = null;
+		// $where = " truck_id = ".$truck["id"]." AND entry_type = 'Shift Report' AND entry_datetime < '".$log_entry["entry_datetime"]."' ";
+		// if(!empty($previous_end_week))
+		// {
+			// $where = $where." AND entry_datetime > '".$previous_end_week["entry_datetime"]."'";
+		// }
 		
-		//echo $where;
-		$shift_report_log_entries = db_select_log_entrys($where);
+		// //echo $where;
+		// $shift_report_log_entries = db_select_log_entrys($where);
 		
 		//GET OPTIONS FOR FLEET MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Fleet Manager";
+		//$where['role'] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where);
 		
 		$fleet_manager_dropdown_options = array();
@@ -210,7 +211,8 @@ class Performance extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		
 		$driver_manager_dropdown_options = array();
@@ -220,14 +222,18 @@ class Performance extends MY_Controller
 			$title = $manager['f_name']." ".$manager['l_name'];
 			$driver_manager_dropdown_options[$manager['id']] = $title;
 		}
+		
+		//GET LOADS FOR WEEK
+		$loads_for_week = get_loads_for_week($pr["end_week_id"]);
 
 		$data['driver_manager_dropdown_options'] = $driver_manager_dropdown_options;
 		$data['fleet_manager_dropdown_options'] = $fleet_manager_dropdown_options;
-		$data['shift_report_log_entries'] = $shift_report_log_entries;
+		//$data['shift_report_log_entries'] = $shift_report_log_entries;
 		$data['pr'] = $pr;
 		$data['log_entry'] = $log_entry;
 		$data['log_entry_id'] = $log_entry["id"];
-		$data['pr_stats'] = $pr_stats;
+		$data['loads_for_week'] = $loads_for_week;
+		//$data['pr_stats'] = $pr_stats;
 		$this->load->view('performance/performance_details',$data);
 	}
 	
@@ -356,7 +362,7 @@ class Performance extends MY_Controller
 		
 		
 		//GET SETTLEMENTS
-		$where = " AND locked_datetime IS NOT NULL ";
+		$where = " AND locked_datetime IS NOT NULL ";//LOCKED DATETIME OF END WEEK LOG_ENTRY
 		
 		//FLEET MANAGER FILTER
 		if($fm_id != "All")
@@ -415,6 +421,88 @@ class Performance extends MY_Controller
 		$performance_reviews = null;
 		$performance_reviews = db_select_performance_reviews($where,"entry_datetime DESC");
 		
+		
+		//GET ALL LOADS DROPPED
+		
+		//CREATE WHERE CLAUSE FOR LOAD QUERY
+		$where = " AND status = 'Dropped' ";
+		
+		//SET WHERE FOR FM
+		if($fm_id != "All")
+		{
+			$where = $where." AND fleet_manager_id = ".$fm_id;
+		}
+		
+		//SET WHERE FOR DM
+		if($dm_id != "All")
+		{
+			$where = $where." AND dm_id = ".$dm_id;
+		}
+		
+		//SET WHERE FOR DM
+		if($truck_id != "All")
+		{
+			$where = $where." AND load_truck_id = ".$truck_id;
+		}
+		
+		//SET WHERE FOR DROP START DATE
+		if(!empty($start_date))
+		{
+			$start_datetime = date("Y-m-d G:i:s",strtotime($start_date));
+			$where = $where." AND final_drop_datetime > '".$start_datetime."' ";
+		}
+		
+		//SET WHERE FOR DROP END DATE
+		if(!empty($end_date))
+		{
+			$end_datetime = date("Y-m-d G:i:s",strtotime($end_date)+24*60*60);
+			$where = $where." AND final_drop_datetime < '".$end_datetime."' ";
+		}
+		
+		$where = substr($where,4);
+		$loads = db_select_loads($where);
+		
+		$expected = 0;
+		$funded_total = 0;
+		$audit_passes = 0;
+		$audit_fails = 0;
+		foreach($loads as $load)
+		{
+			//EXPECTED TOTAL
+			if(!empty($load["amount_billed"]))
+			{
+				$expected = $expected + $load["amount_billed"];
+			}
+			else
+			{
+				$expected = $expected + $load["expected_revenue"];
+			}
+			
+			//FUNDED TOTAL
+			$funded_amount = round($load["amount_funded"]+$load["financing_cost"],2);
+			$funded_total = $funded_total + $funded_amount;
+			
+			if($load["process_audit"] == "Pass")
+			{
+				$audit_passes++;
+			}
+			elseif($load["process_audit"] == "Fail")
+			{
+				$audit_fails++;
+			}
+			
+		}
+		
+		if($expected > 0 )
+		{
+			$collection_rate = round($funded_total/$expected*100,2);
+		}
+		else
+		{
+			$collection_rate = 0;
+		}
+		
+		
 		$total_trucks = 0;
 		$total_teams = 0;
 		$total_solos = 0;
@@ -422,7 +510,7 @@ class Performance extends MY_Controller
 		$total_team_miles = 0;
 		$total_solo_miles = 0;
 		$total_odom_miles = null;
-		$total_gallons_used = null;
+		$total_gallons_used = null;//JUST TRUCK GALLONS
 		$total_revenue = null;
 		$total_carrier_revenue = null;
 		$total_standard_expenses = null;
@@ -438,60 +526,69 @@ class Performance extends MY_Controller
 		$total_reefer_miles = null;
 		if(!empty($performance_reviews))
 		{
+			//CALC TOTALS OF FILTERED RESULTS
 			foreach($performance_reviews as $pr)
 			{
-				$pr_stats = get_performance_stats($pr["end_week_id"]);
-				
-				
+				//THIS IS SOLELY FOR THE TRANSITION FOR PRs THAT DIDN'T SAVE THE ATTRIBUTES TO THE DB AT THE TIME OF LOCK
+				if(empty($pr["saved_datetime"]))
+				{
+					//UPDATE PERFORMANCE REVIEW WITH NEW STATS -- RETURN NEW PERFORMANCE REVIEW
+					$pr = update_performance_review_with_new_calculations($pr);
+				}
+					
 				//CALC MAP MILES
-				$total_map_miles = $total_map_miles + $pr_stats["map_miles"];
+				$total_map_miles = $total_map_miles + $pr["map_miles"];
 				
 				//CALC ODOM MILES
-				$total_odom_miles = $total_odom_miles + $pr_stats["odometer_miles"];
+				$total_odom_miles = $total_odom_miles + $pr["odometer_miles"];
 				
 				//CALC GALLONS USED
-				$total_gallons_used = $total_gallons_used + $pr_stats["gallons_used"];
+				$total_gallons_used = $total_gallons_used + $pr["truck_gallons"];//JUST TRUCK GALLONS
 				
 				//CALC TOTAL CARRIER REV
-				$total_carrier_revenue = $total_carrier_revenue + $pr_stats["carrier_revenue"];
+				$total_carrier_revenue = $total_carrier_revenue + $pr["carrier_revenue"];
 				
-				//CALC GALLONS USED
-				$total_revenue = $total_revenue + $pr_stats["total_revenue"];
+				//CALC TOTAL REVENUE
+				$total_revenue = $total_revenue + $pr["total_revenue"];//BOOKING REVENUE
 				
 				//CALC RAW PROFIT
-				$total_raw_profit = $total_raw_profit + $pr_stats["raw_profit"];
+				$total_raw_profit = $total_raw_profit + $pr["raw_profit"];
 				
 				//CALC TOTAL TRUCK PROFIT
-				$total_truck_profit = $total_truck_profit + $pr_stats["carrier_profit"];
+				$total_truck_profit = $total_truck_profit + $pr["driver_profit"];
 				
 				//CALC TOTAL STANDARD EXPENSES
-				$total_standard_expenses = $total_standard_expenses + $pr_stats["standard_expenses"];
+				$total_standard_expenses = $total_standard_expenses + $pr["standard_expenses"];
 				
 				//CALC TOTAL FUEL EXPENSE
-				$total_truck_fuel_expense = $total_truck_fuel_expense + ($pr_stats["total_fuel_expense"] - $pr_stats["total_reefer_fuel_expense"]);
+				$total_truck_fuel_expense = $total_truck_fuel_expense + ($pr["total_fuel_expense"] - $pr["total_reefer_fuel_expense"]);
 				
 
 				//GET ALL THE MILEAGE FOR ALL THE LEGS
-				$total_bobtail_miles = $total_bobtail_miles + $pr_stats["total_bobtail_miles"];
-				$total_deadhead_miles = $total_deadhead_miles + $pr_stats["total_deadhead_miles"];
-				$total_light_miles = $total_light_miles + $pr_stats["total_light_miles"];
-				$total_loaded_miles = $total_loaded_miles + $pr_stats["total_loaded_miles"];
-				$total_reefer_miles = $total_reefer_miles + $pr_stats["total_reefer_miles"];
+				$total_bobtail_miles = $total_bobtail_miles + $pr["total_bobtail_miles"];
+				$total_deadhead_miles = $total_deadhead_miles + $pr["total_deadhead_miles"];
+				$total_light_miles = $total_light_miles + $pr["total_light_miles"];
+				$total_loaded_miles = $total_loaded_miles + $pr["total_loaded_miles"];
+				$total_reefer_miles = $total_reefer_miles + $pr["total_reefer_miles"];
 				
 				$total_trucks++;
 				//TOTAL TEAMS AND SOLOS
 				if($pr["solo_or_team"] == "Solo")
 				{
 					$total_solos++;
-					$total_solo_profit = $total_solo_profit + $pr_stats["carrier_profit"];
-					$total_solo_miles = $total_solo_miles + $pr_stats["map_miles"];
+					$total_solo_profit = $total_solo_profit + $pr["driver_profit"];
+					$total_solo_miles = $total_solo_miles + $pr["map_miles"];
 				}
 				else if($pr["solo_or_team"] == "Team")
 				{
 					$total_teams++;
-					$total_team_profit = $total_team_profit + $pr_stats["carrier_profit"];
-					$total_team_miles = $total_team_miles + $pr_stats["map_miles"];
+					$total_team_profit = $total_team_profit + $pr["driver_profit"];
+					$total_team_miles = $total_team_miles + $pr["map_miles"];
 				}
+					
+					
+				
+				
 			}
 		}
 		
@@ -516,8 +613,31 @@ class Performance extends MY_Controller
 			$average_fuel_expense = $total_truck_fuel_expense/$total_gallons_used;
 		}
 		
+		//CALCULATE REAL NUBMER (BASED ON COLLECTION RATE)
+		$real_revenue = round($collection_rate/100*$total_revenue,2);
+		$real_booking_rate = 0;
+		if($total_map_miles > 0)
+		{
+			$real_booking_rate  = round($real_revenue/$total_map_miles,2);
+		}
+		$real_margin = 0;
+		if($carrier_rate > 0)
+		{
+			$real_margin  = round($real_booking_rate-$carrier_rate,2);
+		}
+		$real_raw_profit = $real_margin * $total_map_miles;
 		
 		$summary_stats = null;
+		$summary_stats["audit_passes"] = $audit_passes;
+		$summary_stats["audit_fails"] = $audit_fails;
+		$summary_stats["load_count"] = count($loads);
+		$summary_stats["real_revenue"] = $real_revenue;
+		$summary_stats["real_booking_rate"] = $real_booking_rate;
+		$summary_stats["real_margin"] = $real_margin;
+		$summary_stats["real_raw_profit"] = $real_raw_profit;
+		$summary_stats["expected"] = $expected;
+		$summary_stats["funded_total"] = $funded_total;
+		$summary_stats["collection_rate"] = $collection_rate;
 		$summary_stats["total_trucks"] = $total_trucks;
 		$summary_stats["total_solos"] = $total_solos;
 		$summary_stats["total_teams"] = $total_teams;

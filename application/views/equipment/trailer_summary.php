@@ -6,7 +6,7 @@
 
 <div id="main_content_header">
 	<span style="font-weight:bold;">Trailer Summary View</span>
-	<img src="<?=base_url('images/loading.gif')?>" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
+	<img src="/images/loading.gif" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
 </div>
 
 <div id="scrollable_content"  class="scrollable_div" style="font-size:12px; padding:20px;">

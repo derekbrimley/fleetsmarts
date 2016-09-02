@@ -40,7 +40,7 @@ error_reporting(E_ALL);
 
 $db_server   = '127.0.0.1';
 $db_name     = 'fleetsmarts';
-$db_username = 'covax13';
+$db_username = 'fleetsmarts';
 $db_password = 'Retret13!';
 
 // Connection charset should be the same as the dump file charset (utf8, latin1, cp1251, koi8r etc.)

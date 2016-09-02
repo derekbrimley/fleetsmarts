@@ -271,9 +271,12 @@ class Equipment extends MY_Controller
 	}//end load_truck_summary
 	
 	//GET MILES TILL NEXT WET SERVICE FOR TRUCK SUMMARY
-	function get_current_odometer_for_truck()
+	function get_current_odometer_for_truck($truck_id = null)
 	{
-		$truck_id = $_POST["truck_id"];
+		if(empty($truck_id))
+		{
+			$truck_id = $_POST["truck_id"];
+		}
 		
 		//GET TRUCK
 		$where = null;
@@ -297,9 +300,12 @@ class Equipment extends MY_Controller
 	}
 	
 	//GET MILES TILL NEXT WET SERVICE FOR TRUCK SUMMARY
-	function get_miles_till_next_service()
+	function get_miles_till_next_service($truck_id = null)
 	{
-		$truck_id = $_POST["truck_id"];
+		if(empty($truck_id))
+		{
+			$truck_id = $_POST["truck_id"];
+		}
 		
 		//GET TRUCK
 		$where = null;
@@ -355,11 +361,14 @@ class Equipment extends MY_Controller
 	}
 	
 	//GET INSURANCE STATUS FOR TRUCK
-	function get_insurance_status()
+	function get_insurance_status($truck_id = null)
 	{
 		date_default_timezone_set('America/Denver');
 		
-		$truck_id = $_POST["truck_id"];
+		if(empty($truck_id))
+		{
+			$truck_id = $_POST["truck_id"];
+		}
 
 		$snapshot_date = date("m/d/y H:i");
 		
@@ -606,11 +615,14 @@ class Equipment extends MY_Controller
 	}
 	
 	//GET INSURANCE AUDIT ROW FOR TRUCK
-	function get_insurance_audit_row()
+	function get_insurance_audit_row($truck_id = null)
 	{
 		date_default_timezone_set('America/Denver');
 		
-		$truck_id = $_POST["truck_id"];
+		if(empty($truck_id))
+		{
+			$truck_id = $_POST["truck_id"];
+		}
 
 		$snapshot_date = date("m/d/y H:i");
 		
@@ -705,7 +717,8 @@ class Equipment extends MY_Controller
 		
 		//GET OPTIONS FOR FLEET MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Fleet Manager";
+		//$where['role'] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where);
 		
 		$fleet_manager_dropdown_options = array();
@@ -849,6 +862,7 @@ class Equipment extends MY_Controller
 		//$truck["lease_agreement_link"] = $_POST["edit_lease_agreement_link"];
 		$truck["next_wet_service"] = $_POST["edit_next_wet_service"];
 		$truck["next_dry_service"] = $_POST["edit_next_dry_service"];
+		$truck["fuel_tank_capacity"] = $_POST["edit_tank_capacity"];
 		$truck["truck_notes"] = $_POST["edit_truck_notes"];
 		
 		$where["id"] = $truck_id;
@@ -1102,6 +1116,7 @@ class Equipment extends MY_Controller
 		$trailer["rental_period"] = $_POST["trailer_rental_period"];
 		$trailer["last_inspection"] = $_POST["last_inspection"];
 		$trailer["last_service"] = $_POST["last_service"];
+		$trailer["ibright_id"] = $_POST["ibright_id"];
 		//$trailer["lease_agreement_link"] = $_POST["lease_agreement_link"];
 		//$trailer["registration_link"] = $_POST["registration_link"];
 		//$trailer["insurance_link"] = $_POST["insurance_link"];
@@ -4237,4 +4252,41 @@ class Equipment extends MY_Controller
 		print_r( $assetData);
 	}
 	
+	
+	//ONE TIME SCRIPT ****************************************
+	function add_trailer_ids()
+	{
+		//GET ALL TRAILER GEOPOINTS
+		$sql = "SELECT id,ibright_id FROM trailer_geopoint WHERE 1 = 1";
+		$query = $this->db->query($sql);
+		$trailer_geopoints = array();
+		foreach ($query->result() as $row)
+		{
+			$trailer_geopoint = null;
+			$trailer_geopoint['id'] = $row->id;
+			$trailer_geopoint['ibright_id'] = $row->ibright_id;
+			
+			$trailer_geopoints[] = $trailer_geopoint;
+		}
+		
+		foreach($trailer_geopoints as $tg)
+		{
+			//GET TRAILER WHERE IBRIGHT ID MATCHES
+			$where = null;
+			$where['ibright_id'] = $tg['ibright_id'];
+			$trailer = db_select_trailer($where);
+			
+			if(!empty($trailer))
+			{
+				//UPDATE TRAILER GEOPOINT
+				$update = null;
+				$update["trailer_id"] = $trailer["id"];
+				$where = null;
+				$where["id"] = $tg["id"];
+				//db_update_trailer_geopoint($update,$where);
+				echo $tg["id"]."<br>";
+			}
+		}
+		echo "success";
+	}
 }

@@ -2,7 +2,6 @@
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOka6AH6q31NseA0_TtBFfYd-PCtwH1y0">
 </script>
-
 <script>
 	$(document).ready(function(){
 		// setInterval(function() 
@@ -125,6 +124,12 @@
 	$where = null;
 	$where["user_id"] = $this->session->userdata('user_id');
 	$last_punch = db_select_time_punch($where,"datetime");
+	
+	//GET USER
+	$where = null;
+	$where["id"] = $this->session->userdata('user_id');
+	$user = db_select_user($where);
+	
 ?>
 <div id="main_menu_box" style="height: 70px; margin: 0 auto;  position:relative; background: #DCDCDC;">
 	<div id="top_bar" style="height:29px; background:#2D2D2D;">
@@ -134,6 +139,9 @@
 		<div id="notification_script_div">
 			<!-- AJAX GOES HERE !-->
 		</div>
+		<?php if(user_has_permission('can clock in remotely')):?>
+			<a href="<?php echo base_url("index.php/time_clock")?>" style="float:left;" title="TimeKeep <?=$user["pin"]?>"><img style="height:20px; position:relative; left:10px; top:4px;" src="/images/time_keep_logo.png"/></a>
+		<?php endif;?>
 		<a href ="<?php echo base_url("index.php/home")?>" style="text-decoration:none;" id="title_version" title="Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.">
 			<?php if($last_punch["in_out"] == "In"):?>
 				<img src="/images/green_dot.png" style="height:14px; position:relative; top:2px;" title="Clocked In - <?=date("m/d H:i:s",strtotime($last_punch["datetime"]))?>"/>
@@ -189,7 +197,8 @@
 				<a href ="<?=base_url("index.php/performance")?>" style="<?php if($tab == 'Performance'){echo "background-color:white; color:#DD4B39;";} ?>">Performance</a>
 				<!--<a href ="<?php //echo base_url("index.php/commissions")?>" style="<?php //if($tab == 'Commissions'){echo "background-color:white; color:#DD4B39;";} ?>">Commissions</a> !-->
 				<a href ="<?=base_url("index.php/todo")?>" style="<?php if($tab == 'ToDo'){echo "background-color:white; color:#DD4B39;";} ?>">ToDo</a>
-				<a href ="<?=base_url("index.php/documents")?>" style="<?php if($tab == 'Documents'){echo "background-color:white; color:#DD4B39;";} ?>">Documents</a>
+				<!-- <a href ="<?php //echo base_url("index.php/documents")?>" style="<?php //if($tab == 'Documents'){echo "background-color:white; color:#DD4B39;";} ?>">Documents</a> !-->
+				<a href ="<?=base_url("index.php/trippak")?>" style="<?php if($tab == 'Trippak'){echo "background-color:white; color:#DD4B39;";} ?>">Trippak</a>
 				<a href ="<?=base_url("index.php/reports")?>" style="<?php if($tab == 'Reports'){echo "background-color:white; color:#DD4B39;";} ?>">Reports</a>
 				<?php if(user_has_permission("view settings tab")): ?>
 					<a href ="<?=base_url("index.php/settings")?>" style="<?php if($tab == 'Settings'){echo "background-color:white; color:#DD4B39;";} ?>">Settings</a>

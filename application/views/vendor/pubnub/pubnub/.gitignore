@@ -1,0 +1,11 @@
+**/*.php.temp
+**/*.txt
+**/*.iml
+
+# composer vendor dir
+/vendor
+
+# IDEA files
+/.idea
+
+.DS_Store

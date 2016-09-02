@@ -234,6 +234,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td>Tank Capacity (gallons)</td>
+					<td>
+						<input type="text" id="edit_tank_capacity" name="edit_tank_capacity" style="<?=$text_box_style?>" value="<?=$truck["fuel_tank_capacity"]?>">
+					</td>
+				</tr>
+				<tr>
 					<td>Notes</td>
 					<td>
 						<?php $data = array(

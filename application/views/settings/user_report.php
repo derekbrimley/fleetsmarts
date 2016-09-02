@@ -24,7 +24,7 @@
 							<?=$available_permission['permission_name'] ?>
 						</td>
 						<td style="padding-top:10px;">
-							<img title="Give user permission" src="<?=base_url("images/blue_arrow.png") ?>" style="cursor:pointer;float:right;height:15px; padding-left:5px;" onclick="add_permission(<?=$user["id"] ?>,<?=$available_permission['id']?>)"/>
+							<img title="Give user permission" src="/images/blue_arrow.png" style="cursor:pointer;float:right;height:15px; padding-left:5px;" onclick="add_permission(<?=$user["id"] ?>,<?=$available_permission['id']?>)"/>
 						</td>
 					</tr>
 				<?php endforeach ?>
@@ -46,7 +46,7 @@
 							<?=$current_permission['permission_name'] ?>
 						</td>
 						<td style="padding-top:10px;">
-							<img title="Take permission from user" src="<?=base_url("images/red_arrow.png") ?>" style="cursor:pointer;float:right;height:15px;" onclick="delete_permission(<?=$user['id'] ?>,<?=$current_permission['id']?>)"/>
+							<img title="Take permission from user" src="/images/red_arrow.png" style="cursor:pointer;float:right;height:15px;" onclick="delete_permission(<?=$user['id'] ?>,<?=$current_permission['id']?>)"/>
 						</td>
 					</tr>
 				<?php endforeach ?>

@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set('America/Denver');
+	
 	$row_id = $load["id"];
 	
 	//GET TRUCK
@@ -37,6 +39,33 @@
 	{
 		$initial_dispatch_text = date("m/d/y H:i",strtotime($load["initial_dispatch_datetime"]));
 	}
+	
+	//GET MOST RECENT ZONAR GEOPOINT
+	$current_location = null;
+	$current_geopoint = null;
+	if(!empty($load["load_truck_id"]))
+	{
+		$current_geopoint = get_most_recent_geopoint($load["load_truck_id"]);
+	}
+	
+	if(!empty($current_geopoint))
+	{
+		$current_location_geocode = reverse_geocode($current_geopoint["latitude"].",".$current_geopoint["longitude"]);
+		$current_location = $current_location_geocode["city"].", ".$current_location_geocode["state"];
+	}
+	
+	
+	//GET MOST RECENT TRAILER GEOPOINT
+	$current_trailer_geopoint = null;
+	if(!empty($load["load_trailer_id"]))
+	{
+		$current_trailer_geopoint = get_most_recent_trailer_geopoint($load["load_trailer_id"]);
+		if(strtotime($current_trailer_geopoint["datetime_occurred"]) < (time() - 60*60))
+		{
+			$current_trailer_geopoint = null;
+		}
+	}
+	
 ?>
 <script>
 </script>
@@ -79,7 +108,11 @@
 		<img id="refresh_load_details_icon_<?=$row_id?>" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:13px; position:relative; left:0px;" src="/images/refresh.png" title="Refresh" onclick="open_row_details('<?=$load["id"]?>')"/>
 		<img id="edit_icon" class="details_<?=$row_id?>" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; right:1px;" src="/images/edit.png" title="Edit" onclick="edit_row_details('<?=$load["id"]?>')"/>
 		<img id="save_icon_<?=$row_id?>" class="edit_<?=$row_id?>" style="display:none; margin-bottom:13px; margin-right:15px; cursor:pointer; height:14px; position:relative; left:0px;" src="/images/save.png" title="Save" onclick="save_load_edit('<?=$load["id"]?>');"/>
-		<img id="dispatch_icon" class="" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; right:2px;" src="/images/grey_headset_icon.png" title="Dispatch" onclick="load_status_changed('<?=$load["id"]?>','open_dispatch_dialog')"/>
+		<?php if(empty($load["load_truck_id"]) || empty($load["client_id"])):?>
+			<img id="dispatch_icon" class="" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; right:2px;" src="/images/grey_headset_icon.png" title="Dispatch" onclick="alert('The load must have a Truck and Driver before a check call can be performed!')"/>
+		<?php else:?>
+			<img id="dispatch_icon" class="" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; right:2px;" src="/images/grey_headset_icon.png" title="Dispatch" onclick="load_status_changed('<?=$load["id"]?>','open_dispatch_dialog')"/>
+		<?php endif;?>
 		<img id="attachment_icon" class="" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:20px; position:relative; left:1px;" src="/images/paper_clip2.png" title="Attachment" onclick="open_file_upload('<?=$load["id"]?>')"/>
 		<img id="cancel_icon_<?=$row_id?>" class="" style="margin-bottom:13px; margin-right:15px; cursor:pointer; height:14px; position:relative; right:1px;" src="/images/grey_cancel_icon.png" title="Cancel" onclick="open_cancel_load_dialog('<?=$load["id"]?>');"/>
 	</div>
@@ -342,14 +375,14 @@
 	</div>
 	<div style="clear:both;"></div>
 	<div class="heading" style="margin-top:20px;">
-		Dispatch Updates
+		Check Calls
 	</div>
 	<hr style="">
-	<div id="load_plan_div">
-		<table style="margin-left:30px; margin-top:5px; margin-bottom:10px; line-height:30px; font-size:10px;">
+	<div id="load_plan_div_<?=$row_id?>" style="" class="">
+		<table style="margin-left:30px; margin-top:5px; line-height:30px; font-size:10px;">
 			<tr style="font-weight:bold; line-height:10px;">
-				<td style="width:80px;">
-					Dispatch Time
+				<td style="width:90px;">
+					Time
 				</td>
 				<td style="width:50px; padding-right:5px;">
 					Truck
@@ -357,40 +390,179 @@
 				<td style="width:60px; padding-right:5px;">
 					Trailer
 				</td>
+				<td style="width:40px;">
+					Truck Fuel
+				</td>
+				<td style="width:90px;">
+					Truck Codes
+				</td>
+				<td style="width:195px; padding-right:5px;">
+					Location
+				</td>
+				<td style="width:95px;">
+					Driver
+				</td>
+				<td style="width:60px;">
+					Answered
+				</td>
+				<td style="width:40px;">
+					Hold?
+				</td>
+				<td style="width:70px;">
+					Dispatcher
+				</td>
+				<td style="width:60px; text-align:right; padding-right:10px;">
+					Audio
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="load_updates_div_<?=$row_id?>" style="max-height:200px;" class="scrollable_div">
+		<table style="margin-left:30px; margin-bottom:10px;">
+			<?php if(!empty($load_check_calls)):?>
+				<?php
+				 $i = 0;
+				?>
+				<?php foreach($load_check_calls as $cc):?>
+					<?php
+						$i++;
+						$row_style = "";
+						if($i%2 == 1)
+						{
+							$row_style = "background:#E0E0E0;";
+						}
+						
+						//GET TRUCK
+						$where = null;
+						$where["id"] = $cc["truck_id"];
+						$cc_truck = db_select_truck($where);
+						
+						//GET TRAILER
+						$where = null;
+						$where["id"] = $cc["trailer_id"];
+						$cc_trailer = db_select_trailer($where);
+						
+						//GET DRIVER
+						$where = null;
+						$where["id"] = $cc["driver_id"];
+						$cc_client = db_select_client($where);
+						
+						//GET USER RECORDER
+						$where = null;
+						$where["id"] = $cc["user_id"];
+						$recorder_user = db_select_user($where);
+						
+						//GET INITIALS
+						$initials = substr($recorder_user["person"]["f_name"],0,1).substr($recorder_user["person"]["l_name"],0,1);
+					?>
+					<tr style="font-size:11px; height:30px; line-height:30px; <?=$row_style?>">
+						<td style="width:90px; " title="Recorded <?=date("m/d/y H:i",strtotime($cc["recorded_datetime"]))?>">
+							<?=date("m/d/y H:i",strtotime($cc["recorded_datetime"]))?>
+						</td>
+						<td style="width:50px; padding-right:5px;">
+							<?=$cc_truck["truck_number"]?>
+						</td>
+						<td style="width:60px;  padding-right:5px;">
+							<?=$cc_trailer["trailer_number"]?>
+						</td>
+						<td style="width:30px;text-align:right; padding-right:10px;">
+							<?php if(!empty($cc["truck_fuel_level"])):?>
+								<?=number_format($cc["truck_fuel_level"]*100)?>%
+							<?php endif;?>
+						</td>
+						<td style="width:90px;">
+							<a href="<?=base_url("/index.php/documents/download_file")."/".$cc["truck_code_guid"]?>" target="_blank"><?=$cc["truck_code_status"]?></a>
+						</td>
+						<td style="width:195px; padding-right:5px;">
+							<a target="_blank" href='http://maps.google.com/maps?q=<?=$cc["gps"]?>'><?=$cc["location"]?></a>
+						</td>
+						<td class="ellipsis" style="max-width:95px; min-width:95px;">
+							<?=$cc_client["client_nickname"]?>
+						</td>
+						<td style="width:60px;">
+							<?php if($cc["driver_answered"] == 'No Answer'):?>
+								<a style="color:red" href="<?=base_url("/index.php/documents/download_file")."/".$cc["audio_guid"]?>" target="_blank"><span style="font-weight:bold;">NO</span></a>
+							<?php else:?>
+								<?php if(!empty($cc["audio_guid"])):?>
+									<a style="color:green" href="<?=base_url("/index.php/documents/download_file")."/".$cc["audio_guid"]?>" target="_blank"><span style="font-weight:bold;"><?=$cc["driver_answered"]?></span></a>
+								<?php else:?>
+									<span style="font-weight:bold;"><?=$cc["driver_answered"]?></span>
+								<?php endif;?>
+							<?php endif;?>
+						</td>
+						<td style="width:40px;">
+							<?php if($cc["on_hold"] == 'Yes'):?>
+								<span style="color:red; font-weight:bold;">YES</span>
+							<?php elseif($cc["on_hold"] == 'No'):?>
+								<span style="color:green; font-weight:bold;">No</span>
+							<?php endif;?>
+						</td>
+						<td style="width:70px;">
+							<span title="<?=$recorder_user["person"]["full_name"]?>"><?=$recorder_user["person"]["f_name"]?></span>
+						</td>
+						<td style="width:60px;text-align:right; padding-right:10px;">
+							<a href="<?=base_url("/index.php/documents/download_file")."/".$cc["audio_guid"]?>" target="_blank">Listen</a>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			<?php endif;?>
+		</table>
+	</div>
+	<div style="clear:both;"></div>
+	<div class="heading" style="margin-top:20px;">
+		Load Updates
+	</div>
+	<hr style="">
+	<div id="load_plan_div_<?=$row_id?>" style="" class="">
+		<table style="margin-left:30px; margin-top:5px; line-height:30px; font-size:10px;">
+			<tr style="font-weight:bold; line-height:10px;">
+				<td style="width:90px;">
+					Time
+				</td>
+				<td style="width:50px; padding-right:5px;">
+					Truck
+				</td>
+				<td style="width:60px; padding-right:5px;">
+					Trailer
+				</td>
+				<td style="width:40px;">
+					Trailer<br>Fuel
+				</td>
+				<td style="width:40px;">
+					Reefer<br>Set
+				</td>
+				<td style="width:40px;">
+					Reefer<br>Temp
+				</td>
 				<td style="width:120px; padding-right:5px;">
 					Location
 				</td>
-				<td style="width:70px;">
+				<td style="width:40px;">
+					OOR?
+				</td>
+				<td style="width:40px;">
+					<!-- Miles Driven !-->
+				</td>
+				<td style="width:90px;">
 					Driver
 				</td>
-				<td style="width:35px; text-align:right;">
+				<td style="width:40px; text-align:right;">
 					Break
 				</td>
-				<td style="width:35px; text-align:right;">
+				<td style="width:40px; text-align:right;">
 					Drive
 				</td>
-				<td style="width:35px; text-align:right;">
+				<td style="width:40px; text-align:right;">
 					Shift
 				</td>
-				<td style="width:35px; text-align:right;">
+				<td style="width:40px; text-align:right; padding-right:10px;">
 					Cycle
 				</td>
-				<td style="width:55px; text-align:right;">
-					Truck<br>Fuel
-				</td>
-				<td style="width:55px; text-align:right;">
-					Truck<br>Codes
-				</td>
-				<td style="width:55px; text-align:right;">
-					Trailer<br>Fuel
-				</td>
-				<td style="width:55px; text-align:right;">
-					Trailer<br>Codes
-				</td>
-				<td style="width:55px; text-align:right;">
-					Reefer<br>Temp
-				</td>
 			</tr>
+		</table>
+	</div>
+	<div id="load_updates_div_<?=$row_id?>" style="" class="">
+		<table style="margin-left:30px; margin-bottom:10px;">
 			<?php if(!empty($dispatch_updates)):?>
 				<?php
 				 $i = 0;
@@ -430,58 +602,137 @@
 						$initials = substr($recorder_user["person"]["f_name"],0,1).substr($recorder_user["person"]["l_name"],0,1);
 					?>
 					<tr style="font-size:11px; height:30px; line-height:30px; <?=$row_style?>">
-						<td>
+						<td style="width:90px; " title="Recorded <?=date("m/d/y H:i",strtotime($du["recorded_time"]))?>">
 							<?=date("m/d/y H:i",strtotime($du["update_datetime"]))?>
 						</td>
-						<td style=" padding-right:5px;">
+						<td style="width:50px; padding-right:5px;">
 							<?=$du_truck["truck_number"]?>
 						</td>
-						<td style=" padding-right:5px;">
+						<td style="width:60px;  padding-right:5px;">
 							<?=$du_trailer["trailer_number"]?>
 						</td>
-						<td style=" padding-right:5px;">
+						<td style="width:20px;text-align:right; padding-right:20px;">
+							<?=number_format($du["trailer_fuel"])?>%
+						</td>
+						<td style="width:20px;text-align:right; padding-right:20px;">
+							<?=number_format($du["reefer_set"])?>
+						</td>
+						<td style="width:20px;text-align:right; padding-right:20px;">
+							<?=number_format($du["reefer_temp"])?>
+						</td>
+						<td style="width:120px; padding-right:5px;">
 							<a target="_blank" href='http://maps.google.com/maps?q=<?=$du["gps"]?>'><?=$du["location"]?></a>
 						</td>
-						<td class="ellipsis" style="max-width:70px; min-width:70px;">
+						<td style="width:40px;">
+							<?php if($du["is_oor"] == 'Yes'):?>
+								<span style="color:red; font-weight:bold;">YES</span>
+							<?php elseif($du["is_oor"] == 'No'):?>
+								<span style="">No</span>
+							<?php endif;?>
+						</td>
+						<td style="width:40px;">
+							<!-- Miles Driven !-->
+						</td>
+						<td class="ellipsis" style="max-width:90px; min-width:90px;">
 							<?=$du_client["client_nickname"]?>
 						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["hos_remaining_guid"]?>'><?=convert_hours_to_duration_text($du["hos_break"])?></a>
+						<td style="width:40px;text-align:right;">
+							<?php if(!empty($du["hos_break"])):?>
+								<?=convert_hours_to_duration_text($du["hos_break"])?>
+							<?php endif;?>
 						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["hos_remaining_guid"]?>'><?=convert_hours_to_duration_text($du["hos_drive"])?></a>
+						<td style="width:40px;text-align:right;">
+							<?php if(!empty($du["hos_drive"])):?>
+								<?=convert_hours_to_duration_text($du["hos_drive"])?>
+							<?php endif;?>
 						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["hos_remaining_guid"]?>'><?=convert_hours_to_duration_text($du["hos_shift"])?></a>
+						<td style="width:40px;text-align:right;">
+							<?php if(!empty($du["hos_shift"])):?>
+								<?=convert_hours_to_duration_text($du["hos_shift"])?>
+							<?php endif;?>
 						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["hos_remaining_guid"]?>'><?=convert_hours_to_duration_text($du["hos_cycle"])?></a>
-						</td>
-						<td style="text-align:right;">
-							<?=round($du["truck_fuel"] * 100)?>%
-						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["truck_codes_guid"]?>'><?=$du["truck_codes"]?></a>
-						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["trailer_fuel_guid"]?>'><?=$du["trailer_fuel"]?>%</a>
-						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["trailer_codes_guid"]?>'><?=$du["trailer_codes"]?></a>
-						</td>
-						<td style="text-align:right;">
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$du["reefer_temp_guid"]?>'><?=$du["reefer_temp"]?></a>
+						<td style="width:40px;text-align:right; padding-right:10px;">
+							<?php if(!empty($du["hos_cycle"])):?>
+								<?=convert_hours_to_duration_text($du["hos_cycle"])?>
+							<?php endif;?>
 						</td>
 						<td style="width:30px; text-align:right;">
 							<span title="<?=$recorder_user["person"]["full_name"]?>"><?=$initials?></span>
 						</td>
-						<td style="width:35px;">
-							<img title="Email Load Plan" src="/images/email.png" style="cursor:pointer; position:relative; top:8px; left:10px; width:20px;" onclick="open_load_plan_email_dialog('<?=$du["id"]?>')"/>
+						<td style="width:45px;">
+							<img title="Email Load Plan" src="/images/email.png" style="cursor:pointer; position:relative; top:8px; left:20px; width:20px;" onclick="open_load_plan_email_dialog('<?=$du["id"]?>')"/>
 						</td>
 					</tr>
 				<?php endforeach;?>
 			<?php endif;?>
+			<?php if(!empty($current_geopoint)):?>
+				<tr style="font-size:11px; height:30px; line-height:30px; border-top:1px solid grey;">
+					<td style="width:90px; " >
+						<?=date("m/d/y H:i",strtotime($current_geopoint["datetime"]))?>
+					</td>
+					<td style="width:50px; padding-right:5px;">
+						<?=$truck["truck_number"]?>
+					</td>
+					<td style="width:60px; padding-right:5px;">
+						<?=$trailer["trailer_number"]?>
+					</td>
+					<td style="width:20px;text-align:right; padding-right:20px;">
+						<?php if(!empty($current_trailer_geopoint["fuel_level"])):?>
+							<?=number_format($current_trailer_geopoint["fuel_level"])?>%
+						<?php endif;?>
+					</td>
+					<td style="width:20px;text-align:right; padding-right:20px;">
+						<?php if(!empty($current_trailer_geopoint["set_temperature"])):?>
+							<?=number_format($current_trailer_geopoint["set_temperature"])?>
+						<?php endif;?>
+					</td>
+					<td style="width:20px;text-align:right; padding-right:20px;">
+						<?php if(!empty($current_trailer_geopoint["return_temperature"])):?>
+							<?=number_format($current_trailer_geopoint["return_temperature"])?>
+						<?php endif;?>
+					</td>
+					<td style="width:120px;  padding-right:5px;">
+						<a target="_blank" href='http://maps.google.com/maps?q=<?=$current_geopoint["latitude"].",".$current_geopoint["longitude"]?>'><?=$current_location?></a>
+					</td>
+					<td style="width:40px;">
+						<?php if($current_geopoint["is_oor"] == 'Yes'):?>
+							<span style="color:red; font-weight:bold;">YES</span>
+						<?php elseif($current_geopoint["is_oor"] == 'No'):?>
+							<span style="">No</span>
+						<?php endif;?>
+					</td>
+					<td style="width:40px;">
+						<!-- Miles Driven !-->
+					</td>
+					<td class="ellipsis" style="max-width:90px; min-width:90px;">
+						<?=$load["client"]["client_nickname"]?>
+					</td>
+					<td style="width:40px;text-align:right;">
+						
+					</td>
+					<td style="width:40px;text-align:right;">
+						
+					</td>
+					<td style="width:40px;text-align:right;">
+						
+					</td>
+					<td style="width:40px;text-align:right;">
+						
+					</td>
+					<td style="width:30px; text-align:right;">
+						<!-- initials !-->
+					</td>
+					<td style="width:45px;">
+						<img title="Add to Log" id="save_load_update_<?=$row_id?>" src="/images/add_circle.png" style="height:20px; cursor:pointer; position:relative; top:8px; left:20px;" onclick="save_dispatch_update('<?=$row_id?>')"/>
+					</td>
+				</tr>
+			<?php endif;?>
 		</table>
+		<form id="load_update_form_<?=$row_id?>">
+			<input type="hidden" id="load_id" name="load_id" value="<?=$load["id"]?>">
+			<input type="hidden" id="current_geopoint_id" name="current_geopoint_id" value="<?=$current_geopoint["id"]?>">
+			<input type="hidden" id="current_trailer_geopoint_id" name="current_trailer_geopoint_id" value="<?=$current_trailer_geopoint["id"]?>">
+		</form>
 	</div>
 	<div style="clear:both;"></div>
 	<div class="heading" style="margin-top:20px;">
@@ -585,7 +836,7 @@
 					<td style="min-width:60px; padding-right:5px;">
 					</td>
 					<td style="width:80px; text-align:center;">
-						<img title="Add Goalpoint" src="/images/add_circle.png" style="position:relative; top:2px; left:15px; height:20px; cursor:pointer;" onclick="add_new_goalpoint('<?=$row_id?>')"/>
+						<img title="Add Goalpoint" id="add_goalpoint_circle_<?=$row_id?>" src="/images/add_circle.png" style="position:relative; top:2px; left:15px; height:20px; cursor:pointer;" onclick="add_new_goalpoint('<?=$row_id?>')"/>
 					</td>
 				</tr>
 			</table>

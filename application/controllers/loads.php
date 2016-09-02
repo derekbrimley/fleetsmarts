@@ -8,7 +8,8 @@ class Loads extends MY_Controller
 	{	
 		//GET FLEET MANAGERS
 		$where = null;
-		$where["role"] = "Fleet Manager";
+		//$where["role"] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where,"f_name");
 		$fleet_managers_dropdown_options = array();
 		$fleet_managers_dropdown_options["All"] = "All FMs";
@@ -19,7 +20,8 @@ class Loads extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		
 		$dm_filter_dropdown_options = array();
@@ -208,6 +210,75 @@ class Loads extends MY_Controller
 			$active_count = $row->active_count;
 		}
 		
+		$where = null;
+		$where['permission_id'] = 84;
+		$users = db_select_user_permissions($where);
+		
+		$ricky_dispatchers = array();
+		$ezra_dispatchers = array();
+		$james_dispatchers = array();
+		$taylor_dispatchers = array();
+		if(!empty($users))
+		{
+			
+			foreach($users as $user)
+			{
+				$where = null;
+				$where['id'] = $user['user_id'];
+				$this_user = db_select_user($where);
+
+				//GET LAST PUNCH
+				$where = null;
+				$where["user_id"] = $this_user["id"];
+				$last_punch = db_select_time_punch($where,"datetime");
+
+				if($last_punch['in_out'] == 'In')
+				{
+//					echo $user['id'] . "<br>";
+					$where = null;
+					$where['id'] = $this_user['person_id'];
+					$person = db_select_person($where);
+
+					$where = null;
+					$where['person_id'] = $person['id'];
+					$dispatcher = db_select_company($where);
+					$where = null;
+					$where['id'] = $dispatcher['managed_by_id'];
+					$fleet_manager = db_select_company($where);
+
+					$where = null;
+					$where['id'] = $fleet_manager['person_id'];
+					$fleet_manager_person = db_select_person($where);
+//					print_r($fleet_manager_person);
+					
+					if(!empty($fleet_manager_person))
+					{
+						if($fleet_manager_person['id'] == 149)
+						{
+							$ricky_dispatchers[] = ucfirst(substr($this_user['person']['f_name'],0,1).substr($this_user['person']['l_name'],0,1));
+						}//Ricky
+						elseif($fleet_manager_person['id'] == 660)
+						{
+							$ezra_dispatchers[] = ucfirst(substr($this_user['person']['f_name'],0,1).substr($this_user['person']['l_name'],0,1));
+						}//Ezra
+						elseif($fleet_manager_person['id'] == 794)
+						{
+							$james_dispatchers[] = ucfirst(substr($this_user['person']['f_name'],0,1).substr($this_user['person']['l_name'],0,1));
+						}//James
+						elseif($fleet_manager_person['id'] == 880)
+						{
+							$taylor_dispatchers[] = ucfirst(substr($this_user['person']['f_name'],0,1).substr($this_user['person']['l_name'],0,1));
+						}//Taylor
+					}
+				}
+			}
+		}
+
+//		print_r($ricky_dispatchers);
+		$data['ricky_dispatchers'] = $ricky_dispatchers;
+		$data['ezra_dispatchers'] = $ezra_dispatchers;
+		$data['james_dispatchers'] = $james_dispatchers;
+		$data['taylor_dispatchers'] = $taylor_dispatchers;
 		$data['active_count'] = $active_count;
 		$data['loads'] = $loads;
 		$this->load->view('loads/loads_report',$data);
@@ -231,7 +302,8 @@ class Loads extends MY_Controller
 	{
 		//GET FLEET MANAGERS
 		$where = null;
-		$where["role"] = "Fleet Manager";
+		//$where["role"] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where,"f_name");
 		$fleet_managers_dropdown_options = array();
 		$fleet_managers_dropdown_options["Select"] = "Select";
@@ -254,7 +326,8 @@ class Loads extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		$dm_dropdown_options = array();
 		$dm_dropdown_options['Select'] = "Select";
@@ -656,6 +729,8 @@ class Loads extends MY_Controller
 	{
 		$load_id = $_POST["load_id"];
 		
+		//update_current_goalpoint_from_geopoint($load_id);
+		
 		//GET LOAD
 		$where = null;
 		$where["id"] = $load_id;
@@ -669,7 +744,8 @@ class Loads extends MY_Controller
 		
 		//GET FLEET MANAGERS
 		$where = null;
-		$where["role"] = "Fleet Manager";
+		//$where["role"] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where,"f_name");
 		$fleet_managers_dropdown_options = array();
 		$fleet_managers_dropdown_options["All"] = "All FMs";
@@ -692,7 +768,8 @@ class Loads extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		$dm_filter_dropdown_options = array();
 		$dm_filter_dropdown_options['Select'] = "Select";
@@ -751,7 +828,12 @@ class Loads extends MY_Controller
 		//GET ALL DISPATCH UPDATES
 		$where = null;
 		$where["load_id"] = $load_id;
-		$dispatch_updates = db_select_dispatch_updates($where,"recorded_time");
+		$dispatch_updates = db_select_dispatch_updates($where,"update_datetime");
+		
+		//GET ALL DISPATCH UPDATES
+		$where = null;
+		$where["load_id"] = $load_id;
+		$load_check_calls = db_select_load_check_calls($where,"recorded_datetime");
 		
 		
 		//GET ALL ATTACHMENTS FOR THIS TRAILER
@@ -761,6 +843,7 @@ class Loads extends MY_Controller
 		$attachments = db_select_attachments($where);
 		
 		$data['attachments'] = $attachments;
+		$data['load_check_calls'] = $load_check_calls;
 		$data['dispatch_updates'] = $dispatch_updates;
 		$data['clients_dropdown_options'] = $clients_dropdown_options;
 		$data['billed_under_options'] = $billed_under_options;
@@ -1017,6 +1100,10 @@ class Loads extends MY_Controller
 		$location_name = $_POST["edit_gp_location_name"];
 		$dm_notes = $_POST["edit_gp_notes"];
 		
+		//echo $gps;
+		$geocode = reverse_geocode($gps);
+		//echo $geocode["city"].", ".$geocode["state"];
+		
 		//GET GOALPOINT
 		$where = null;
 		$where["id"] = $gp_id;
@@ -1028,6 +1115,7 @@ class Loads extends MY_Controller
 		$update_gp["truck_id"] = $truck_id;
 		$update_gp["trailer_id"] = $trailer_id;
 		$update_gp["gps"] = $gps;
+		$update_gp["location"] = $geocode["city"].", ".$geocode["state"];
 		$update_gp["location_name"] = $location_name;
 		
 		//UPDATE BOTH SYNC GOALPOINT WITH ALL INFO -- EXCLUDING DURATION, DEADLINE, & NOTES
@@ -1379,6 +1467,8 @@ class Loads extends MY_Controller
 			$completion_time = date("m/d/y H:i", strtotime($_POST["gp_complete_date"]." ".$_POST["gp_complete_time"]));
 		}
 		
+		$db_completion_time = $new_log_entry["entry_datetime"];
+		
 		//ONLY LOG AFTER THE DEAPARTURE IS MARKED COMPLETE BUT LOG WITH THE ARRIVAL TIME (DEPARTURE TIME IN NOTES) -- ADD WAIT DURATION ATTRIBUTE TO LOAD FOR AUTO DETENTION BILLING
 		if(($goalpoint["gp_type"] == "Pick" || $goalpoint["gp_type"] == "Drop") && $goalpoint["arrival_departure"] == "Departure")
 		{
@@ -1478,8 +1568,8 @@ class Loads extends MY_Controller
 		
 		//UPDATE GOALPOINT WITH COMPLETION TIME
 		$update = null;
-		$update["expected_time"] = date("Y-m-d H:i:s", strtotime($completion_time));
-		$update["completion_time"] = date("Y-m-d H:i:s", strtotime($completion_time));
+		$update["expected_time"] = $db_completion_time;
+		$update["completion_time"] = $db_completion_time;
 		
 		$where = null;
 		$where["id"] = $goalpoint["id"];
@@ -1571,23 +1661,34 @@ class Loads extends MY_Controller
 			$update_load = null;
 			$update_load["client_id"] = $goalpoint["client_id"];
 			$update_load["driver2_id"] = $_POST["codriver_id"];
-			if($truck_number % 2 == 0)
+			if($load["dm_id"] == 880)//Taylor person_id
 			{
-				//IF EVEN
+				$update_load["ar_specialist_id"] = 678;//Mylene user_id
+				$ars = "Mylene";
+			}
+			else if($load["dm_id"] == 660)//Ezra person_id
+			{
+				$update_load["ar_specialist_id"] = 678;//Mylene user_id
+				$ars = "Mylene";
+			}
+			else if($load["dm_id"] == 794)//James person_id
+			{
+				$update_load["ar_specialist_id"] = 947;//Jeannette user_id
+				$ars = "Jeannette";
+			}
+			else if($load["dm_id"] == 828)//Payne person_id
+			{
 				$update_load["ar_specialist_id"] = 915;//Lenneth user_id
 				$ars = "Lenneth";
-				
-				
 			}
 			else
 			{
-				//IF ODD
-				$update_load["ar_specialist_id"] = 947;//Geanette user_id
-				$ars = "Jeannette";
+				$update_load["ar_specialist_id"] = 678;//Mylene user_id
+				$ars = "Mylene";
 			}
 			$update_load["status_number"] = 5;
 			$update_load["status"] = "Dropped";
-			$update["final_drop_datetime"] = date("Y-m-d H:i:s", strtotime($completion_time));
+			$update["final_drop_datetime"] = $db_completion_time;
 			$update_load["pushed_datetime"] = $now_datetime;
 			$update_load["billing_status"] = "Digital";
 			$update_load["billing_status_number"] = 1;
@@ -1665,12 +1766,19 @@ class Loads extends MY_Controller
 		$where["load_id"] = $load_id;
 		$current_geopoint_goalpoint = db_select_goalpoint($where);
 		
+		//GET HOLD REPORT
+		$hold_report = get_hold_report($load["client_id"]);
+		
+		$data['hold_report'] = $hold_report;
 		$data['goalpoints'] = $goalpoints;
 		$data['current_geopoint_goalpoint'] = $current_geopoint_goalpoint;
 		$data['load'] = $load;
 		$this->load->view('loads/load_dispatch_dialog',$data);
-		
-		
+	}
+	
+	function send_driver_hold_report_email()
+	{
+		send_driver_hold_report_email($_POST["client_id"]);
 	}
 	
 	//OPEN RATE CON RECEIVED DIALOG
@@ -1707,7 +1815,8 @@ class Loads extends MY_Controller
 		
 		
 		//GET OPTIONS FOR FLEET MANAGER DROPDOWN LIST
-		$fleet_managers_where['Role'] = "Fleet Manager";
+		//$fleet_managers_where['Role'] = "Fleet Manager";
+		$fleet_managers_where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($fleet_managers_where);
 		$fleet_manager_dropdown_options = array();
 		$title = "Select";
@@ -1719,7 +1828,8 @@ class Loads extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		$dm_dropdown_options = array();
 		$dm_dropdown_options['Select'] = "Select";
@@ -2348,8 +2458,8 @@ class Loads extends MY_Controller
 		
 	}//END RCR SAVE
 	
-	//SAVE LOAD DISPATCH UPDATE 
-	function save_dispatch_update()
+	//SAVE LOAD CHECK CALL
+	function save_check_call()
 	{
 		//SET TIMEZONE
 		date_default_timezone_set('US/Mountain');
@@ -2357,35 +2467,12 @@ class Loads extends MY_Controller
 		
 		$recorder_id = $this->session->userdata('user_id');
 		
-		$load_id = $_POST["dispatch_update_load_id"];
 		$current_geopoint_goalpoint_id = $_POST["current_geopoint_goalpoint_id"];
-		
+		$load_id = $_POST["dispatch_update_load_id"];
 		$truck_fuel = $_POST["truck_fuel"];
 		$truck_codes = $_POST["truck_codes_status"];
-		//$truck_codes_guid = $_POST["truck_codes_guid"];
-		$hos_break_hour = $_POST["hos_break_hour"];
-		$hos_break_minute = $_POST["hos_break_minute"];
-		$hos_drive_hour = $_POST["hos_drive_hour"];
-		$hos_drive_minute = $_POST["hos_drive_minute"];
-		$hos_shift_hour = $_POST["hos_shift_hour"];
-		$hos_shift_minute = $_POST["hos_shift_minute"];
-		$hos_cycle_hour = $_POST["hos_cycle_hour"];
-		$hos_cycle_minute = $_POST["hos_cycle_minute"];
-		//$hos_remaining_guid = $_POST["driver_hours_guid"];
-		$trailer_fuel = $_POST["trailer_fuel"];
-		//$trailer_fuel_guid = $_POST["trailer_fuel_guid"];
-		$trailer_codes = $_POST["trailer_codes_status"];
-		//$trailer_codes_guid = $_POST["trailer_codes_guid"];
-		$reefer_temp = $_POST["reefer_temp"];
-		//$reefer_temp_guid = $_POST["reefer_temp_guid"];
 		
-		//CALCULATE HOS HOURS
-		$hos_break = $hos_break_hour+($hos_break_minute/60);
-		$hos_drive = $hos_drive_hour+($hos_drive_minute/60);
-		$hos_shift = $hos_shift_hour+($hos_shift_minute/60);
-		$hos_cycle = $hos_cycle_hour+($hos_cycle_minute/60);
-		
-		//GET LOAD INFO
+		//GET LOAD
 		$where = null;
 		$where['id'] = $load_id;
 		$load = db_select_load($where);
@@ -2395,85 +2482,72 @@ class Loads extends MY_Controller
 		$where["id"] = $current_geopoint_goalpoint_id;
 		$current_geopoint_goalpoint = db_select_goalpoint($where);
 
-		$geocode = reverse_geocode($_POST["dispatch_gps"]);
+		$geocode = reverse_geocode($current_geopoint_goalpoint["gps"]);
 		
 		//GET TRUCK
 		$where = null;
 		$where["id"] = $load["load_truck_id"];
-		$truck = db_select_truck($where);
+		//$truck = db_select_truck($where);
 		
-		//GET TRAILER
-		$where = null;
-		$where["id"] = $load["load_trailer_id"];
-		$trailer = db_select_trailer($where);
+		// //GET TRAILER
+		// $where = null;
+		// $where["id"] = $load["load_trailer_id"];
+		// //$trailer = db_select_trailer($where);
 		
-		//GET DRIVER COMPANY
-		$where = null;
-		$where["id"] = $load["client"]["company_id"];
-		$driver_company = db_select_company($where);
+		// //GET DRIVER COMPANY
+		// $where = null;
+		// $where["id"] = $load["client"]["company_id"];
+		// //$driver_company = db_select_company($where);
 		
-		//GET DRIVER PERSON
-		$where = null;
-		$where["id"] = $driver_company["person_id"];
-		$driver_person = db_select_person($where);
+		// //GET DRIVER PERSON
+		// $where = null;
+		// $where["id"] = $driver_company["person_id"];
+		// //$driver_person = db_select_person($where);
 		
-		//GET CARRIER COMPANY
-		$where = null;
-		$where["id"] = $load["billed_under"];
-		$carrier_company = db_select_company($where);
+		// //GET CARRIER COMPANY
+		// $where = null;
+		// $where["id"] = $load["billed_under"];
+		// //$carrier_company = db_select_company($where);
 		
-		//GET FLEET MANAGER COMPANY
-		$where = null;
-		$where["person_id"] = $load["fleet_manager"]["id"];
-		$fm_company = db_select_company($where);
+		// //GET FLEET MANAGER COMPANY
+		// $where = null;
+		// $where["person_id"] = $load["fleet_manager"]["id"];
+		// //$fm_company = db_select_company($where);
 		
-		//GET DRIVER MANAGER COMPANY
-		$where = null;
-		$where["person_id"] = $load["driver_manager"]["id"];
-		$dm_company = db_select_company($where);
+		// //GET DRIVER MANAGER COMPANY
+		// $where = null;
+		// $where["person_id"] = $load["driver_manager"]["id"];
+		// //$dm_company = db_select_company($where);
 		
 		$update_guid = get_random_string(10);
 		
 		//CREATE DISPATCH UPDATE
-		$insert_du = null;
-		$insert_du["load_id"] = $load["id"];
-		$insert_du["client_id"] = $load["client"]["id"];
-		$insert_du["client_email"] = $driver_person["email"];
-		$insert_du["carrier_id"] = $load["billed_under"];
-		$insert_du["carrier_email"] = $carrier_company["company_gmail"];;
-		$insert_du["fleet_manager_id"] = $load["fleet_manager_id"];
-		$insert_du["fleet_manager_email"] = $fm_company["company_email"];
-		$insert_du["driver_manager_id"] = $load["dm_id"];
-		$insert_du["driver_manager_email"] = $dm_company["company_email"];
-		$insert_du["truck_id"] = $load["load_truck_id"];
-		$insert_du["trailer_id"] = $load["load_trailer_id"];
-		$insert_du["location"] = $geocode["city"].", ".$geocode["state"];
-		$insert_du["gps"] = $_POST["dispatch_gps"];
-		$insert_du["update_datetime"] = date("Y-m-d H:i",strtotime($_POST["dispatch_current_datetime"]));
-		$insert_du["hos_break"] = $hos_break;
-		$insert_du["hos_drive"] = $hos_drive;
-		$insert_du["hos_shift"] = $hos_shift;
-		$insert_du["hos_cycle"] = $hos_cycle;
-		$insert_du["truck_fuel"] = $truck_fuel;
-		$insert_du["truck_codes"] = $truck_codes;
-		$insert_du["trailer_fuel"] = $trailer_fuel;
-		$insert_du["reefer_temp"] = $reefer_temp;
-		$insert_du["trailer_codes"] = $trailer_codes;
-		$insert_du["recorder_id"] = $recorder_id;
-		$insert_du["recorded_time"] = $update_guid;
-		
+		$insert_lcc = null;
+		$insert_lcc["load_id"] = $load["id"];
+		$insert_lcc["truck_id"] = $load["load_truck_id"];
+		$insert_lcc["trailer_id"] = $load["load_trailer_id"];
+		$insert_lcc["driver_id"] = $load["client_id"];
+		$insert_lcc["user_id"] = $recorder_id;
+		if($truck_fuel != 'Select')
+		{
+			$insert_lcc["truck_fuel_level"] = $truck_fuel;
+		}
+		$insert_lcc["truck_code_status"] = $truck_codes;
+		$insert_lcc["location"] = $geocode["city"].", ".$geocode["state"];
+		$insert_lcc["gps"] = $current_geopoint_goalpoint["gps"];
+		$insert_lcc["on_hold"] = $_POST["on_hold"];
+		$insert_lcc["recorded_datetime"] = $recorded_time;
+		$insert_lcc["driver_answered"] = $_POST["driver_answer"];
+		$insert_lcc["audio_guid"] = $update_guid;//JUST TEMPORARY FOR THE FILE GUID UPDATE
 		//print_r($insert_du);
-		db_insert_dispatch_update($insert_du);
+		
+		db_insert_load_check_call($insert_lcc);
 		
 		$file_array = array();
-		$file_array[] = "truck_codes_guid";
-		$file_array[] = "hos_remaining_guid";
-		$file_array[] = "trailer_fuel_guid";
-		$file_array[] = "trailer_codes_guid";
-		$file_array[] = "reefer_temp_guid";
+		$file_array[] = "truck_code_guid";
+		$file_array[] = "audio_guid";
 		
-		$update_du = null;
-		$update_du["recorded_time"] = $recorded_time;
+		$update_lcc = null;
 		foreach($file_array as $file_input)
 		{
 			//UPDATE DISPATCH UPDATE WITH FILE GUIDS
@@ -2481,6 +2555,7 @@ class Loads extends MY_Controller
 			if(!empty($_FILES[$file_input]["type"]))
 			{
 				//INSERT NEW SECURE_FILE AND UPLOAD FILE TO FTP SERVER
+				$secure_file = null;
 				//$post_name = 'truck_codes_guid';
 				$post_name = $file_input;
 				$file = $_FILES[$post_name];
@@ -2488,7 +2563,7 @@ class Loads extends MY_Controller
 				$type1 = $file["type"];
 				//$title = pathinfo($file["name"], PATHINFO_FILENAME);
 				$title = $file["name"];
-				$category = "Dispatch Update";
+				$category = "Load Check Call";
 				$local_path = $file["tmp_name"];
 				$server_path = '/edocuments/';
 				$office_permission = 'All';
@@ -2496,7 +2571,7 @@ class Loads extends MY_Controller
 				$secure_file = store_secure_ftp_file($post_name,$name,$type1,$title,$category,$local_path,$server_path,$office_permission,$driver_permission);
 				
 				//$update_load["rc_link"] = $secure_file["file_guid"];
-				$update_du[$file_input] = $secure_file["file_guid"];
+				$update_lcc[$file_input] = $secure_file["file_guid"];
 				
 				//CREATE ATTACHMENT IN DB
 				// $attachment = null;
@@ -2511,42 +2586,34 @@ class Loads extends MY_Controller
 			}
 		}
 		
-		//GET THIS DISPATCH UPDATE AND UPDATE WITH HTML FROM EMAIL
+		//GET THIS CHECK CALL
 		$where = null;
-		$where["recorded_time"] = $update_guid;
-		$this_du = db_select_dispatch_update($where);
-		$this_du_id = $this_du["id"];
+		$where["audio_guid"] = $update_guid;
+		$this_lcc = db_select_load_check_call($where);
+		$this_lcc_id = $this_lcc["id"];
 		
-		//UPDATE DISPATCH UPDATE
+		//UPDATE DISPATCH UPDATE WITH FILE GUIDS
 		$where = null;
-		$where["id"] = $this_du_id;
-		db_update_dispatch_update($update_du,$where);
-
-
-		$update_du = null;
-		$update_du["email_html"] = file_get_contents(base_url("index.php/public_functions/send_dispatch_email/$this_du_id"));
-		//echo file_get_contents(base_url("index.php/public_functions/send_dispatch_email/$this_du_id"));
-		$where = null;
-		$where["id"] = $this_du_id;
-		db_update_dispatch_update($update_du,$where);
-		
-		//UPDATE LOAD WITH INITIAL DISPATCH (FIRST TIME ONLY) TIME AND DISPATCH SENT DATETIME (LATEST DISPATCH UPDATE)
-		$update_load = null;
-		if(empty($load["initial_dispatch_datetime"]))
-		{
-			$update_load["initial_dispatch_datetime"] = $recorded_time;
-			$update_load["status"] = "Pick Pending";
-			$update_load["status_number"] = 3;
-		}
-		$update_load["dispatch_sent_datetime"] = $recorded_time;
-		$where = null;
-		$where["id"] = $load_id;
-		db_update_load($update_load,$where);
-		
-		//DISPLAY UPLOAD SUCCESS MESSAGE
-		//load_upload_success_view();
+		$where["id"] = $this_lcc_id;
+		db_update_load_check_call($update_lcc,$where);
 		
 		echo "success!";
+	}
+	
+	//ADD LOAD UPDATE
+	function save_load_update()
+	{
+		
+		
+		$load_id = $_POST["load_id"];
+		$current_geopoint_id = $_POST["current_geopoint_id"];
+		$current_trailer_geopoint_id = $_POST["current_trailer_geopoint_id"];
+
+		//echo $current_trailer_geopoint_id;
+		
+		save_load_update($load_id,$current_geopoint_id,$current_trailer_geopoint_id);
+		
+		
 	}
 	
 	function display_dispatch_email()
@@ -2690,14 +2757,22 @@ class Loads extends MY_Controller
 		$to = $recipients;
 		$subject = 'Load Plan for Load '.$load["customer_load_number"];
 		//$message = "test";
-		$headers = "From: paperwork.dispatch@gmail.com\r\n";
-		//$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
-		$headers .= "CC: paperwork.dispatch@gmail.com\r\n";
-		$headers .= "MIME-Version: 1.0\r\n";
-		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		// $headers = "From: paperwork.dispatch@gmail.com\r\n";
+		// //$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
+		// $headers .= "CC: paperwork.dispatch@gmail.com\r\n";
+		// $headers .= "MIME-Version: 1.0\r\n";
+		// $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		
 		//mail("covax13@gmail.com","FleetSmarts Now Does Email!","You better believe it! Guess who just figured out how to send emails from FleetSmarts!!","From: fleetsmarts@fleetsmarts.net");
-		mail($to, $subject, $message, $headers);
+		//mail($to, $subject, $message, $headers);
+		
+		$this->email->from("paperwork.dispatch@gmail.com","Dispatch");
+		$this->email->to($to);
+		$this->email->cc('paperwork.dispatch@gmail.com');
+		$this->email->subject($subject);
+		$this->email->message($message);
+		$this->email->send();
+		//echo $this->email->print_debugger();
 		
 		//UPDATE DISPATCH UPDATE
 		$update = null;
@@ -2706,7 +2781,21 @@ class Loads extends MY_Controller
 		$where["id"] = $du_id;
 		db_update_dispatch_update($update,$where);
 		
-		echo "Success!";
+		//UPDATE LOAD WITH INITIAL DISPATCH (FIRST TIME ONLY) TIME AND DISPATCH SENT DATETIME (LATEST DISPATCH UPDATE)
+		$recorded_time = date("Y-m-d H:i:s");
+		$update_load = null;
+		if(empty($load["initial_dispatch_datetime"]))
+		{
+			$update_load["initial_dispatch_datetime"] = $recorded_time;
+			$update_load["status"] = "Pick Pending";
+			$update_load["status_number"] = 3;
+		}
+		$update_load["dispatch_sent_datetime"] = $recorded_time;
+		$where = null;
+		$where["id"] = $load["id"];
+		db_update_load($update_load,$where);
+		
+		echo "Email sent to ".$to;
 	}
 	
 	

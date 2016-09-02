@@ -1,7 +1,7 @@
 <script>
 	$(document).ready(function()
 	{
-		$("#filter_list").height($("#body").height() - 188);
+		$("#filter_list").height($("#body").height() - 225);
 		
 		load_funding_report();
 		
@@ -251,33 +251,60 @@
 	
 	function change_view()
 	{
+		//HIDE ALL
+		$(".pending_td").hide();
+		$(".fm_td").hide();
+		$(".dm_td").hide();
+		$(".driver1_td").hide();
+		$(".driver2_td").hide();
+		$(".broker_td").hide();
+		$(".billed_td").hide();
+		$(".method_td").hide();
+		$(".funded_td").hide();
+		$(".expect_payment_td").hide();
+		$(".drop_city_td").hide();
+		$(".age_td").hide();
+		$(".short_td").hide();
+		$(".last_update_td").hide();
+		$(".hold_reason_td").hide();
+		$(".notes_td").hide();
+		$(".process_audit").hide();
+		
 		if($("#view_dropdown").val() == 'Invoices')
 		{
-			$(".last_update_td").hide();
-			$(".hold_reason_td").hide();
-			
 			$(".pending_td").show();
 			$(".fm_td").show();
 			$(".dm_td").show();
 			$(".driver1_td").show();
 			$(".driver2_td").show();
+			$(".broker_td").show();
+			$(".expect_payment_td").show();
 			$(".drop_city_td").show();
 			$(".age_td").show();
+			$(".billed_td").show();
+			$(".method_td").show();
+			$(".funded_td").show();
 			$(".short_td").show();
+			$(".notes_td").show();
 		}
 		else if($("#view_dropdown").val() == 'Updates')
 		{
-			$(".pending_td").hide();
-			$(".fm_td").hide();
-			$(".dm_td").hide();
-			$(".driver1_td").hide();
-			$(".driver2_td").hide();
-			$(".drop_city_td").hide();
-			$(".age_td").hide();
-			$(".short_td").hide();
-			
+			$(".broker_td").show();
+			$(".billed_td").show();
+			$(".method_td").show();
+			$(".funded_td").show();
+			$(".expect_payment_td").show();
 			$(".last_update_td").show();
 			$(".hold_reason_td").show();
+			$(".notes_td").show();
+		}
+		else if($("#view_dropdown").val() == 'Process Audit')
+		{
+			$(".fm_td").show();
+			$(".dm_td").show();
+			$(".driver1_td").show();
+			$(".driver2_td").show();
+			$(".process_audit").show();
 		}
 	}
 	

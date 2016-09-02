@@ -17,6 +17,12 @@ body
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+.blue_border
+{
+	box-shadow: 0 0 0 3px #6295FC inset;
+}
+	
 .jq_button
 {
 	height:26px;
@@ -51,6 +57,7 @@ body
 .jq_button:active
 {
 	background-color: #3E7EFF;
+	box-shadow:none;
 }
 
 .jq_button_blue
@@ -193,7 +200,8 @@ body
 
 .left_bar_input
 {
-	width:156px;
+	width:150px;
+	/*width:156px;*/
 }
 
 .button_div
@@ -209,7 +217,7 @@ body
 {
 	color:#DD4B39;
 	font-family:arial;
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 .secondary_heading
@@ -354,7 +362,6 @@ textarea
 
 input[type="text"]
 {
-	/*border: 2px inset #EBE9ED;*/
 	border: 1px solid;
 	border-color: #ADADAD;
 	border-radius: 2px;

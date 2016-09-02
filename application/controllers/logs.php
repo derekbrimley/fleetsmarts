@@ -4767,6 +4767,9 @@ class Logs extends MY_Controller
 	//LOCK AN EVENT (FUEL FILL, END LEG)
 	function lock_event()
 	{
+		date_default_timezone_set('America/Denver');
+		$now_datetime = date("Y-m-d H:i:s");
+		
 		//echo "start";
 		$is_valid = true;
 		$script = "";
@@ -5703,19 +5706,20 @@ class Logs extends MY_Controller
 					$truck = db_select_truck($where);
 					
 					//GET WEEKLY STATS FOR THIS TRUCK
-					$performance_stats = get_performance_stats($log_entry["id"]);
+					//$performance_stats = get_performance_stats($log_entry["id"]);
 				
 					$performance_review = null;
 					$performance_review["truck_id"] = $log_entry["truck_id"];
 					$performance_review["fm_id"] = $truck["fm_id"];
 					$performance_review["end_week_id"] = $log_entry["id"];
-					$performance_review["hours"] = $performance_stats["hours"];
-					$performance_review["map_miles"] = $performance_stats["map_miles"];
-					$performance_review["odometer_miles"] = $performance_stats["odometer_miles"];
-					$performance_review["mpg"] = $performance_stats["mpg"];
-					$performance_review["total_revenue"] = $performance_stats["total_revenue"];
-					$performance_review["standard_expenses"] = $performance_stats["standard_expenses"];
-					$performance_review["carrier_revenue"] = $performance_stats["carrier_revenue"];
+					$performance_review["saved_datetime"] = $now_datetime;
+					// $performance_review["hours"] = $performance_stats["hours"];
+					// $performance_review["map_miles"] = $performance_stats["map_miles"];
+					// $performance_review["odometer_miles"] = $performance_stats["odometer_miles"];
+					// $performance_review["mpg"] = $performance_stats["mpg"];
+					// $performance_review["total_revenue"] = $performance_stats["total_revenue"];
+					// $performance_review["standard_expenses"] = $performance_stats["standard_expenses"];
+					// $performance_review["carrier_revenue"] = $performance_stats["carrier_revenue"];
 					
 					//SEARCH FOR EXISTING PERFORMANCE_REVIEW
 					$where = null;
@@ -5728,15 +5732,27 @@ class Logs extends MY_Controller
 					{
 						//INSERT NEW PR
 						db_insert_performance_review($performance_review);
+						
+						//GET NEWLY INSERTED PR
+						$where = null;
+						$where["end_week_id"] = $log_entry["id"];
+						$where["saved_datetime"] = $now_datetime;
+						$pr = db_select_performance_review($where);
+						
+						//UPDATE PERFORMANCE REVIEW WITH NEW CALCULATIONS
+						update_performance_review_with_new_calculations($pr);
 					}
 					else
 					{
+						//UPDATE EXISTING PR
 						$where = null;
 						$where["id"] = $existing_pr["id"];
-					
-						//UPDATE EXISTING PR
 						db_update_performance_review($performance_review,$where);
+						
+						//UPDATE PERFORMANCE REVIEW WITH NEW CALCULATIONS
+						update_performance_review_with_new_calculations($existing_pr);
 					}
+					
 				}
 				
 				

@@ -88,6 +88,7 @@
 						this_div.html(response);
 						//$("#refresh_logs").show();
 						//alert(response);
+						open_dispatcher_dialog();
 					},
 					404: function(){
 						// Page not found
@@ -99,6 +100,52 @@
 					}
 				}
 			});//END AJAX
+		}
+		
+		function open_dispatcher_dialog()
+		{
+			var is_dispatcher = "<?= $is_dispatcher ?>";
+			if(is_dispatcher == "true")
+			{
+				$("#dispatcher_dialog").dialog(
+				{
+					autoOpen: true,
+					height: 300,
+					width: 500,
+					modal: true,
+					buttons: 
+					[
+						{
+							text: "Submit",
+							click: function() 
+							{
+								var fleet_manager_id = $("#fleet_manager_dropdown").val();
+								console.log(fleet_manager_id);
+								$.ajax({
+									url: "<?= base_url("index.php/time_clock/update_fleet_manager")?>", // in the quotation marks
+									type: "POST",
+									data: {fleet_manager_id:fleet_manager_id},
+									cache: false,
+									statusCode: {
+										200: function(response){
+											// Success!
+											$("#dispatcher_dialog").dialog( "close" );
+										},
+										404: function(){
+											// Page not found
+											alert('page not found');
+										},
+										500: function(response){
+											// Internal server error
+											alert("500 error! "+response);
+										}
+									}
+								});
+							}
+						}
+					]
+				});
+			}
 		}
 	</script>
 </head>
@@ -168,3 +215,20 @@
 		</div>
 	</div>
 </body>
+
+<div id="dispatcher_dialog" title="Select Fleet Manager" style="display:none;">
+	<div style="height:150px;overflow:auto;text-align:center;font-size:16pt;">
+		<?php if(!empty($fleet_manager_and_dispatchers)): ?>
+			<?php foreach($fleet_manager_and_dispatchers as $fleet_manager => $dispatcher): ?>
+				<div>
+					<?= $dispatcher ?> is assigned to <?= $fleet_manager ?>.
+				</div>
+			<?php endforeach ?>
+		<?php endif ?>
+	</div>
+	<div style="margin-top:10px;text-align:center;font-size:16pt;">
+		Select Fleet Manager
+		<?php echo form_dropdown('fleet_manager_dropdown',$fleet_managers_dropdown_options, 'All FMs','id="fleet_manager_dropdown"') ?>
+	</div>
+	</form>
+</div>

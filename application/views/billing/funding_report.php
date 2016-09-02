@@ -42,19 +42,29 @@
 		<td style="width:55px;" VALIGN="top" class="driver1_td">Driver 1</td>
 		<td style="width:55px;" VALIGN="top" class="driver2_td">Driver 2</td>
 		<td style="width:60px;" VALIGN="top">Carrier</td>
-		<td style="width:60px;" VALIGN="top">Broker</td>
+		<td style="width:60px;" VALIGN="top" class="broker_td">Broker</td>
 		<td style="width:50px; padding-right:5px; text-align:right;" VALIGN="top">Expected</td>
 		<td style="width:60px; padding-right:5px;" VALIGN="top" class="drop_city_td">Drop City</td>
 		<td style="width:50px; text-align:right;" VALIGN="top">Pushed</td>
-		<td style="width:50px; padding-right:5px; text-align:right;" VALIGN="top">Billed</td>
-		<td style="width:50px;" VALIGN="top">Method</td>
-		<td style="width:50px; text-align:right;" VALIGN="top">Expect<br>Payment</td>
+		<td style="width:50px; padding-right:5px; text-align:right;" VALIGN="top" class="billed_td">Billed</td>
+		<td style="width:50px;" VALIGN="top" class="method_td">Method</td>
+		<td style="width:50px; text-align:right;" VALIGN="top" class="expect_payment_td">Expect<br>Payment</td>
 		<td style="width:45px; text-align:right;" VALIGN="top" class="age_td">Age</td>
 		<td style="width:50px; text-align:right;" VALIGN="top" class="short_td">Short</td>
-		<td style="width:50px; text-align:right;" VALIGN="top">Funded</td>
+		<td style="width:50px; text-align:right;" VALIGN="top" class="funded_td">Funded</td>
 		<td style="width:85px; padding-left:10px; padding-right:5px; display:none;" VALIGN="top" class="last_update_td">Hold Reason</td>
 		<td style="width:300px; display:none;" VALIGN="top" class="last_update_td">Last Update</td>
-		<td style="width:25px;" VALIGN="top"></td>
+		<td style="width:50px; display:none; text-align:center; padding-left:10px;" VALIGN="top" class="process_audit">Defer to Tarriff</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Ontime by Rate Con</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Shipper L & C</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Seal Pic Depart</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Load Pic Depart</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Seal Num on BOL</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Seal Pic Arrive</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Load Pic Arrive</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Seal Intact</td>
+		<td style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit">Clean Bills</td>
+		<td style="width:25px;" VALIGN="top" class="notes_td"></td>
 	</tr>
 </table>
 <div id="scrollable_content" class="scrollable_div">
@@ -97,7 +107,14 @@
 				$short_paid = $short_paid + $load["amount_short_paid"];
 
 				//EXPECTED TOTAL
-				$expected = $expected + $load["expected_revenue"];
+				if(!empty($load["amount_billed"]))
+				{
+					$expected = $expected + $load["amount_billed"];
+				}
+				else
+				{
+					$expected = $expected + $load["expected_revenue"];
+				}
 				
 				if(!empty($load["amount_funded"]))
 				{
@@ -122,13 +139,12 @@
 	$("#short_total").html("Short <?=number_format($short_paid,2)?>");
 	$("#funded_total").html("Funded <?=number_format($funded_total,2)?>");
 	$("#billed_total").html("Billed <?=number_format($billed_total,2)?>");
-	<?php if($i > 0):?>
-		$("#percentage").html("<?=number_format($numerator/$i*100,2)?>%");
+	<?php if($expected > 0):?>
+		//$("#percentage").html("<?=number_format($numerator/$i*100,2)?>%");
+		$("#percentage").html("<?=number_format($funded_total/$expected*100,2)?>%");
 	<?php else:?>
 		$("#percentage").html("0%");
 	<?php endif;?>
 	$("#unfunded_count").html("Missing HC <?=$missing_hc?>");
 	$("#count_total").html("Count <?=$i?>");
-	
-	
 </script>

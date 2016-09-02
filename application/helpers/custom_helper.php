@@ -3385,7 +3385,7 @@
 				$origin = str_replace($url_search,$url_replace,$origin_address);
 				//$destination = str_replace($url_search,$url_replace,$end_event["address"]." ".$end_event["city"].", ".$end_event["state"]);
 				$destination = str_replace($url_search,$url_replace,$destination_address);
-				$base_url = 'http://maps.googleapis.com/maps/api/directions/json?';
+				$base_url = 'https://maps.googleapis.com/maps/api/directions/json?';
 				$params["waypoints"] = "";
 				$params["origin"] = $origin;
 				$params["destination"] = $destination;
@@ -3395,7 +3395,7 @@
 				}
 				$params["mode"] = 'driving';
 				$params["sensor"] = 'false';
-				//$params["key"] = 'AIzaSyAK_rUXKdQt8e-0Ytp31TPmtInfBKOMXL8';//CANT GET THE KEY TO WORK
+				$params["key"] = 'AIzaSyAK_rUXKdQt8e-0Ytp31TPmtInfBKOMXL8';//CANT GET THE KEY TO WORK
 				//$params["key"] = 'AIzaSyCuZiv5qr-WPqljQqEy28qFHOt-s4WqZ2M';
 
 				
@@ -3541,6 +3541,7 @@
 		 
 		// google map geocode api url
 		$url = "http://maps.google.com/maps/api/geocode/json?address=$address";
+		$url = "http://maps.google.com/maps/api/geocode/json?address=$address";
 	 
 		// get the json response
 		$resp_json = file_get_contents($url);
@@ -3583,80 +3584,130 @@
 	
 	function reverse_geocode($latlng)
 	{
+		date_default_timezone_set('America/Denver');
+		$datetime = date('Y-m-d H:i:s');
+		
 		if(empty($latlng))
 		{
 			return false;
 		}
 	 
-		 $latlng = urlencode($latlng);
-		 
-		// google map geocode api url
-		$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$latlng";//key=AIzaSyAK_rUXKdQt8e-0Ytp31TPmtInfBKOMXL8
+		//TAKE ALL SPACES OUT LATLNG
+		$latlng = str_replace(" ","",$latlng);
 	 
-		// get the json response
-		$resp_json = file_get_contents($url);
-		 
-		// decode the json
-		$resp = json_decode($resp_json, true);
-	 
-		//print_r($resp);
-	 
-		// response status will be 'OK', if able to geocode given address 
-		if($resp['status']=='OK')
+		//CHECK TO SEE IF THIS GEOCODE REQUEST HAS ALREADY BEEN MADE
+		$where = null;
+		$where["latlng"] = $latlng;
+		$geocode_request = db_select_geocode_request($where);
+		if(empty($geocode_request))
 		{
-			
-			//var geo_city = extractFromAdress(results[0].address_components, "locality");//CITY
-			//var geo_state = extractFromAdress(results[0].address_components, "administrative_area_level_1");//STATE
-	 
-			$street_number = "";
-			$street = "";
-			$city = "";
-			$state = "";
-			
-			foreach($resp['results'][0]['address_components'] as $ac)
-			{
-				if($ac['types'][0] == "street_number")
-				{
-					$street_number = $ac['long_name'];
-				}
-				
-				if($ac['types'][0] == "route")
-				{
-					$street = $ac['long_name'];
-				}
-				
-				if($ac['types'][0] == "locality")
-				{
-					$city = $ac['long_name'];
-				}
-				
-				if($ac['types'][0] == "administrative_area_level_1")
-				{
-					$state = $ac['short_name'];
-				}
-				
-			}
-			
-			//GET CITY AND STATE
-			//$city = $resp['results'][0]['address_components'][1]['long_name'];
-			//$state = $resp['results'][0]['address_components']['administrative_area_level_1'];
-			
-			$data_arr = array();            
+			 $url_latlng = urlencode($latlng);
 			 
-			$data_arr["street_number"] = $street_number;
-			$data_arr["street"] = $street; 
-			$data_arr["city"] = $city;
-			$data_arr["state"] = $state;
-			$data_arr["formatted_address"] = $resp['results'][0]['formatted_address'];
+			// google map geocode api url
+			//$url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$url_latlng";//&key=AIzaSyAK_rUXKdQt8e-0Ytp31TPmtInfBKOMXL8";
+			$url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$url_latlng&key=AIzaSyAK_rUXKdQt8e-0Ytp31TPmtInfBKOMXL8";
+			
+			// get the json response
+			$resp_json = file_get_contents($url);
+			 
+			// decode the json
+			$resp = json_decode($resp_json, true);
+		 
+			//print_r($resp);
+		 
+			// response status will be 'OK', if able to geocode given address 
+			if($resp['status']=='OK')
+			{
+				
+				//var geo_city = extractFromAdress(results[0].address_components, "locality");//CITY
+				//var geo_state = extractFromAdress(results[0].address_components, "administrative_area_level_1");//STATE
+		 
+				$street_number = "";
+				$street = "";
+				$city = "";
+				$state = "";
+				
+				foreach($resp['results'][0]['address_components'] as $ac)
+				{
+					if($ac['types'][0] == "street_number")
+					{
+						$street_number = $ac['long_name'];
+					}
+					
+					if($ac['types'][0] == "route")
+					{
+						$street = $ac['long_name'];
+					}
+					
+					if($ac['types'][0] == "locality")
+					{
+						$city = $ac['long_name'];
+					}
+					
+					if($ac['types'][0] == "administrative_area_level_1")
+					{
+						$state = $ac['short_name'];
+					}
+					
+				}
+				
+				//GET CITY AND STATE
+				//$city = $resp['results'][0]['address_components'][1]['long_name'];
+				//$state = $resp['results'][0]['address_components']['administrative_area_level_1'];
+				
+				//INSERT NEW GEOCODE REQUEST INTO DB
+				$new_gr = null;
+				$new_gr["original_request_datetime"] = $datetime;
+				$new_gr["latlng"] = $latlng;
+				$new_gr["status"] = $resp['status'];
+				$new_gr["street_number"] = $street_number;
+				$new_gr["street"] = $street; 
+				$new_gr["city"] = $city;
+				$new_gr["state"] = $state;
+				$new_gr["formatted_address"] = $resp['results'][0]['formatted_address'];
+				$new_gr["request_count"] = 0;
+				db_insert_geocode_request($new_gr);
+				
+				$data_arr = array();            
+				 
+				$data_arr["street_number"] = $street_number;
+				$data_arr["street"] = $street; 
+				$data_arr["city"] = $city;
+				$data_arr["state"] = $state;
+				$data_arr["formatted_address"] = $resp['results'][0]['formatted_address'];
+				
+				//print_r($data_arr);
+				
+				return $data_arr;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			//UPDATE COUNT OF GEOCODE_REQUEST
+			$upate = null;
+			$update["request_count"] = $geocode_request["request_count"] + 1;
+			$where = null;
+			$where["id"] = $geocode_request["id"];
+			db_update_geocode_request($update,$where);
+			
+			//RETURN THE RESULTS THAT ARE ALREADY STORED IN THE SYSTEM
+			$data_arr = array();            
+				 
+			$data_arr["street_number"] = $geocode_request["street_number"];
+			$data_arr["street"] = $geocode_request["street"]; 
+			$data_arr["city"] = $geocode_request["city"];
+			$data_arr["state"] = $geocode_request["state"];
+			$data_arr["formatted_address"] = $geocode_request['formatted_address'];
 			
 			//print_r($data_arr);
 			
 			return $data_arr;
 		}
-		else
-		{
-			return false;
-		}
+	 
 	}
 	
 	function get_cardinal_directions($degrees)
@@ -4052,174 +4103,6 @@
 	//GET TRUCK PERFORMANCE STATS
 	function get_performance_stats($end_week_id)
 	{
-	
-	/**
-		//PREPARE TO RETURN - HOURS, MAP MILES, ODOM MILES, OOR, MPG, TOTAL REV, STANDARD EXPENSES, CARRIER REV
-		$total_truck_hours = null;
-		$map_info = null;
-		$odometer_miles = null;
-		$oor = null;
-		$mpg = null;
-		$total_revenue = null;
-		$standard_expenses = null;
-		$carrier_revenue = null;
-		
-		//GET LOG ENTRY FOR END WEEK
-		$where = null;
-		$where["id"] = $end_week_id;
-		$log_entry = db_select_log_entry($where);
-		
-		//GET END WEEK END LEG
-		$where = null;
-		$where["id"] = $log_entry["sync_entry_id"];
-		$this_end_week_end_leg = db_select_log_entry($where);
-	
-		//GET PREVIOUS END WEEK
-		$where = null;
-		$where = " truck_id = ".$log_entry["truck_id"]." AND entry_type = 'End Week' AND entry_datetime = ( SELECT MAX(entry_datetime) FROM log_entry WHERE truck_id = ".$log_entry["truck_id"]." AND entry_type = 'End Week' AND entry_datetime < '".$log_entry["entry_datetime"]."')";
-		$previous_end_week = db_select_log_entry($where);
-		
-		if(!empty($previous_end_week))
-		{
-			$previous_truck_end_week_exists = true;
-		
-			//GET ALL MAP EVENTS FOR THE WEEK FOR THIS TRUCK
-			$where = null;
-			$where = " truck_id = ".$log_entry["truck_id"]." AND entry_datetime <= '".$log_entry["entry_datetime"]."'  AND entry_datetime >= '".$previous_end_week["entry_datetime"]."' AND (entry_type = 'Pick' OR entry_type = 'Drop' OR entry_type = 'Checkpoint' OR entry_type = 'Driver In' OR entry_type = 'Driver Out' OR entry_type = 'Pick Trailer' OR entry_type = 'Drop Trailer' OR entry_type = 'End Week') ";
-			$map_events = db_select_log_entrys($where,'entry_datetime');
-
-			//GET MAP INFO
-			$map_info = get_map_info($map_events);
-			
-			//CALCULATE ODOMETER MILES
-			$odometer_miles = $log_entry["odometer"] - $previous_end_week["odometer"];
-			
-			//GET END LEG ENTRY FOR PREVIOUS END WEEK
-			$where = null;
-			$where["id"] = $previous_end_week["sync_entry_id"];
-			$previous_end_week_end_leg = db_select_log_entry($where);
-		
-			//GET ALL LEGS FOR THIS TRUCK THIS WEEK
-			$where = null;
-			$where = " leg.truck_id = ".$log_entry["truck_id"]." AND log_entry.entry_datetime > '".$previous_end_week_end_leg["entry_datetime"]."'  AND log_entry.entry_datetime <= '".$this_end_week_end_leg["entry_datetime"]."'";
-			$legs = db_select_legs($where);
-			//echo $where;
-			
-			//GET ALL LOADS FOR THIS TRUCK THIS WEEK
-			//$where = null;
-			//$where = " leg.truck_id = ".$log_entry["truck_id"]." AND log_entry.entry_datetime > '".$previous_end_week_end_leg["entry_datetime"]."'  AND log_entry.entry_datetime <= '".$this_end_week_end_leg["entry_datetime"]."'";
-			//$legs = db_select_legs($where);
-			
-			//ADD UP HOURS FOR ALL LEGS
-			$map_miles = 0;
-			$gallons_used = 0;
-			$total_truck_hours = 0;
-			$standard_expenses = 0;
-			$carrier_revenue = 0;
-			$carrier_profit = 0;
-			foreach($legs as $leg)
-			{
-				//echo "Leg ".$leg["id"]."<br>";
-				
-				$leg_calc = get_leg_calculations($leg["id"]);
-				
-				//CALC TOTAL  MILES
-				$map_miles = $map_miles + $leg["map_miles"];
-				
-				//CALC TOTAL HOURS
-				$total_truck_hours = $total_truck_hours + $leg["hours"];
-				
-				//if($leg["rate_type"] != "In Shop")
-				//{
-					//CALC STANDARD EXPENSES
-					$standard_expenses = $standard_expenses + $leg_calc["carrier_expense"];
-				
-					//CALC CARRIER PROFIT
-					$carrier_profit = $carrier_profit + $leg_calc["carrier_profit"];
-					
-					//CALC CARRIER REVENUE
-					$carrier_revenue = $carrier_revenue + $leg_calc["carrier_revenue"];
-				//}
-				
-				//CALC GALLONS USED
-				$gallons_used = $gallons_used + $leg_calc["gallons_used"];
-				
-				
-			}
-			
-			//GET LOADS FOR WEEK
-			$loads_for_week = get_loads_for_week($end_week_id);
-			
-			$i = 0;
-			$total_revenue = 0;
-			$start = date('m/d H:i',strtotime($previous_end_week["entry_datetime"]))." ".$previous_end_week["city"].", ".$previous_end_week["state"];
-			$end = date('m/d H:i',strtotime($this_end_week_end_leg["entry_datetime"]))." ".$this_end_week_end_leg["city"].", ".$this_end_week_end_leg["state"];
-			foreach($loads_for_week as $load_for_week)
-			{
-				$i++;
-				if($i == 1)
-				{
-					$start  = $load_for_week["pick"];
-				}
-				$end = $load_for_week["drop"];
-				
-				$total_revenue = $total_revenue + $load_for_week["revenue"];
-			}
-			
-			//CALC RAW PROFIT
-			$raw_profit = $total_revenue - $carrier_revenue;
-			
-			$rate_per_mile = 0;
-			$carrier_rate = 0;
-			if($map_miles != 0)
-			{
-				//CALC BOOKING RATE
-				$rate_per_mile = round($total_revenue/$map_miles,2);
-				
-				//CALC CARRIER RATE
-				$carrier_rate = round($carrier_revenue/$map_miles,4);
-			}
-			
-			$oor = 0;
-			if($map_info["map_miles"] != 0)
-			{
-				//CALCULATE OOR %
-				$oor = round((($odometer_miles - $map_info["map_miles"])/$map_info["map_miles"])*100,2);
-			}
-			
-			$mpg = 0;
-			if($map_miles != 0)
-			{
-				//CALCULATE MPG
-				$mpg = round($odometer_miles/$gallons_used,2);
-			}
-			
-			$truck_stats = null;
-			$truck_stats["loads_for_week"] = $loads_for_week;
-			$truck_stats["hours"] = $total_truck_hours;
-			$truck_stats["map_miles"] = $map_miles;
-			$truck_stats["odometer_miles"] = $odometer_miles;
-			$truck_stats["standard_expenses"] = $standard_expenses;
-			$truck_stats["gallons_used"] = $gallons_used;
-			$truck_stats["oor"] = $oor;
-			$truck_stats["mpg"] = $mpg;
-			$truck_stats["rate_per_mile"] = $rate_per_mile;
-			$truck_stats["carrier_rate"] = $carrier_rate;
-			$truck_stats["total_revenue"] = $total_revenue;
-			$truck_stats["carrier_revenue"] = $carrier_revenue;
-			$truck_stats["carrier_profit"] = $carrier_profit;
-			$truck_stats["raw_profit"] = $raw_profit;
-			$truck_stats["start"] = $start;
-			$truck_stats["end"] = $end;
-		}
-		else
-		{
-			$truck_stats = null;
-		}
-	
-		//echo "<br>".$start." ".$end;
-		
-	**/	
 		
 		//GET LOG ENTRY FOR END WEEK
 		$where = null;
@@ -4259,8 +4142,10 @@
 			
 			$i = 0;
 			$total_revenue = 0;
-			$start = date('m/d/y H:i',strtotime($previous_end_week["entry_datetime"]))." ".$previous_end_week["city"].", ".$previous_end_week["state"];
-			$end = date('m/d/y H:i',strtotime($this_end_week_end_leg["entry_datetime"]))." ".$this_end_week_end_leg["city"].", ".$this_end_week_end_leg["state"];
+			//$start = date('m/d/y H:i',strtotime($previous_end_week["entry_datetime"]))." ".$previous_end_week["city"].", ".$previous_end_week["state"];
+			//$end = date('m/d/y H:i',strtotime($this_end_week_end_leg["entry_datetime"]))." ".$this_end_week_end_leg["city"].", ".$this_end_week_end_leg["state"];
+			$start = date('m/d/y H:i',strtotime($previous_end_week["entry_datetime"]));
+			$end = date('m/d/y H:i',strtotime($this_end_week_end_leg["entry_datetime"]));
 			foreach($loads_for_week as $load_for_week)
 			{
 				$i++;
@@ -4322,12 +4207,49 @@
 			$truck_stats = null;
 		}
 		
-		
-		
-		
-		
 		return $truck_stats;
 		
+	}
+	
+	function update_performance_review_with_new_calculations($performance_review)
+	{
+		date_default_timezone_set('America/Denver');
+		$now_datetime = date("Y-m-d H:i:s");
+		
+		$truck_stats = get_performance_stats($performance_review["end_week_id"]);
+		
+		$update_pr = null;
+		$update_pr["hours"] = $truck_stats["hours"];
+		$update_pr["map_miles"] = $truck_stats["map_miles"];
+		$update_pr["odometer_miles"] = $truck_stats["odometer_miles"];
+		$update_pr["mpg"] = $truck_stats["mpg"];
+		$update_pr["total_revenue"] = $truck_stats["total_revenue"];
+		$update_pr["standard_expenses"] = $truck_stats["standard_expenses"];
+		$update_pr["carrier_revenue"] = $truck_stats["carrier_revenue"];
+		$update_pr["total_bobtail_miles"] = $truck_stats["total_bobtail_miles"];
+		$update_pr["total_deadhead_miles"] = $truck_stats["total_deadhead_miles"];
+		$update_pr["total_light_miles"] = $truck_stats["total_light_miles"];
+		$update_pr["total_loaded_miles"] = $truck_stats["total_loaded_miles"];
+		$update_pr["total_reefer_miles"] = $truck_stats["total_reefer_miles"];
+		$update_pr["total_fuel_expense"] = $truck_stats["total_fuel_expense"];
+		$update_pr["total_reefer_fuel_expense"] = $truck_stats["total_reefer_fuel_expense"];
+		$update_pr["truck_gallons"] = $truck_stats["gallons_used"];//JUST TRUCK GALLONS
+		$update_pr["oor_percentage"] = $truck_stats["oor"];
+		$update_pr["booking_rate"] = $truck_stats["rate_per_mile"];//BOOKING RATE
+		$update_pr["driver_rate"] = $truck_stats["carrier_rate"];
+		$update_pr["driver_profit"] = $truck_stats["carrier_profit"];
+		$update_pr["raw_profit"] = $truck_stats["raw_profit"];
+		$update_pr["start_datetime"] = date('Y-m-d H:i:s',strtotime($truck_stats["start"]));
+		$update_pr["end_datetime"] = date('Y-m-d H:i:s',strtotime($truck_stats["end"]));
+		$update_pr["saved_datetime"] = $now_datetime;
+		
+		$where = null;
+		$where["id"] = $performance_review["id"];
+		db_update_performance_review($update_pr,$where);
+		
+		$where = null;
+		$where["id"] = $performance_review["id"];
+		return db_select_performance_review($where);
 	}
 	
 	function get_loads_for_week($log_entry_id) //log_entry_id is for end_week
@@ -4414,6 +4336,8 @@
 				}
 				$drop = date('m/d H:i',strtotime($entry["entry_datetime"]))." ".$entry["city"].", ".$entry["state"];
 				**/
+				
+				//THIS NEED TO BE REDONE AS GOALPOINTS
 				foreach($load["load_picks"] as $pick)
 				{
 					$pick = date('m/d H:i',strtotime($pick["in_time"]))." ".$pick["stop"]["city"].", ".$pick["stop"]["state"];
@@ -4492,6 +4416,7 @@
 			$load_on_week["rate_per_mile"] = $rate_per_mile;
 			$load_on_week["percentage_on_week"] = $percent;
 			$load_on_week["revenue"] = $revenue;
+			$load_on_week["billing_status"] = $load["billing_status"];
 			
 			
 			$loads_for_week[] = $load_on_week;
@@ -7851,6 +7776,24 @@
 		return $geopoint;
 	}
 	
+	//RETURNS MOST RECENT TRAILER GEOPOINT FOR GIVEN TRAILER ID
+	function get_most_recent_trailer_geopoint($trailer_id)
+	{
+		if(!empty($trailer_id))
+		{
+			$where = null;
+			//$where["truck_id"] = $truck_id;
+			$where = "trailer_id = $trailer_id AND datetime_occurred = (SELECT MAX(datetime_occurred) FROM trailer_geopoint WHERE trailer_id = $trailer_id)";
+			$trailer_geopoint = db_select_trailer_geopoint($where);
+			
+			return $trailer_geopoint;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	//CREATES-UPDATES GOALPOINT THAT IS CURRENT POSITION AND TIME (called from load_goalpoints_div())
 	function update_current_goalpoint_from_geopoint($load_id)
 	{
@@ -9361,6 +9304,50 @@
 		return $hold_report;
 	}
 	
+	function send_driver_hold_report_email($client_id)
+	{
+		date_default_timezone_set('America/Denver');
+		$CI =& get_instance();
+		
+		//GET CLIENT
+		$where = null;
+		$where["id"] = $client_id;
+		$client = db_select_client($where);
+		
+		if(!empty($client))
+		{
+			$hold_report = get_hold_report($client_id);
+			
+			//SEND EMAIL
+			$email_data = null;
+			$email_data["hold_report"] = $hold_report;
+			$message = $CI->load->view('emails/hold_report_email',$email_data, TRUE);
+			//$message = "test";
+			$to = $client["company"]["person"]["email"];
+			//$to = 'covax13@gmail.com';
+			$subject = 'Driver Hold Report '.date("m/d/y H:i")." | ".$client["client_nickname"];
+			// //$headers = "From: paperwork.dispatch@gmail.com\r\n";
+			// $headers = "From: fleetsmarts@fleetsmarts.net\r\n";
+			// //$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
+			// $headers .= "CC: paperwork.dispatch@gmail.com\r\n";
+			// $headers .= "MIME-Version: 1.0\r\n";
+			// $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+			
+			// //mail("covax13@gmail.com","FleetSmarts Now Does Email!","You better believe it! Guess who just figured out how to send emails from FleetSmarts!!","From: fleetsmarts@fleetsmarts.net");
+			// mail($to, $subject, $message, $headers);
+			$CI->load->library('email');
+			$CI->email->from("paperwork.dispatch@gmail.com","Dispatch");
+			$CI->email->to($to);
+			$CI->email->cc('paperwork.dispatch@gmail.com');
+			$CI->email->subject($subject);
+			$CI->email->message($message);
+			$CI->email->send();
+			
+			//echo $CI->email->print_debugger();
+			echo "Email sent to ".$to." ".date("m/d/y H:i");
+		}
+	}
+	
 	function add_clock_in_verification($user_id)
 	{
 		date_default_timezone_set('America/Denver');
@@ -9427,25 +9414,26 @@
 	}
 	
 	//SEND SLACK MESSAGE
-	function send_slack_message($message,$channel="notifications")
+	function send_slack_message($message,$channel="notifications",$bot_name = "Fleetsmarts")
 	{
 //		interstaterevolution
 		$data = "payload=" . json_encode(array(
 				"channel"       =>  $channel,
 				"text"          =>  $message,
-				"username"		=>	"FleetBot Prime"
+				"username"		=>	$bot_name
 			));
 
-		print_r($data);
+		//print_r($data);
 
 		$c = curl_init('https://hooks.slack.com/services/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');
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($c, CURLOPT_POST, true);
 		curl_setopt($c, CURLOPT_POSTFIELDS, $data);
 		$result = curl_exec($c);
 		curl_close($c);
 
-		echo "<br>Result: " . $result;
+		//echo "<br>Result: " . $result;
 	}
 	
 	function create_slack_channel($name)
@@ -9484,12 +9472,204 @@
 		}
 	}
 	
+	function save_load_update($load_id,$current_geopoint_id,$current_trailer_geopoint_id)
+	{
+		//SET TIMEZONE
+		date_default_timezone_set('US/Mountain');
+		$recorded_time = date("Y-m-d H:i:s");
+		$CI =& get_instance();
+		$recorder_id = $CI->session->userdata('user_id');
+		
+		// $trailer_fuel = $_POST["trailer_fuel"];
+		// $reefer_temp = $_POST["reefer_temp"];
+		// $reefer_set = $_POST["reefer_set"];
+		// $trailer_codes = $_POST["trailer_codes_status"];
+		
+		//GET LOAD
+		$where = null;
+		$where['id'] = $load_id;
+		$load = db_select_load($where);
+		
+		//GET CURRENT GEOPOINT
+		$where = null;
+		$where["id"] = $current_geopoint_id;
+		$current_geopoint = db_select_geopoint($where);
+		
+		$geocode = reverse_geocode($current_geopoint["latitude"].", ".$current_geopoint["longitude"]);
+		
+		if(!empty($current_trailer_geopoint_id))
+		{
+			//GET CURRENT TRAILER GEOPOINT
+			$where = null;
+			$where["id"] = $current_trailer_geopoint_id;
+			$current_trailer_geopoint = db_select_trailer_geopoint($where);
+		}
+		else
+		{
+			$current_trailer_geopoint = null;
+		}
+		
+		//GET TRUCK
+		$where = null;
+		$where["id"] = $load["load_truck_id"];
+		$truck = db_select_truck($where);
+		
+		//GET TRAILER
+		$where = null;
+		$where["id"] = $load["load_trailer_id"];
+		$trailer = db_select_trailer($where);
+		
+		//GET DRIVER COMPANY
+		$where = null;
+		$where["id"] = $load["client"]["company_id"];
+		$driver_company = db_select_company($where);
+		
+		//GET DRIVER PERSON
+		$where = null;
+		$where["id"] = $driver_company["person_id"];
+		$driver_person = db_select_person($where);
+		
+		//GET CARRIER COMPANY
+		$where = null;
+		$where["id"] = $load["billed_under"];
+		$carrier_company = db_select_company($where);
+		
+		//GET FLEET MANAGER COMPANY
+		$where = null;
+		$where["person_id"] = $load["fleet_manager"]["id"];
+		$fm_company = db_select_company($where);
+		
+		//GET DRIVER MANAGER COMPANY
+		$where = null;
+		$where["person_id"] = $load["driver_manager"]["id"];
+		$dm_company = db_select_company($where);
+		
+		//GET PREVIOUS DISPATCH UPDATE
+		// $where = null;
+		// $where = " load_id = $load_id AND update_datetime = (SELECT MAX(update_datetime) FROM `dispatch_update` WHERE load_id = $load_id)";
+		// $previous_dispatch_update = db_select_dispatch_update($where);
+		
 	
+		
+		$update_guid = get_random_string(10);
+		
+		//CREATE DISPATCH UPDATE
+		$insert_du = null;
+		$insert_du["load_id"] = $load["id"];
+		$insert_du["client_id"] = $load["client"]["id"];
+		$insert_du["client_email"] = $driver_person["email"];
+		$insert_du["carrier_id"] = $load["billed_under"];
+		$insert_du["carrier_email"] = $carrier_company["company_gmail"];;
+		$insert_du["fleet_manager_id"] = $load["fleet_manager_id"];
+		$insert_du["fleet_manager_email"] = $fm_company["company_email"];
+		$insert_du["driver_manager_id"] = $load["dm_id"];
+		$insert_du["driver_manager_email"] = $dm_company["company_email"];
+		$insert_du["truck_id"] = $load["load_truck_id"];
+		$insert_du["trailer_id"] = $load["load_trailer_id"];
+		$insert_du["location"] = $geocode["city"].", ".$geocode["state"];
+		$insert_du["gps"] = $current_geopoint["latitude"].", ".$current_geopoint["longitude"];
+		$insert_du["update_datetime"] = date("Y-m-d H:i",strtotime($current_geopoint["datetime"]));
+		if(!empty($current_trailer_geopoint))
+		{
+			$insert_du["trailer_fuel"] = $current_trailer_geopoint["fuel_level"];
+			$insert_du["reefer_temp"] = $current_trailer_geopoint["return_temperature"];
+			$insert_du["reefer_set"] = $current_trailer_geopoint["set_temperature"];
+			$insert_du["truck_codes"] = $current_trailer_geopoint["status"];
+		}
+		$insert_du["recorder_id"] = $recorder_id;
+		$update_du["recorded_time"] = $recorded_time;
+		$update_du["is_oor"] = $current_geopoint["is_oor"];
+		$update_du["oor_url"] = $current_geopoint["oor_url"];
+		$insert_du["email_html"] = $update_guid;
+		
+		//print_r($insert_du);
+		db_insert_dispatch_update($insert_du);
+		
+		//GET THIS DISPATCH UPDATE AND UPDATE WITH HTML FROM EMAIL
+		$where = null;
+		$where["email_html"] = $update_guid;
+		$this_du = db_select_dispatch_update($where);
+		$this_du_id = $this_du["id"];
+		
+		//UPDATE DISPATCH UPDATE
+		$where = null;
+		$where["id"] = $this_du_id;
+		db_update_dispatch_update($update_du,$where);
+
+
+		$update_du = null;
+		$update_du["email_html"] = file_get_contents(base_url("index.php/public_functions/send_dispatch_email/$this_du_id"));
+		//echo file_get_contents(base_url("index.php/public_functions/send_dispatch_email/$this_du_id"));
+		$where = null;
+		$where["id"] = $this_du_id;
+		db_update_dispatch_update($update_du,$where);
+		
+		
+		
+		//DISPLAY UPLOAD SUCCESS MESSAGE
+		//load_upload_success_view();
+		
+		echo "success!";
+	}
 	
+	function vars_not_empty()
+	{
+		foreach(func_get_args() as $arg)
+		{
+			if(!empty($arg) || !is_null($arg))
+			{
+				continue;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	
-	
-	
-	
+
+	function get_idle_info($truck_number,$start_time,$endtime)
+	{
+		date_default_timezone_set('America/Denver');
+		
+		if(!is_numeric($start_time))
+		{
+			$start_time = strtotime($start_time);
+		}
+		if(!is_numeric($endtime))
+		{
+			$endtime = strtotime($endtime);
+		}
+//		echo "Start time: " . $start_time . "<br>";
+//		echo "End time: " . $endtime . "<br>";
+		
+		$opts = array(
+			'http'=>array(
+				'method'=>"GET",
+				'header'=>"Accept-language: en\r\n" .
+									"Cookie: foo=bar\r\n",
+				'user_agent'=>    $_SERVER['HTTP_USER_AGENT'] 
+			)
+		);
+
+		$context = stream_context_create($opts);
+
+		$url = "http://dir3696.zonarsystems.net/interface.php?customer=dir3696&username=system&password=password&action=showposition&operation=idlestoptotals&format=xml&fromdate=$start_time&todate=$endtime&target=$truck_number&reqtype=fleet&type=Standard&version=2&logvers=3.3";
+//		echo "url: " . $url . "<br>";
+		$xml = file_get_contents($url, false, $context);
+
+		$parsed_xml = simplexml_load_string($xml);
+
+		$idle_info = array();
+		$idle_info['truck_number'] = $parsed_xml->assetidle->attributes()->fleet;
+		$idle_info['stop_count'] = $parsed_xml->assetidle->stopcount;
+		$idle_info['idle_count'] = $parsed_xml->assetidle->idlecount;
+		$idle_info['total_stop_time'] = $parsed_xml->assetidle->totalstop;
+		$idle_info['total_idle_time'] = $parsed_xml->assetidle->totalidle;
+		
+		return $idle_info;
+	}
 	
 	
 	

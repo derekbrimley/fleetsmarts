@@ -2138,6 +2138,7 @@
 			$company['insurance_cert_guid'] = $row->insurance_cert_guid;
 			$company['buy_sell_chain_guid'] = $row->buy_sell_chain_guid;
 			$company['logo_img_src'] = $row->logo_img_src;
+			$company['managed_by_id'] = $row->managed_by_id;
 			
 			//GET PERSON
 			$where = null;
@@ -2982,6 +2983,11 @@
 			$dispatch_update['recorded_time'] = $row->recorded_time;
 			$dispatch_update['email_html'] = $row->email_html;
 			$dispatch_update['email_sent_datetime'] = $row->email_sent_datetime;
+			$dispatch_update['reefer_set'] = $row->reefer_set;
+			$dispatch_update['is_oor'] = $row->is_oor;
+			$dispatch_update['oor_url'] = $row->oor_url;
+			$dispatch_update['miles_driven'] = $row->miles_driven;
+			$dispatch_update['miles_driven_url'] = $row->miles_driven_url;
 			
 			$dispatch_updates[] = $dispatch_update;
 			
@@ -4622,6 +4628,131 @@
 	
 	
 	
+//GEOCODE_REQUEST: INSERT, SELECT (many), SELECT (one), UPDATE, DELETE
+
+	//INSERT GEOCODE_REQUEST
+	function db_insert_geocode_request($geocode_request)
+	{
+		db_insert_table("geocode_request",$geocode_request);
+	
+	}//END db_insert_geocode_request	
+
+	//SELECT GEOCODE_REQUESTS (many)
+	function db_select_geocode_requests($where,$order_by = 'id',$limit = 'all')
+	{
+		return db_select_geocode_request($where,$order_by,$limit,"many");
+		
+	}//end db_select_geocode_requests() many	
+
+	//SELECT GEOCODE_REQUEST (one)
+	function db_select_geocode_request($where,$order_by = 'id',$limit = 'all',$many = 'one')
+	{
+		$CI =& get_instance();
+		$i = 0;
+		$where_sql = "";
+		if(!empty($where))
+		{
+			$where_sql = " WHERE ";
+		}
+		$values = array();
+		if(is_array($where))
+		{
+			$i = 0;
+			$values = array();
+			foreach($where as $key => $value)
+			{
+				
+				if ($i > 0)
+				{
+					$where_sql = $where_sql." AND";
+				}
+				
+				if ($value == null)
+				{
+					$where_sql = $where_sql." geocode_request.".$key." is ?";
+				}
+				else if (substr($value,0,1) == "%" || substr($value,-1) == "%") //IF VALUE START OR ENDS WITH A %
+				{
+					$where_sql = $where_sql." geocode_request.".$key." LIKE ?";
+				}
+				else
+				{
+					$where_sql = $where_sql." geocode_request.".$key." = ?";
+				}
+				$values[$i] = $value;
+				//echo "value[$i] = $value ";
+				$i++;
+			}
+		}
+		else
+		{
+			$where_sql = $where_sql.$where;
+		}
+		
+		$limit_txt = "";
+		if($limit != "all")
+		{
+			$limit_txt = " LIMIT ".$limit;
+		}
+		
+		$sql = "SELECT 
+				*
+				FROM `geocode_request`
+				 ".$where_sql." ORDER BY ".$order_by.$limit_txt;
+		
+		//error_log($sql." | LINE ".__LINE__." ".__FILE__);
+		$query = $CI->db->query($sql,$values);
+		$geocode_requests = array();
+		foreach ($query->result() as $row)
+		{
+			$geocode_request['id'] = $row->id;
+			$geocode_request['original_request_datetime'] = $row->original_request_datetime;
+			$geocode_request['latlng'] = $row->latlng;
+			$geocode_request['status'] = $row->status;
+			$geocode_request['street_number'] = $row->street_number;
+			$geocode_request['street'] = $row->street;
+			$geocode_request['city'] = $row->city;
+			$geocode_request['state'] = $row->state;
+			$geocode_request['formatted_address'] = $row->formatted_address;
+			$geocode_request['request_count'] = $row->request_count;
+			
+			$geocode_requests[] = $geocode_request;
+			
+		}// end foreach
+		
+		if (empty($geocode_request))
+		{
+			return null;
+		}
+		else if($many == 'one')
+		{
+			return $geocode_request;
+		}
+		else if($many == "many")
+		{
+			return $geocode_requests;
+		}
+	}//end db_select_geocode_request()
+
+	//UPDATE GEOCODE_REQUEST
+	function db_update_geocode_request($set,$where)
+	{
+		db_update_table("geocode_request",$set,$where);
+		
+	}//end update geocode_request	
+	
+	//DELETE GEOCODE_REQUEST	
+	function db_delete_geocode_request($where)
+	{
+		db_delete_from_table("geocode_request",$where);
+		
+	}//end db_delete_geocode_request()	
+	
+	
+	
+	
+	
+	
 //GEOPOINT: INSERT, SELECT (many), SELECT (one), UPDATE, DELETE
 
 	//INSERT GEOPOINT
@@ -4639,7 +4770,8 @@
 	}//end db_select_geopoints() many	
 
 	//SELECT GEOPOINT (one)
-	function db_select_geopoint($where,$order_by = 'id',$limit = 'all',$many = 'one'){
+	function db_select_geopoint($where,$order_by = 'id',$limit = 'all',$many = 'one')
+	{
 		$CI =& get_instance();
 		$i = 0;
 		$where_sql = "";
@@ -4694,6 +4826,8 @@
 			$geopoint['speed'] = $row->speed;
 			$geopoint['power'] = $row->power;
 			$geopoint['odometer'] = $row->odometer;
+			$geopoint['is_oor'] = $row->is_oor;
+			$geopoint['oor_url'] = $row->oor_url;
 			
 			$geopoints[] = $geopoint;
 			
@@ -6629,6 +6763,254 @@
 
 	
 	
+//LOAD_AUDIT: INSERT, SELECT (many), SELECT (one), UPDATE, DELETE
+
+	//INSERT LOAD_AUDIT
+	function db_insert_load_audit($load_audit)
+	{
+		db_insert_table("load_audit",$load_audit);
+	
+	}//END db_insert_load_audit	
+
+	//SELECT LOAD_AUDITS (many)
+	function db_select_load_audits($where,$order_by = 'id',$limit = 'all')
+	{
+		return db_select_load_audit($where,$order_by,$limit,"many");
+		
+	}//end db_select_load_audits() many	
+
+	//SELECT LOAD_AUDIT (one)
+	function db_select_load_audit($where,$order_by = 'id',$limit = 'all',$many = 'one')
+	{
+		$CI =& get_instance();
+		$i = 0;
+		$where_sql = "";
+		if(!empty($where))
+		{
+			$where_sql = " WHERE ";
+		}
+		$values = array();
+		if(is_array($where))
+		{
+			$i = 0;
+			$values = array();
+			foreach($where as $key => $value)
+			{
+				
+				if ($i > 0)
+				{
+					$where_sql = $where_sql." AND";
+				}
+				
+				if ($value == null)
+				{
+					$where_sql = $where_sql." load_audit.".$key." is ?";
+				}
+				else if (substr($value,0,1) == "%" || substr($value,-1) == "%") //IF VALUE START OR ENDS WITH A %
+				{
+					$where_sql = $where_sql." load_audit.".$key." LIKE ?";
+				}
+				else
+				{
+					$where_sql = $where_sql." load_audit.".$key." = ?";
+				}
+				$values[$i] = $value;
+				//echo "value[$i] = $value ";
+				$i++;
+			}
+		}
+		else
+		{
+			$where_sql = $where_sql.$where;
+		}
+		
+		$limit_txt = "";
+		if($limit != "all")
+		{
+			$limit_txt = " LIMIT ".$limit;
+		}
+		
+		$sql = "SELECT *
+				FROM `load_audit`
+				".$where_sql." ORDER BY ".$order_by.$limit_txt;
+		
+		//error_log($sql." | LINE ".__LINE__." ".__FILE__);
+		$query = $CI->db->query($sql,$values);
+		$load_audits = array();
+		foreach ($query->result() as $row)
+		{
+			$load_audit['id'] = $row->id;
+			$load_audit['loads_audited'] = $row->loads_audited;
+			$load_audit['loads_passed'] = $row->loads_passed;
+			$load_audit['audit_text'] = $row->audit_text;
+			$load_audit['pass_fail'] = $row->pass_fail;
+			$load_audit['dispatcher_id'] = $row->dispatcher_id;
+			$load_audit['audit_datetime'] = $row->audit_datetime;
+			
+		}// end foreach
+		
+		if (empty($load_audit))
+		{
+			return null;
+		}
+		else if($many == 'one')
+		{
+			return $load_audit;
+		}
+		else if($many == "many")
+		{
+			return $load_audits;
+		}
+	}//end db_select_load_audit()
+
+	//UPDATE LOAD_AUDIT
+	function db_update_load_audit($set,$where)
+	{
+		db_update_table("load_audit",$set,$where);
+		
+	}//end update load_audit	
+	
+	//DELETE LOAD_AUDIT	
+	function db_delete_load_audit($where)
+	{
+		db_delete_from_table("load_audit",$where);
+		
+	}//end db_delete_load_audit()		
+
+
+
+
+//LOAD_CHECK_CALL: INSERT, SELECT (many), SELECT (one), UPDATE, DELETE
+
+	//INSERT LOAD_CHECK_CALL
+	function db_insert_load_check_call($load_check_call)
+	{
+		db_insert_table("load_check_call",$load_check_call);
+	
+	}//END db_insert_load_check_call	
+
+	//SELECT LOAD_CHECK_CALLS (many)
+	function db_select_load_check_calls($where,$order_by = 'id',$limit = 'all')
+	{
+		return db_select_load_check_call($where,$order_by,$limit,"many");
+		
+	}//end db_select_load_check_calls() many	
+
+	//SELECT LOAD_CHECK_CALL (one)
+	function db_select_load_check_call($where,$order_by = 'id',$limit = 'all',$many = 'one')
+	{
+		$CI =& get_instance();
+		$i = 0;
+		$where_sql = "";
+		if(!empty($where))
+		{
+			$where_sql = " WHERE ";
+		}
+		$values = array();
+		if(is_array($where))
+		{
+			$i = 0;
+			$values = array();
+			foreach($where as $key => $value)
+			{
+				
+				if ($i > 0)
+				{
+					$where_sql = $where_sql." AND";
+				}
+				
+				if ($value == null)
+				{
+					$where_sql = $where_sql." load_check_call.".$key." is ?";
+				}
+				else if (substr($value,0,1) == "%" || substr($value,-1) == "%") //IF VALUE START OR ENDS WITH A %
+				{
+					$where_sql = $where_sql." load_check_call.".$key." LIKE ?";
+				}
+				else
+				{
+					$where_sql = $where_sql." load_check_call.".$key." = ?";
+				}
+				$values[$i] = $value;
+				//echo "value[$i] = $value ";
+				$i++;
+			}
+		}
+		else
+		{
+			$where_sql = $where_sql.$where;
+		}
+		
+		$limit_txt = "";
+		if($limit != "all")
+		{
+			$limit_txt = " LIMIT ".$limit;
+		}
+		
+		$sql = "SELECT 
+				*
+				FROM `load_check_call`
+				".$where_sql." ORDER BY ".$order_by.$limit_txt;
+		
+		//error_log($sql." | LINE ".__LINE__." ".__FILE__);
+		$query = $CI->db->query($sql,$values);
+		$load_check_calls = array();
+		foreach ($query->result() as $row)
+		{
+			$load_check_call['id'] = $row->id;
+			$load_check_call['load_id'] = $row->load_id;
+			$load_check_call['truck_id'] = $row->truck_id;
+			$load_check_call['trailer_id'] = $row->trailer_id;
+			$load_check_call['driver_id'] = $row->driver_id;
+			$load_check_call['user_id'] = $row->user_id;
+			$load_check_call['truck_fuel_level'] = $row->truck_fuel_level;
+			$load_check_call['truck_code_status'] = $row->truck_code_status;
+			$load_check_call['truck_code_guid'] = $row->truck_code_guid;
+			$load_check_call['location'] = $row->location;
+			$load_check_call['gps'] = $row->gps;
+			$load_check_call['on_hold'] = $row->on_hold;
+			$load_check_call['audio_guid'] = $row->audio_guid;
+			$load_check_call['recorded_datetime'] = $row->recorded_datetime;
+			$load_check_call['driver_answered'] = $row->driver_answered;
+			
+			$load_check_calls[] = $load_check_call;
+			
+		}// end foreach
+		
+		if (empty($load_check_call))
+		{
+			return null;
+		}
+		else if($many == 'one')
+		{
+			return $load_check_call;
+		}
+		else if($many == "many")
+		{
+			return $load_check_calls;
+		}
+	}//end db_select_load_check_call()
+
+	//UPDATE LOAD_CHECK_CALL
+	function db_update_load_check_call($set,$where)
+	{
+		db_update_table("load_check_call",$set,$where);
+		
+	}//end update load_check_call	
+	
+	//DELETE LOAD_CHECK_CALL	
+	function db_delete_load_check_call($where)
+	{
+		db_delete_from_table("load_check_call",$where);
+		
+	}//end db_delete_load_check_call()	
+	
+	
+	
+	
+	
+	
+	
 //LOAD_PROCESS_AUDIT: INSERT, SELECT (many), SELECT (one), UPDATE, DELETE
 
 	//INSERT LOAD_PROCESS_AUDIT
@@ -7373,7 +7755,23 @@
 				performance_review.mpg as mpg,
 				performance_review.total_revenue as total_revenue,
 				performance_review.standard_expenses as standard_expenses,
-				performance_review.carrier_revenue as carrier_revenue
+				performance_review.carrier_revenue as carrier_revenue,
+				performance_review.total_bobtail_miles as total_bobtail_miles,
+				performance_review.total_deadhead_miles as total_deadhead_miles,
+				performance_review.total_light_miles as total_light_miles,
+				performance_review.total_loaded_miles as total_loaded_miles,
+				performance_review.total_reefer_miles as total_reefer_miles,
+				performance_review.total_fuel_expense as total_fuel_expense,
+				performance_review.total_reefer_fuel_expense as total_reefer_fuel_expense,
+				performance_review.truck_gallons as truck_gallons,
+				performance_review.oor_percentage as oor_percentage,
+				performance_review.booking_rate as booking_rate,
+				performance_review.driver_rate as driver_rate,
+				performance_review.driver_profit as driver_profit,
+				performance_review.raw_profit as raw_profit,
+				performance_review.start_datetime as start_datetime,
+				performance_review.end_datetime as end_datetime,
+				performance_review.saved_datetime as saved_datetime
 				FROM `performance_review`
 				LEFT JOIN truck ON performance_review.truck_id = truck.id 
 				LEFT JOIN person as fm ON performance_review.fm_id = fm.id 
@@ -7398,6 +7796,22 @@
 			$performance_review['total_revenue'] = $row->total_revenue;
 			$performance_review['standard_expenses'] = $row->standard_expenses;
 			$performance_review['carrier_revenue'] = $row->carrier_revenue;
+			$performance_review['total_bobtail_miles'] = $row->total_bobtail_miles;
+			$performance_review['total_deadhead_miles'] = $row->total_deadhead_miles;
+			$performance_review['total_light_miles'] = $row->total_light_miles;
+			$performance_review['total_loaded_miles'] = $row->total_loaded_miles;
+			$performance_review['total_reefer_miles'] = $row->total_reefer_miles;
+			$performance_review['total_fuel_expense'] = $row->total_fuel_expense;
+			$performance_review['total_reefer_fuel_expense'] = $row->total_reefer_fuel_expense;
+			$performance_review['truck_gallons'] = $row->truck_gallons;
+			$performance_review['oor_percentage'] = $row->oor_percentage;
+			$performance_review['booking_rate'] = $row->booking_rate;
+			$performance_review['driver_rate'] = $row->driver_rate;
+			$performance_review['driver_profit'] = $row->driver_profit;
+			$performance_review['raw_profit'] = $row->raw_profit;
+			$performance_review['start_datetime'] = $row->start_datetime;
+			$performance_review['end_datetime'] = $row->end_datetime;
+			$performance_review['saved_datetime'] = $row->saved_datetime;
 			
 			//TRUCK
 			$truck['truck_number'] = $row->truck_number;
@@ -10306,11 +10720,13 @@
 		{
 			$trailer_geopoint['id'] = $row->id;
 			$trailer_geopoint['trailer_number'] = $row->trailer_number;
+			$trailer_geopoint['trailer_id'] = $row->trailer_id;
 			$trailer_geopoint['status'] = $row->status;
 			$trailer_geopoint['fuel_level'] = $row->fuel_level;
 			$trailer_geopoint['battery_voltage'] = $row->battery_voltage;
 			$trailer_geopoint['latitude'] = $row->latitude;
 			$trailer_geopoint['longitude'] = $row->longitude;
+			$trailer_geopoint['location'] = $row->location;
 			$trailer_geopoint['set_temperature'] = $row->set_temperature;
 			$trailer_geopoint['return_temperature'] = $row->return_temperature;
 			$trailer_geopoint['supply_temperature'] = $row->supply_temperature;
@@ -10750,6 +11166,7 @@
 			$trippak['lumper_amount'] = $row->lumper_amount;
 			$trippak['scan_datetime'] = $row->scan_datetime;
 			$trippak['completion_datetime'] = $row->completion_datetime;
+			$trippak['completed_by_id'] = $row->completed_by_id;
 			$trippak['zip_file_name'] = $row->zip_file_name;
 			
 			$trippaks[] = $trippak;
@@ -10887,7 +11304,8 @@
 				ifta_link,
 				truck.lease_agreement_link as lease_agreement_link,
 				truck.service_log_notes as service_log_notes,
-				truck_notes
+				truck_notes,
+				fuel_tank_capacity
 				FROM `truck`
 				LEFT JOIN client ON truck.client_id = client.id
 				LEFT JOIN client as codriver ON truck.codriver_id = codriver.id
@@ -10931,6 +11349,7 @@
 			$truck['lease_agreement_link'] = $row->lease_agreement_link;
 			$truck['service_log_notes'] = $row->service_log_notes;
 			$truck['truck_notes'] = $row->truck_notes;
+			$truck['fuel_tank_capacity'] = $row->fuel_tank_capacity;
 			
 			$client["client_nickname"] = $row->client_nickname;
 			$client["license_number"] = $row->license_number;

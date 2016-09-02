@@ -14,12 +14,17 @@
 	{
 		width:50px;
 		text-align:right;
-		padding-right:90px;
+		padding-right:85px;
+	}
+	
+	.stat_title
+	{
+		font-weight:bold;
 	}
 </style>
 <table  style="table-layout:fixed; font-size:12px; float:left;">
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Total Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -29,7 +34,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="width:110px;">
+		<td class="stat_title" style="width:110px;">
 			Bob Tail Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -42,7 +47,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Dead Head Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -55,7 +60,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Light Freight Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -68,7 +73,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Loaded Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -81,7 +86,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Reefer Miles
 		</td>
 		<td style="width:45px; text-align:right;">
@@ -96,7 +101,7 @@
 </table>
 <table  style="table-layout:fixed; font-size:12px; float:left;">
 	<tr>
-		<td style="width:100px;">
+		<td class="stat_title" style="width:100px;">
 			Total Trucks
 		</td>
 		<td class="summary_stat">
@@ -104,7 +109,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Carrier Rate
 		</td>
 		<td class="summary_stat">
@@ -112,7 +117,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Booking Rate
 		</td>
 		<td class="summary_stat">
@@ -120,7 +125,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Booking Margin
 		</td>
 		<td class="summary_stat">
@@ -128,25 +133,33 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Total Teams
+		<td class="stat_title" style="width:100px;">
+			Total Revenue
 		</td>
 		<td class="summary_stat">
-			<?=$summary_stats["total_teams"]?>
+			<?=number_format($summary_stats["total_revenue"],2)?>
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Total Solos
+		<td class="stat_title" style="">
+			Total Raw Profit
 		</td>
 		<td class="summary_stat">
-			<?=$summary_stats["total_solos"]?>
+			<?=number_format($summary_stats["total_raw_profit"],2)?>
+		</td>
+	</tr>
+	<tr>
+		<td class="stat_title" style="">
+			Total Dropped
+		</td>
+		<td class="summary_stat">
+			<?=number_format($summary_stats["expected"],2)?>
 		</td>
 	</tr>
 </table>
 <table  style="table-layout:fixed; font-size:12px; float:left;">
 	<tr>
-		<td style="width:110px;">
+		<td class="stat_title" style="width:110px;">
 			Miles per Truck
 		</td>
 		<td class="summary_stat">
@@ -156,23 +169,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="width:100px;">
-			Total Revenue
-		</td>
-		<td class="summary_stat">
-			<?=number_format($summary_stats["total_revenue"],2)?>
-		</td>
-	</tr>
-	<tr>
-		<td style="">
-			Total Raw Profit
-		</td>
-		<td class="summary_stat">
-			<?=number_format($summary_stats["total_raw_profit"],2)?>
-		</td>
-	</tr>
-	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Total Truck Profit
 		</td>
 		<td class="summary_stat">
@@ -180,29 +177,49 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Truck Profit/Team
+		<td class="stat_title" style="width:100px;">
+			Real Booking Rate
 		</td>
 		<td class="summary_stat">
-			<?php if($summary_stats["total_teams"] != 0):?>
-				<?=number_format($summary_stats["total_team_profit"]/$summary_stats["total_teams"],2)?>
-			<?php endif;?>
+			<?=number_format($summary_stats["real_booking_rate"],2)?>
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Truck Profit/Solo
+		<td class="stat_title" style="">
+			Real Margin
 		</td>
 		<td class="summary_stat">
-			<?php if($summary_stats["total_solos"] != 0):?>
-				<?=number_format($summary_stats["total_solo_profit"]/$summary_stats["total_solos"],2)?>
-			<?php endif;?>
+			<?=number_format($summary_stats["real_margin"],2)?>
+		</td>
+	</tr>
+	<tr>
+		<td class="stat_title" style="">
+			Real Revenue
+		</td>
+		<td class="summary_stat">
+			<?=number_format($summary_stats["real_revenue"],2)?>
+		</td>
+	</tr>
+	<tr>
+		<td class="stat_title" style="">
+			Real Raw Profit
+		</td>
+		<td class="summary_stat">
+			<?=number_format($summary_stats["real_raw_profit"],2)?>
+		</td>
+	</tr>
+	<tr>
+		<td class="stat_title" style="">
+			Funded
+		</td>
+		<td class="summary_stat">
+			<?=number_format($summary_stats["funded_total"],2)?>
 		</td>
 	</tr>
 </table>
 <table  style="table-layout:fixed; font-size:12px; float:left;">
 	<tr>
-		<td style="width:90px;">
+		<td class="stat_title" style="width:90px;">
 			MPG
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
@@ -210,7 +227,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			OOR
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
@@ -218,7 +235,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Nat'l Fuel Avg
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
@@ -226,7 +243,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
+		<td class="stat_title" style="">
 			Fuel Savings
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
@@ -234,23 +251,29 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Miles per Team
+		<td class="stat_title" style="">
+			Driver Quits
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
-			<?php if($summary_stats["total_teams"] != 0):?>
-				<?=number_format($summary_stats["total_team_miles"]/$summary_stats["total_teams"])?>
+			?
+		</td>
+	</tr>
+	<tr title="Loads:<?=$summary_stats["load_count"]?> Audits:<?=$summary_stats["audit_passes"]+$summary_stats["audit_fails"]?> Pass:<?=$summary_stats["audit_passes"]?> Fail:<?=$summary_stats["audit_fails"]?>">
+		<td class="stat_title" style="">
+			Audit Pass%
+		</td>
+		<td class="summary_stat" style="padding-right:0px;">
+			<?php if($summary_stats["load_count"] != 0):?>
+				<?=number_format($summary_stats["audit_passes"]/$summary_stats["load_count"])?>%
 			<?php endif;?>
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-			Miles per Solo
+		<td class="stat_title" style="">
+			Collection %
 		</td>
 		<td class="summary_stat" style="padding-right:0px;">
-			<?php if($summary_stats["total_solos"] != 0):?>
-				<?=number_format($summary_stats["total_solo_miles"]/$summary_stats["total_solos"])?>
-			<?php endif;?>
+			<?=number_format($summary_stats["collection_rate"],2)?>%
 		</td>
 	</tr>
 </table>

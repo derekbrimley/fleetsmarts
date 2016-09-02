@@ -20,14 +20,14 @@
 </style>
 <div id="main_content_header">
 	<div id="summary_stats_div_0">
-		<span style="font-weight:bold;">Performance</span>
+		<span style="font-weight:bold; cursor:pointer;" onclick="load_summary_stats();">Performance</span>
 		<div style="float:right; width:25px;">
 			<img id="filter_loading_icon" name="filter_loading_icon" src="/images/loading.gif" style="float:right; height:20px; padding-top:5px; display:none;" />
 			<img id="refresh_list" name="refresh_list" src="/images/refresh.png" title="Refresh Log" style="display:none; cursor:pointer; float:right; height:20px; padding-top:5px;" onclick="load_list()" />
 		</div>
 	</div>
 </div>
-<div id="summary_stats_div" style="height:155px; background:#CFCFCF; padding:20px;">
+<div id="summary_stats_div" style="height:185px; background:#CFCFCF; padding:20px;">
 </div>
 <table  style="table-layout:fixed; margin:5px; font-size:12px;">
 	<tr class="heading" style="line-height:12px;">
@@ -66,28 +66,11 @@
 					
 					//$pr_stats = get_performance_stats($pr["end_week_id"]);
 				?>
-				<div id="row_<?=$pr["id"]?>" class="" style=" <?=$row_background_style?> height:20px; overflow:hidden; padding-top:5px; padding-bottom:3px;">
+				<div id="row_<?=$pr["id"]?>" class="clickable_row" style=" <?=$row_background_style?> height:20px; overflow:hidden; padding-top:5px; padding-bottom:3px;">
 					<script>
-						refresh_row(<?=$pr["id"]?>);
+						//refresh_row(<?=$pr["id"]?>);
 					</script>
-					<table id="log_table" style="margin-left:3px; font-size:10px;">
-						<tr style="height:15px;">
-							<td style="overflow:hidden; min-width:30px;  max-width:30px;">
-								<span id="pr_complete_span_<?=$pr["id"]?>" class=""><img style="height:12px;position:relative; left:7px; top:3px;" src="/images/loading.gif"/></span>
-							</td>
-							<td class="ellipsis" style="overflow:hidden; min-width:53px;  max-width:53px;" VALIGN="middle" title="">
-								<?=$pr["truck"]["truck_number"]?>
-							</td>
-							<td class="ellipsis" style="overflow:hidden; min-width:53px;  max-width:53px;" VALIGN="middle" title="">
-								<?=$pr["solo_or_team"]?>
-							</td>
-							<td class="ellipsis" style="overflow:hidden; min-width:43px;  max-width:43px;" VALIGN="middle" title="">
-								<?=$pr["fleet_manager"]["f_name"]?>
-							</td>
-							<td class="ellipsis" style="overflow:hidden; min-width:43px;  max-width:43px;" VALIGN="middle" title="">
-								<?=$pr["driver_manager"]["f_name"]?>
-							</td>
-						</table>
+					<?php include("performance_row.php"); ?>
 				</div>
 				<div id="details_<?=$pr["id"]?>" style="display:none; font-size:12px; width:950px; margin-left:15px; min-height:30px; padding:10px; background:#EFEFEF;">
 					<!-- AJAX GOES HERE !-->

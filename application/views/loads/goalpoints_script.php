@@ -64,6 +64,8 @@
 		
 		if(isValid)
 		{
+			$("#add_goalpoint_circle_"+row_id).attr('src','/images/loading.gif');
+			$("#add_goalpoint_circle_"+row_id).css('height','14px');
 			$("#new_gp_location_"+row_id).val($("#gp_location_text_"+row_id).text());
 			
 			// GET THE DIV IN DIALOG BOX
@@ -187,6 +189,7 @@
 	
 	function auto_fill_goalpoint_edit_location(gp_id)//FOR EDIT GP
 	{
+		//alert('hi');
 		//alert($("#edit_gp_gps_"+gp_id).val());
 		fill_in_locations("gp_location_"+gp_id,$("#edit_gp_gps_"+gp_id).val());
 	}
@@ -267,7 +270,7 @@
 				statusCode: {
 					200: function(response){
 						// Success!
-						//alert(response);
+						alert(response);
 						//this_div.html(response);
 						load_goalpoints_div(row_id);
 						

@@ -1676,117 +1676,16 @@
 	{
 		var isvalid = true;
 		
-		if($("#dispatch_current_location").html() == "")
+		if(missing_deadline)
 		{
 			isvalid = false;
-			alert('GPS must be entered and valid!');
+			alert("This load plan is doesn't have any deadlines! Update the load plan with some deadlines and goals for the driver before proceeding.")
 		}
 		
-		if(!isDate($("#dispatch_current_date").val()))
+		if(!$("#current_geopoint_goalpoint_id").val())
 		{
 			isvalid = false;
-			alert('Current Date must be entered and in valid format MM/DD/YY HH:MM!');
-		}
-		
-		if(!isTime($("#dispatch_current_time").val()))
-		{
-			isvalid = false;
-			alert('Current Time must be entered and in valid format MM/DD/YY HH:MM!');
-		}
-		
-		if(!$("#hos_break_hour").val() || isNaN($("#hos_break_hour").val()))
-		{
-			isvalid = false;
-			alert('HOS:Break (hour) must be entered and must be a number!');
-		}
-		else if($("#hos_break_hour").val() > 8)
-		{
-			isvalid = false;
-			alert('HOS:Break (hour) must be less than 8 hours!');
-		}
-		
-		if(!$("#hos_break_minute").val() || isNaN($("#hos_break_minute").val()))
-		{
-			isvalid = false;
-			alert('HOS:Break (minute) must be entered and must be a number!');
-		}
-		else if($("#hos_break_minute").val() > 60)
-		{
-			isvalid = false;
-			alert('HOS:Break (hour) must be less than 60 minutes!');
-		}
-		
-		if(!$("#hos_drive_hour").val() || isNaN($("#hos_drive_hour").val()))
-		{
-			isvalid = false;
-			alert('HOS:Drive (hour) must be entered and must be a number!');
-		}
-		else if($("#hos_drive_hour").val() > 11)
-		{
-			isvalid = false;
-			alert('HOS:Break (hour) must be less than 11 hours!');
-		}
-		
-		if(!$("#hos_drive_minute").val() || isNaN($("#hos_drive_minute").val()))
-		{
-			isvalid = false;
-			alert('HOS:Drive (minute) must be entered and must be a number!');
-		}
-		else if($("#hos_drive_minute").val() > 60)
-		{
-			isvalid = false;
-			alert('HOS:Drive (minute) must be less than 60 minutes!');
-		}
-		
-		if(!$("#hos_shift_hour").val() || isNaN($("#hos_shift_hour").val()))
-		{
-			isvalid = false;
-			alert('HOS:Shift (hour) must be entered and must be a number!');
-		}
-		else if($("#hos_shift_hour").val() > 14)
-		{
-			isvalid = false;
-			alert('HOS:Break (hour) must be less than 14 hours!');
-		}
-		
-		if(!$("#hos_shift_minute").val() || isNaN($("#hos_shift_minute").val()))
-		{
-			isvalid = false;
-			alert('HOS:Shift (minute) must be entered and must be a number!');
-		}
-		else if($("#hos_shift_minute").val() > 60)
-		{
-			isvalid = false;
-			alert('HOS:Shift (minute) must be less than 60 minutes!');
-		}
-		
-		if(!$("#hos_cycle_hour").val() || isNaN($("#hos_cycle_hour").val()))
-		{
-			isvalid = false;
-			alert('HOS:Cycle (hour) must be entered and must be a number!');
-		}
-		
-		if(!$("#hos_cycle_minute").val() || isNaN($("#hos_cycle_minute").val()))
-		{
-			isvalid = false;
-			alert('HOS:Cycle (minute) must be entered and must be a number!');
-		}
-		else if($("#hos_cycle_minute").val() > 60)
-		{
-			isvalid = false;
-			alert('HOS:Cycle (minute) must be less than 60 minutes!');
-		}
-		
-		if(!$("#hos_remaining_guid").val())
-		{
-			isvalid = false;
-			alert('An image of the driver\'s logbook proving the Driver Hours Remaining must be selected!');
-		}
-		
-		if($("#truck_fuel").val() == "Select")
-		{
-			isvalid = false;
-			alert('Truck Fuel Level must be selected!');
+			alert('There must be a Current Location for this Check Call!');
 		}
 		
 		if($("#truck_codes_status").val() == "Select")
@@ -1795,47 +1694,45 @@
 			alert('Truck Codes must be selected!');
 		}
 		
-		if(!$("#truck_codes_guid").val())
+		if(!$("#truck_code_guid").val())
 		{
 			isvalid = false;
 			alert('A screenshot proving the Truck Codes status must be selected!');
 		}
 		
-		if(!$("#trailer_fuel").val() || isNaN($("#trailer_fuel").val()))
+		if($("#driver_answer").val() == "Yes")
 		{
-			isvalid = false;
-			alert('Trailer Fuel Level must be entered and must be a number 0 - 100!');
+			if($("#truck_fuel").val() == "Select")
+			{
+				isvalid = false;
+				alert('Truck Fuel Level must be selected!');
+			}
 		}
 		
-		if(!$("#trailer_fuel_guid").val())
+		if($("#truck_fuel").val() != "Select")
 		{
-			isvalid = false;
-			alert('A screenshot proving the Trailer Fuel level must be selected!');
+			if(needs_load_plan)
+			{
+				isvalid = false;
+				alert('This truck needs a Fuel Plan!');
+			}
 		}
 		
-		if($("#trailer_codes_status").val() == "Select")
+		if($("#driver_answer").val() == "Select")
 		{
 			isvalid = false;
-			alert('Trailer Codes must be selected!');
+			alert('Did Driver Answer must be selected!');
 		}
 		
-		if(!$("#trailer_codes_guid").val())
+		if($("#driver_answer").val() == "Answered" || $("#driver_answer").val() == "No Answer")
 		{
-			isvalid = false;
-			alert('A screenshot proving the Trailer Codes status must be selected!');
+			if(!$("#audio_guid").val())
+			{
+				isvalid = false;
+				alert('An audio file of the call must be selected!');
+			}
 		}
 		
-		if(!$("#reefer_temp").val() || isNaN($("#reefer_temp").val()))
-		{
-			isvalid = false;
-			alert('Reefer Temp must be entered and must be a number!');
-		}
-		
-		if(!$("#reefer_temp_guid").val())
-		{
-			isvalid = false;
-			alert('A screenshot proving the Reefer Temp must be selected!');
-		}
 		
 		var row_id = $("#dispatch_update_load_id").val();
 		//alert(row_id);
@@ -1844,17 +1741,17 @@
 		//IF IS_VALID, SUBMIT FORM
 		if(isvalid)
 		{
-			$("#save_icon_"+row_id).attr('src','/images/loading.gif');
-			$("#status_icon_"+row_id).attr('src','/images/loading.gif');
+			$("#refresh_load_details_icon_"+row_id).attr('src','/images/loading.gif');
+			$("#indicator_icon_"+row_id).attr('src','/images/loading.gif');
 			
 			
 			//$("#load_dispatch_update_form").submit();
 			var form = $("#load_dispatch_update_form")[0];
 			var formData = new FormData(form);
 			$("#load_dispatch_dialog").dialog("close");
-			$("#indicator_icon_"+selected_row).attr('src','/images/loading.gif');
+			//$("#indicator_icon_"+selected_row).attr('src','/images/loading.gif');
 			$.ajax( {
-				url: '<?= base_url('index.php/loads/save_dispatch_update')?>',
+				url: '<?= base_url('index.php/loads/save_check_call')?>',
 				type: 'POST',
 				data: formData,
 				processData: false,
@@ -1889,6 +1786,43 @@
 	{
 		//alert($("#edit_gp_gps_"+gp_id).val());
 		fill_in_locations("dispatch_current_location",$("#dispatch_gps").val());
+	}
+	
+	function save_dispatch_update(row_id)
+	{
+		$("#save_load_update_"+row_id).attr('src','/images/loading.gif');
+		$("#save_load_update_"+row_id).css('height','14px');
+		$("#save_load_update_"+row_id).css('left','23px');
+		
+		var dataString = $("#load_update_form_"+row_id).serialize();
+		//var this_div = $("#goalpoints_div_"+row_id);
+		var this_div;
+		// AJAX!
+		$.ajax({
+			url: "<?= base_url("index.php/loads/save_load_update")?>", // in the quotation marks
+			type: "POST",
+			data: dataString,
+			cache: false,
+			context: this_div, 
+			statusCode: {
+				200: function(response){
+					// Success!
+					//alert(response);
+					//this_div.html(response);
+					open_row_details(row_id);
+					
+				},
+				404: function(){
+					// Page not found
+					alert('page not found');
+					
+				},
+				500: function(response){
+					// Internal server error
+					alert("500 error!")
+				}
+			}
+		});//END AJAX
 	}
 	
 	function open_load_plan_email_dialog(du_id)
@@ -1936,13 +1870,16 @@
 	
 	function send_load_plan_email()
 	{
-		alert('here');
+		//alert('here');
+		var row_id = $("#dispatch_email_load_id").val();
+		
 		// GET THE DIV IN DIALOG BOX
 		var this_div = $('#load_plan_email_dialog');
 		
 		//POST DATA TO PASS BACK TO CONTROLLER
 		var data = "du_id=" + $("#dispatch_update_email_dialog_id").val(); //use & to separate values
-		
+		$("#refresh_load_details_icon_"+row_id).attr('src','/images/loading.gif');
+		this_div.html("Sending Email Now...");
 		// AJAX!
 		$.ajax({
 			url: "<?= base_url('index.php/loads/send_dispatch_email')?>", // in the quotation marks
@@ -1954,7 +1891,8 @@
 				200: function(response){
 					// Success!
 					//this_div.html(response);
-					this.dialog('close');
+					this_div.dialog('close');
+					open_row_details(row_id)
 					alert(response);
 				},
 				404: function(){
@@ -1969,6 +1907,43 @@
 		});//END AJAX
 		return false;
 	}
+	
+	function send_driver_hold_report_email(client_id)
+	{
+		//alert('here');
+		// GET THE DIV IN DIALOG BOX
+		var this_div;
+		
+		//POST DATA TO PASS BACK TO CONTROLLER
+		var data = "client_id=" + client_id; //use & to separate values
+		
+		// AJAX!
+		$.ajax({
+			url: "<?= base_url('index.php/loads/send_driver_hold_report_email')?>", // in the quotation marks
+			type: "POST",
+			data: data,
+			cache: false,
+			context: this_div, // use a jquery object to select the result div in the view
+			statusCode: {
+				200: function(response){
+					// Success!
+					//this_div.html(response);
+					//this.dialog('close');
+					alert(response);
+				},
+				404: function(){
+					// Page not found
+					alert('page not found');
+				},
+				500: function(response){
+					// Internal server error
+					alert("500 error!")
+				}
+			}
+		});//END AJAX
+		return false;
+	}
+	
 	
 	var tv_mode = 'off';
 	function tv_icon_clicked()

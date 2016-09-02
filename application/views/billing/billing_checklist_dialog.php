@@ -162,17 +162,25 @@
 		}
 		
 		//CLOSED
-		if(empty($load["funded_datetime"]) || (!empty($load["recoursed_datetime"]) && empty($load["reimbursed_datetime"])))//DISPABLED NOT COMPLETE
+		if(empty($load["funded_datetime"]) || (!empty($load["recoursed_datetime"]) && empty($load["reimbursed_datetime"])))//DISPABLE NOT COMPLETE
 		{
 			$invoice_closed_list_style = "color:#DDD;";
 			$invoice_closed_is_checked = "disabled";
 		}
 		else
 		{
-			if(empty($load["invoice_closed_datetime"]))//ENABLED
+			if(empty($load["invoice_closed_datetime"]))//ENABLE
 			{
-				$invoice_closed_is_checked = "";
-				$invoice_closed_list_style = "color: black;";
+				if(user_has_permission('close out load in billing'))
+				{
+					$invoice_closed_is_checked = "";
+					$invoice_closed_list_style = "color: black;";
+				}
+				else
+				{
+					$invoice_closed_list_style = "color:#DDD;";
+					$invoice_closed_is_checked = "disabled";
+				}
 			}
 			else //MARKED COMPLETE
 			{
@@ -519,20 +527,6 @@
 							); 
 						?>
 						<?php echo form_dropdown('seal_intact',$options,"Select",'id="seal_intact" style="" class="checklist_input" onchange=""');?><span style="margin-left:10px;" title='Did the driver write Seal Intact in the bill of lading?' class="link" onclick="alert(this.title)">?<span>
-					</td>
-				</tr>
-				<tr>
-					<td style="width:150px; line-height:23px;">
-						Easy Sign BoL
-					</td>
-					<td>
-						<?php $options = array(
-							'Select' => 'Select',
-							'Pass'  => 'Pass',
-							'Fail'    => 'Fail',
-							); 
-						?>
-						<?php echo form_dropdown('easy_sign_bills',$options,"Select",'id="easy_sign_bills" style="" class="checklist_input" onchange=""');?><span style="margin-left:10px;" title='Did driver get a digital version of the BoL signed via Easy Sign?' class="link" onclick="alert(this.title)">?<span>
 					</td>
 				</tr>
 				<tr>

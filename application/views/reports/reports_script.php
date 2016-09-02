@@ -93,6 +93,47 @@
 		
 	}
 	
+	var reefer_report_ajax_call;
+	function load_reefer_report()
+	{
+		$("#report_loading_icon").show();
+		$("#refresh_icon").hide();
+		
+		var startDate = $("#start_date_filter");
+		var endDate = $("#end_date_filter");
+		
+		var dataString = $("#reefer_report_form").serialize();
+		var this_div = $('#main_content');
+		console.log("DataString: "+dataString);
+		if(!(reefer_report_ajax_call===undefined))
+		{
+			//alert('abort');
+			fuel_report_ajax_call.abort();
+		}
+		fuel_report_ajax_call = $.ajax({
+			url: "<?= base_url("index.php/reports/load_reefer_report")?>", // in the quotation marks
+			type: "POST",
+			data: dataString,
+			cache: false,
+			statusCode: {
+				200: function(response){
+					// Success!
+					this_div.html(response);
+					$("#refresh_icon").show();
+					$("#report_loading_icon").hide();
+				},
+				404: function(){
+					// Page not found
+					alert('page not found');
+				},
+				500: function(response){
+					// Internal server error
+					alert("500 error! "+response);
+				}
+			}
+		});//END AJAX
+	}
+	
 	var carrier_report_ajax_call;
 	function load_carrier_driver_report()
 	{
@@ -825,6 +866,52 @@
 		}
 		time_and_attendance_report_ajax_call = $.ajax({
 			url: "<?= base_url("index.php/reports/load_time_and_attendance_report")?>", // in the quotation marks
+			type: "POST",
+			data: dataString,
+			cache: false,
+			context: this_div, // use a jquery object to select the result div in the view
+			statusCode: {
+				200: function(response){
+					// Success!
+					this_div.html(response);
+					
+					//alert(response);
+				},
+				404: function(){
+					// Page not found
+					alert('page not found');
+				},
+				500: function(response){
+					// Internal server error
+					alert("500 error! "+response);
+				}
+			}
+		});//END AJAX
+	}
+	
+	//LOAD TIME CLOCK REPORT
+	var time_clock_report_ajax_call;
+	function load_time_clock_report()
+	{
+		//SHOW LOADING ICON
+		$("#refresh_icon").hide();
+		$("#report_loading_icon").show();
+	
+		//alert("load deduction report");
+		// GET THE DIV IN DIALOG BOX
+		var this_div = $('#main_content');
+		
+		//POST DATA TO PASS BACK TO CONTROLLER
+		var dataString = $("#filter_form").serialize();
+		
+		// AJAX!
+		if(!(time_clock_report_ajax_call===undefined))
+		{
+			//alert('abort');
+			time_clock_report_ajax_call.abort();
+		}
+		time_clock_report_ajax_call = $.ajax({
+			url: "<?= base_url("index.php/reports/load_time_clock_report")?>", // in the quotation marks
 			type: "POST",
 			data: dataString,
 			cache: false,

@@ -140,8 +140,7 @@
 			<td style="min-width:105px; max-width:105px; padding-right:5px; padding-top:5px;" class="ellipsis" title="<?=$goalpoint["location_name"]?> <?=$goalpoint["location"]?>">
 				<div id="gp_location_name_<?=$goalpoint["id"]?>" class="gp_row_details_<?=$goalpoint_id?> ellipsis" style="padding-right;5px;"><?=$goalpoint["location_name"]?></div>
 				<input placeholder="Location Name" type="text" id="edit_gp_location_name_<?=$goalpoint_id?>" name="edit_gp_location_name" class="gp_row_edit_<?=$goalpoint["id"]?>" style="font-family:arial; font-size:10px; width:95px; height:14px;" value="<?=$goalpoint["location_name"]?>"/>
-				<div id="gp_location_<?=$goalpoint["id"]?>" class="gp_row_details_<?=$goalpoint_id?> ellipsis"><?=$goalpoint["location"]?></div>
-				<div id="gp_location_<?=$goalpoint["id"]?>" class="gp_row_edit_<?=$goalpoint["id"]?>" style="font-size:10px;"><?=$goalpoint["location"]?></div>
+				<div id="gp_location_<?=$goalpoint["id"]?>" class="ellipsis"><?=$goalpoint["location"]?></div>
 			</td>
 			<td style="min-width:135px; max-width:135px; padding-top:5px; padding-right:5px;" class="" title="<?=$goalpoint["dm_notes"]?>">
 				<span class="gp_row_details_<?=$goalpoint["id"]?>"><?=$goalpoint["dm_notes"]?></span>

@@ -40,6 +40,7 @@
 				<?php
 					$options = array(
 							"Select Report" => "Select Report",
+							"All Drivers Report" => "All Drivers Report",
 							"Arrowhead Expense Report" => "Arrowhead Expense Report",
 							"Carrier-Driver Report" => "Carrier-Driver Report",
 							"Check Call Report" => "Check Call Report",
@@ -57,10 +58,11 @@
 							"Funding Report" => "Funding Report",
 							"Income Statement" => "Income Statement",
 							"Missing Paperwork" => "Missing Paperwork",
+							"Reefer Report" => "Reefer Report",
 							"Reimbursement Report" => "Reimbursement Report",
 							"Time and Attendance" => "Time and Attendance",
-							"Transactions Export" => "Transactions Export",
-							"All Drivers Report" => "All Drivers Report",
+							"Time Clock Report" => "Time Clock Report",
+							"Transactions Export" => "Transactions Export"
 							);
 				?>
 				<?php echo form_dropdown('report_dropdown',$options,"Select Report",'id="report_dropdown" style="" class="left_bar_input" onchange="load_report()"');?>

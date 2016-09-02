@@ -1,3 +1,6 @@
+<?php
+	$row_id = $log_entry["id"];
+?>
 <script>
 	function create_new_leg(id)
 	{
@@ -76,7 +79,7 @@
 			//alert('hello');
 			var this_div = $('#log_entry_row_'+log_entry_id);
 			var dataString = "&log_entry_id="+log_entry_id;
-			
+			$("#unlocked_icon_"+log_entry_id).attr('src','/images/loading.gif');
 			//TODO: REPLACE LOCK ICON WITH LOADING ICON
 			
 			// AJAX!
@@ -157,7 +160,7 @@
 			<?php endif; ?>
 			<img title="Create Fuel Estimate" style='display:block; margin-bottom:12px; cursor:pointer; height:15px; position:relative; bottom:1px; left:0px;' src="/images/make_fuel_estimate.png" onclick="this.src='/images/loading.gif'; create_fuel_estimate('<?=$log_entry_id?>')"/>
 			<?php if($allow_lock): ?>
-				<img id="unlocked_icon" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; left:2px;" src="/images/unlocked.png" title="Lock" onclick="lock_end_week('<?=$log_entry_id?>')"/>
+				<img id="unlocked_icon_<?=$row_id?>" style="display:block; margin-bottom:12px; margin-right:15px; cursor:pointer; height:15px; position:relative; left:2px;" src="/images/unlocked.png" title="Lock" onclick="lock_end_week('<?=$log_entry_id?>')"/>
 			<?php endif; ?>
 			<?php if($allow_delete): ?>
 				<img id="delete_icon" style="display:block; margin-bottom:12px; cursor:pointer; height:15px; position:relative; left:2px;" src="/images/trash.png" title="Delete" onclick="delete_event('<?=$log_entry_id?>')"/>

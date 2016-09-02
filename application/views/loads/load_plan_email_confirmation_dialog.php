@@ -35,3 +35,4 @@
 	</div>
 </div>
 <input type="hidden" id="dispatch_update_email_dialog_id" name="dispatch_update_email_dialog_id" value="<?=$dispatch_update["id"]?>"/>
+<input type="hidden" id="dispatch_email_load_id" value="<?=$load['id']?>"/>

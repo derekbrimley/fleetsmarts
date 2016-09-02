@@ -19,21 +19,25 @@
 	$ars_initials = substr($ar_user["person"]["f_name"],0,1).substr($ar_user["person"]["l_name"],0,1);
 	
 	$billing_date = "";
+	$billing_date_text_title = "";
 	if(!empty($load["billing_datetime"]))
 	{
 		$billing_date = date("m/d/y",strtotime($load["billing_datetime"]));
+		$billing_date_text_title = date("m/d/y H:i",strtotime($load["billing_datetime"]));
 	}
 	
 	$drop_date_text = "";
 	if(!empty($load["final_drop_datetime"]))
 	{
-		$drop_date_text = date("m/d/y",strtotime($load["final_drop_datetime"]));
+		$drop_date_text = date("m/d/y H:i",strtotime($load["final_drop_datetime"]));
 	}
 	
 	$pushed_date_text = "";
+	$pushed_date_text_title = "";
 	if(!empty($load["pushed_datetime"]))
 	{
 		$pushed_date_text = date("m/d/y",strtotime($load["pushed_datetime"]));
+		$pushed_date_text_title = date("m/d/y H:i",strtotime($load["pushed_datetime"]));
 	}
 	
 	$expected_payment_text = "";
@@ -71,7 +75,7 @@
 	$funded_text = "";
 	if(!empty($load["amount_funded"]))
 	{
-		$funded_text = number_format($load["amount_funded"],2);
+		$funded_text = number_format($load["amount_funded"]+$load["financing_cost"],2);
 	}
 
 	$short_amount = 0;
@@ -129,7 +133,7 @@
 		{
 			//GET NOTE USER
 			$where = null;
-			$where["id"] = $note["user_id"];
+			$where["id"] = $last_note["user_id"];
 			$note_user = db_select_user($where);
 		
 			$initials = substr($note_user["person"]["f_name"],0,1).substr($note_user["person"]["l_name"],0,1);
@@ -138,9 +142,14 @@
 	//}
 	
 	$load_number_link_text = "<a href='".base_url('index.php/billing/hc_coversheet')."/".$load["id"]."' target='_blank'>".$load['customer_load_number']."</a> ";
+	
+	//GET PROCESS AUDIT
+	$where = null;
+	$where["load_id"] = $load_id;
+	$process_audit = db_select_load_process_audit($where);
 ?>
 <table  style="table-layout:fixed; font-size:10px;">
-	<tr class="" style="line-height:30px;" title="<?=$load["billing_status_number"]?> <?=$load["billing_status"]?>">
+	<tr class="" style="line-height:30px;">
 		<?php if($load["billing_status"] == "Digital"):?>
 			<td onclick="open_billing_checklist_dialog('<?=$load_id?>')" style="width:25px; padding-left:5px;" VALIGN="top"><img id="action_icon_<?=$load_id?>" style="height:16px; position:relative; top:7px; left:5px;" src="/images/white_check_black_box.png" title=""/></td>
 			<td class="pending_td" onclick="row_clicked('<?=$load_id?>')" style="width:60px;" VALIGN="top">Digital</td>
@@ -183,9 +192,9 @@
 		<td class="driver2_td" onclick="row_clicked('<?=$load_id?>')" style="min-width:55px; max-width:55px;" VALIGN="top" class="ellipsis" title="<?=$driver2_client["client_nickname"]?>"><?=$driver2_client["client_nickname"]?></td>
 		<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px;" VALIGN="top" class="ellipsis" title="<?=$load["billed_under_carrier"]["company_side_bar_name"]?>"><?=$load["billed_under_carrier"]["company_side_bar_name"]?></td>
 		<?php if($load["originals_required"] == "Yes" && empty($load["hc_received_datetime"])):?>
-			<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px; color:red; font-weight:bold;" VALIGN="top" class="ellipsis" title="<?=$load["broker"]["customer_name"]?>"><?=$load["broker"]["customer_name"]?></td>
+			<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px; color:red; font-weight:bold;" VALIGN="top" class="ellipsis broker_td" title="<?=$load["broker"]["customer_name"]?>"><?=$load["broker"]["customer_name"]?></td>
 		<?php else:?>
-			<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px;" VALIGN="top" class="ellipsis" title="<?=$load["broker"]["customer_name"]?>"><?=$load["broker"]["customer_name"]?></td>
+			<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px;" VALIGN="top" class="ellipsis broker_td" title="<?=$load["broker"]["customer_name"]?>"><?=$load["broker"]["customer_name"]?></td>
 		<?php endif;?>
 		<?php if(!empty($load["amount_billed"])):?>
 			<td style="width:50px; padding-right:5px; text-align:right;" VALIGN="top"><a class="" title="Billed" target="_blank" href="<?=base_url("/index.php/documents/download_file")."/".$load["rc_link"]?>"><?=number_format($load["amount_billed"],2)?></a></td>
@@ -193,13 +202,13 @@
 			<td style="width:50px; padding-right:5px; text-align:right;" VALIGN="top"><a class="" title="Expected" target="_blank" href="<?=base_url("/index.php/documents/download_file")."/".$load["rc_link"]?>"><?=number_format($load["expected_revenue"],2)?></a></td>
 		<?php endif;?>
 		<td onclick="row_clicked('<?=$load_id?>')" style="min-width:60px; max-width:60px; padding-right:5px;"  class="ellipsis drop_city_td" VALIGN="top" title="<?=$drop_text?>"><?=$drop_text?></td>
-		<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right;" VALIGN="top"><?=$pushed_date_text?></td>
-		<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; padding-right:5px; text-align:right;" VALIGN="top"><?=$billing_date?></td>
-		<td onclick="row_clicked('<?=$load_id?>')" style="width:50px;" VALIGN="top"><?=$load["billing_method"]?></td>
+		<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right;" VALIGN="top" title="<?=$pushed_date_text_title?>"><?=$pushed_date_text?></td>
+		<td class="billed_td" onclick="row_clicked('<?=$load_id?>')" style="width:50px; padding-right:5px; text-align:right;" VALIGN="top" title="<?=$billing_date_text_title?>"><?=$billing_date?></td>
+		<td class="method_td" onclick="row_clicked('<?=$load_id?>')" style="width:50px;" VALIGN="top"><?=$load["billing_method"]?></td>
 		<?php if(strtotime($load["expected_pay_datetime"]) > time()):?>
-			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right;" VALIGN="top"><?=$expected_payment_text?></td>
+			<td class="expect_payment_td" onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right;" VALIGN="top"><?=$expected_payment_text?></td>
 		<?php else:?>
-			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; color:red; font-weight:bold; text-align:right;" VALIGN="top"><?=$expected_payment_text?></td>
+			<td class="expect_payment_td" onclick="row_clicked('<?=$load_id?>')" style="width:50px; color:red; font-weight:bold; text-align:right;" VALIGN="top"><?=$expected_payment_text?></td>
 		<?php endif;?>
 		<td class="age_td" onclick="row_clicked('<?=$load_id?>')" style="width:45px; text-align:right;" VALIGN="top" title="<?=$drop_date_text?>"><?=$age?></td>
 		<?php if(empty($load["short_pay_report_guid"])):?>
@@ -207,13 +216,95 @@
 		<?php else:?>
 			<td class="short_td" onclick="" style="width:50px; text-align:right;" VALIGN="top"><a class="" target="_blank" href="<?=base_url("/index.php/documents/download_file")."/".$load["short_pay_report_guid"]?>"><?=$short_text?></a></td>
 		<?php endif;?>
-		<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right; padding-right:5px; <?=$funded_style?>" VALIGN="top" title="<?=$funding_date?>"><?=$funded_text?></td>
+		<td class="funded_td" onclick="row_clicked('<?=$load_id?>')" style="width:50px; text-align:right; padding-right:5px; <?=$funded_style?>" VALIGN="top" title="<?=$funding_date?>"><?=$funded_text?></td>
 		<td onclick="row_clicked('<?=$load_id?>')" style="max-width:85px; min-width:85px; padding-left:10px; padding-right:5px; display:none;" VALIGN="top" class="hold_reason_td ellipsis"><?=$load["denied_reason"]?></td>
 		<td onclick="row_clicked('<?=$load_id?>')" style="max-width:300px; min-width:300px; display:none;" VALIGN="top" title="<?=$last_update_text?>" class="last_update_td ellipsis"><?=$last_update_text?></td>
-		<?php if(empty($notes)):?>
-			<td onclick="open_notes('<?=$load_id?>')" style="width:25px; padding-left:5px;" VALIGN="top"><img style="height:16px; position:relative; top:7px; left:5px;" src="/images/add_notes_empty.png" title="<?=$notes_title?>"/></td>
+		
+		<?php if($process_audit["defer_to_tarriff"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center; padding-left:10px;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["defer_to_tarriff"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
 		<?php else:?>
-			<td onclick="open_notes('<?=$load_id?>')" style="width:25px; padding-left:5px;" VALIGN="top"><img style="height:16px; position:relative; top:7px; left:5px;" src="/images/add_notes.png" title="<?=$notes_title?>"/></td>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["ontime_by_rc"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["ontime_by_rc"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["shipper_load_and_count"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["shipper_load_and_count"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["seal_pic_depart"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["seal_pic_depart"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["load_pic_depart"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["load_pic_depart"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["seal_number"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["seal_number"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["seal_pic_arrive"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["seal_pic_arrive"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["load_pic_arrive"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["load_pic_arrive"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["seal_intact"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["seal_intact"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		<?php if($process_audit["clean_bills"] == "Pass"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Pass" src="/images/green_checkmark.png"/></td>
+		<?php elseif($process_audit["clean_bills"] == "Fail"):?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"><img style="height:14px; position:relative; top:8px; right:3px;" title="Fail" src="/images/red_exclamation_mark.png"/></td>
+		<?php else:?>
+			<td onclick="row_clicked('<?=$load_id?>')" style="width:50px; display:none; text-align:center;" VALIGN="top" class="process_audit"></td>
+		<?php endif;?>
+		
+		
+		<?php if(empty($notes)):?>
+			<td class="notes_td" onclick="open_notes('<?=$load_id?>')" style="width:25px; padding-left:5px;" VALIGN="top"><img style="height:16px; position:relative; top:7px; left:5px;" src="/images/add_notes_empty.png" title="<?=htmlspecialchars($notes_title)?>"/></td>
+		<?php else:?>
+			<td class="notes_td" onclick="open_notes('<?=$load_id?>')" style="width:25px; padding-left:5px;" VALIGN="top"><img style="height:16px; position:relative; top:7px; left:5px;" src="/images/add_notes.png" title="<?=htmlspecialchars($notes_title)?>"/></td>
 		<?php endif;?>
 	</tr>
 </table>

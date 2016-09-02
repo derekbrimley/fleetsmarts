@@ -214,9 +214,9 @@
 </style>
 <div id="main_content_header">
 	<span style="font-weight:bold;">Edit Trailer <?=$trailer["trailer_number"]?></span>
-	<img src="<?=base_url('images/save.png')?>" style="cursor:pointer;float:right;margin-top:4px;height:20px; margin-left:10px;" id="save_trailer" onclick="validate_save_edit_trailer()"/>
-	<img src="<?=base_url('images/back.png')?>" style="cursor:pointer;float:right;margin-top:4px;height:20px;" id="back_btn" onclick="load_trailer_details('<?=$trailer["id"]?>')"/>
-	<img src="<?=base_url('images/loading.gif')?>" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
+	<img src="/images/save.png" style="cursor:pointer;float:right;margin-top:4px;height:20px; margin-left:10px;" id="save_trailer" onclick="validate_save_edit_trailer()"/>
+	<img src="/images/back.png" style="cursor:pointer;float:right;margin-top:4px;height:20px;" id="back_btn" onclick="load_trailer_details('<?=$trailer["id"]?>')"/>
+	<img src="/images/loading.gif" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
 </div>
 
 <div id="scrollable_content" class="scrollable_div">
@@ -435,6 +435,10 @@
 				<tr>
 					<td>Last Service (mileage)</td>
 					<td><input value="<?=$trailer['last_service'];?>"id="last_service" name="last_service" type="text" class="edit_box"></td>
+				</tr>
+				<tr>
+					<td>iBright ID</td>
+					<td><input value="<?=$trailer['ibright_id'];?>"id="ibright_id" name="ibright_id" type="text" class="edit_box"></td>
 				</tr>
 			</table>
 		</div>

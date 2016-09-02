@@ -20,24 +20,68 @@ class Reports extends MY_Controller
 	{
 		$start_date = date('Y-m-d H:i:s',strtotime($_POST['start_date_filter']));
 		$end_date = date('Y-m-d H:i:s',strtotime($_POST['end_date_filter']));
+
+		$main_driver_sql = "SELECT distinct main_driver_id 
+					FROM log_entry
+					WHERE entry_datetime BETWEEN '$start_date' AND '$end_date'";
 		
+		$main_driver_query = $this->db->query($main_driver_sql);
+		
+		$driver_ids = array();
+		foreach ($main_driver_query->result() as $main_driver_row){
+			$driver_ids[] = $main_driver_row->main_driver_id;
+		}
+		
+		$codriver_sql = "SELECT distinct codriver_id 
+					FROM log_entry
+					WHERE entry_datetime BETWEEN '$start_date' AND '$end_date'";
+
+		$codriver_query = $this->db->query($codriver_sql);
+		
+		foreach ($codriver_query->result() as $codriver_row){
+			$driver_ids[] = $codriver_row->codriver_id;
+		}
+		
+//		print_r($driver_ids);
+		
+		$id_string = '';
+		foreach($driver_ids as $driver_id)
+		{
+//			echo $driver_id . "<br>";
+			if($driver_id != null)
+			{
+				$id_string = $id_string . $driver_id . ",";
+//				echo $id_string . "<br>";
+			}
+		}
+		
+		$id_string = rtrim($id_string, ",");
 		$sql = "select distinct client_nickname
 				from client
 				where id in 
-					(SELECT distinct main_driver_id 
-					FROM log_entry
-					WHERE entry_datetime BETWEEN '$start_date' AND '$end_date')
-				or id in 
-					(SELECT distinct codriver_id 
-					FROM log_entry
-					WHERE entry_datetime BETWEEN '$start_date' AND '$end_date')
+					(" . $id_string . ")
 				ORDER BY client_nickname";
 		
-		$query = $this->db->query($sql);
+//		echo $sql;
 		
+//		select distinct client_nickname
+//				from client
+//				where id in 
+//					(SELECT distinct main_driver_id 
+//					FROM log_entry
+//					WHERE entry_datetime BETWEEN '2016-08-01' AND '2016-08-10')
+//				or id in 
+//					(SELECT distinct codriver_id 
+//					FROM log_entry
+//					WHERE entry_datetime BETWEEN '2016-08-01' AND '2016-08-10')
+//				ORDER BY client_nickname
+		
+		$query = $this->db->query($sql);
+//		
 		$drivers = array();
 		foreach ($query->result() as $row){
 			$drivers[] = $row->client_nickname;
+//			echo "Client: " . $row->client_nickname . "<br>";
 		}
 		
 		$count = count($drivers);
@@ -59,6 +103,11 @@ class Reports extends MY_Controller
 			$data = null;
 			//$data['fleet_managers_dropdown_options'] = $fleet_managers_dropdown_options;
 			$this->load->view('reports/arrowhead_expense_report_left_bar',$data);
+		}
+		else if($report_type == 'All Drivers Report')
+		{
+			$this->load->view('reports/all_drivers_left_bar');
+			
 		}
 		else if($report_type == "Carrier-Driver Report")
 		{
@@ -343,6 +392,25 @@ class Reports extends MY_Controller
 			$data['fleet_managers_dropdown_options'] = $fleet_managers_dropdown_options;
 			$this->load->view('reports/missing_paperwork/missing_paperwork_report_left_bar',$data);
 		}
+		else if($report_type == "Reefer Report")
+		{
+				
+			$this->db->distinct();
+			$this->db->select('trailer_number');
+			$this->db->where('dropdown_status', 'Show');
+			$query = $this->db->get('trailer');
+			
+//			print_r($query->result());
+			$trailer_options = array();
+			$trailer_options['Select'] = "Select";
+			foreach($query->result() as $row)
+			{
+				$trailer_options[$row->trailer_number] = $row->trailer_number;
+			}
+			$data['trailer_options'] = $trailer_options;
+			
+			$this->load->view('reports/reefer_report_left_bar',$data);
+		}
 		else if($report_type == "Reimbursement Report")
 		{
 			
@@ -380,15 +448,27 @@ class Reports extends MY_Controller
 			$data['user_sidebar_options'] = $user_sidebar_options;
 			$this->load->view('reports/time_and_attendance_left_bar',$data);
 		}
+		else if($report_type == "Time Clock Report")
+		{
+			$where = null;
+			$where = "slack_username IS NOT NULL";
+			$users = db_select_users($where);
+			
+			$user_sidebar_options = array();
+			$user_sidebar_options["All"] = "All Users";
+			foreach($users as $user)
+			{
+				$user_sidebar_options[$user['id']] = $user['person']["full_name"];
+			}
+			
+			$data['user_sidebar_options'] = $user_sidebar_options;
+			$this->load->view('reports/time_clock_report_left_bar',$data);
+		}
 		else if ($report_type == "Transactions Export")
 		{
 			$this->load->view('reports/transactions_export_left_bar');
 		}
-		else if($report_type == 'All Drivers Report')
-		{
-			$this->load->view('reports/all_drivers_left_bar');
-			
-		}
+		
 	}
 	
 	function load_carrier_driver_report()
@@ -1176,6 +1256,46 @@ class Reports extends MY_Controller
 		$this->load->view("reports/leg_report.php",$data);
 	}
 	
+	function load_reefer_report()
+	{
+		$start_date = $_POST['start_date_filter'];
+		$end_date = $_POST['end_date_filter'];
+		$trailer_number = $_POST['trailer_filter'];
+
+		$where = " AND 1 = 1 ";
+
+		if(!empty($start_date))
+		{
+			$sql_start_date = date('Y-m-d H:i:s',strtotime($start_date));
+			$where .= " AND datetime_occurred >= '$sql_start_date'  ";
+		}
+		
+		if(!empty($end_date))
+		{
+			$sql_end_date = date('Y-m-d H:i:s',strtotime($end_date));
+			$where = $where." AND datetime_occurred >= '$sql_end_date'  ";
+		}
+		
+		if($trailer_number != 'Select')
+		{
+			$where = $where." AND trailer_number = '$trailer_number' ";
+		}
+
+		$where = substr($where,4);
+		//echo $where;
+		$trailer_geopoints = db_select_trailer_geopoints($where,"datetime_occurred desc");
+		
+//		print_r($trailer_geopoints_w_locations);
+		$count = count($trailer_geopoints);
+		
+		$data['count'] = $count;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$data['trailer_geopoints'] = $trailer_geopoints;
+		$data['title'] = 'Reefer Report';
+		$this->load->view('reports/reefer_report', $data);	
+	}
+	
 	function download_dtr_csv()
 	{
 		$after_date = date('Y-m-d',strtotime($_POST['start_date_filter']));
@@ -1903,6 +2023,39 @@ class Reports extends MY_Controller
 		
 		$data['punches'] = $punches;
 		$this->load->view('reports/time_and_attendance_report',$data);
+	}
+	
+	function load_time_clock_report()
+	{
+		$user_id = $_POST["user_filter"];
+		$after_date = $_POST["start_date_filter"];
+		$before_date = $_POST["end_date_filter"];
+		
+		$where = "";
+		//WHERE FOR USER
+		if($user_id != "All")
+		{
+			$where .= " AND user_id = $user_id ";
+		}
+		//SET AFTER DATE
+		if(!empty($after_date))
+		{
+			$where = $where." AND email_sent_datetime > '".date("Y-m-d G:i:s",strtotime($after_date))."'";
+		}
+		
+		//SET BEFORE DATE
+		if(!empty($before_date))
+		{
+			$where = $where." AND email_sent_datetime < '".date("Y-m-d G:i:s",strtotime($before_date)+24*60*60)."'";
+		}
+		
+		$where = substr($where,4);
+		
+		$clock_in_verifications = db_select_clock_in_verifications($where,"email_sent_datetime DESC");
+		
+		$data['title'] = 'Time Clock Report';
+		$data['clock_in_verifications'] = $clock_in_verifications;
+		$this->load->view('reports/time_clock_report',$data);
 	}
 	
 	function load_fleetprotect_account_report()

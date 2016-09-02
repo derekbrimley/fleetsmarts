@@ -17,7 +17,7 @@
 		<img id="save_icon_<?=$pr_id?>" class="edit_<?=$pr_id?>" style="display:none; margin-bottom:13px; margin-right:15px; cursor:pointer; height:14px; position:relative; left:1px;" src="/images/save.png" title="Save" onclick="save_performance_details('<?=$pr["id"]?>');"/>
 	</div>
 	<div class="heading">
-		Performance Review Details
+		Profile
 	</div>
 	<hr style="width:910;">
 	<div style="font-size:12px;">
@@ -61,7 +61,7 @@
 		</form>
 	</div>
 	<div class="heading">
-		Loads Review
+		Loads
 	</div>
 	<hr style="width:910;">
 	<div style="font-size:12px;">
@@ -98,8 +98,8 @@
 					Revenue
 				</td>
 			</tr>
-			<?php if(!empty($pr_stats["loads_for_week"])):?>
-				<?php foreach($pr_stats["loads_for_week"] as $load_for_week): ?>
+			<?php if(!empty($loads_for_week)):?>
+				<?php foreach($loads_for_week as $load_for_week): ?>
 					<?php
 						$rate_style = "";
 						$rate_title = "Funded";
@@ -156,7 +156,7 @@
 		</table>
 	</div>
 	<div class="heading">
-		Commission Checklist
+		Checklist
 	</div>
 	<hr style="width:910;">
 	<table style="float:left;">
@@ -165,11 +165,11 @@
 				Logs
 			</td>
 			<td style="width:200px;">
-				BoLs
+				Billing
 			</td>
 		</tr>
-		<?php if(!empty($pr_stats["loads_for_week"])):?>
-			<?php foreach($pr_stats["loads_for_week"] as $load_for_week): ?>
+		<?php if(!empty($loads_for_week)):?>
+			<?php foreach($loads_for_week as $load_for_week): ?>
 				<tr>
 					<td>
 						<?php if($load_for_week["miles_source"] == "expected_miles"):?>
@@ -179,66 +179,13 @@
 						<?php endif;?>
 						<?=$load_for_week["load_number"]?>
 					</td>
-					<td>
-						<?php if($load_for_week["rate_source"] == "expected_revenue"):?>
-							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/empty_red_box.png" title="Incomplete" onclick=""/>
+					<td title="<?=$load_for_week["billing_status"]?>">
+						<?php if($load_for_week["billing_status"] == "Closing" || $load_for_week["billing_status"] == "Closed"):?>
+							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/green_box_w_checkmark.png" onclick=""/>
 						<?php else:?>
-							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/green_box_w_checkmark.png" title="Complete!" onclick=""/>
+							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/empty_red_box.png" onclick=""/>
 						<?php endif;?>
 						<?=$load_for_week["load_number"]?>
-					</td>
-				</tr>
-			<?php endforeach;?>
-		<?php endif;?>
-	</table>
-	<table style="float:left;">
-		<tr style="font-weight:bold;">
-			<td style="">
-				Shift Reports
-			</td>
-		</tr>
-		<?php if(empty($shift_report_log_entries)):?>
-		<tr>
-			<td>
-				<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/empty_red_box.png" title="Incomplete" onclick=""/>
-				All shift reports complete
-			</td>
-		</tr>
-		<?php else:?>
-			<?php foreach($shift_report_log_entries as $sr_log_entry): ?>
-				<?php
-					//GET SHIFT REPORT
-					$where = null;
-					$where["log_entry_id"] = $sr_log_entry["id"];
-					$shift_report = db_select_shift_report($where);
-					
-					if(!empty($shift_report["client_id"]))
-					{
-						//GET DRIVER
-						$where = null;
-						$where["id"] = $shift_report["client_id"];
-						$client = db_select_client($where);
-						
-						$driver_text = $client["client_nickname"];
-					}
-					else
-					{
-						$driver_text = "Driver?";
-					}
-					
-					$shift_report_is_complete = shift_report_is_complete($shift_report);
-				?>
-				<tr>
-					<td>
-						<?php if($shift_report_is_complete["is_complete"]):?>
-							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/green_box_w_checkmark.png" title="Complete!" onclick=""/>
-						<?php else:?>
-							<img id="" class="" style="height:14px; position:relative; left:1px; top:2px;" src="/images/empty_red_box.png" title="<?=$shift_report_is_complete["message"]?>" onclick=""/>
-						<?php endif;?>
-						<?=$driver_text?>
-					</td>
-					<td style="text-align:right; padding-top:4px; padding-left:5px;">
-						<?=date("m/d/y",strtotime($log_entry["entry_datetime"]))?>
 					</td>
 				</tr>
 			<?php endforeach;?>

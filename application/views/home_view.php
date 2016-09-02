@@ -7,16 +7,7 @@
 		<link type="text/css" href="<?php echo base_url("css/main_menu.css"); ?>" rel="stylesheet" />	
 		<script type="text/javascript" src="<?php echo base_url("js/jquery-1.6.2.min.js");?>"></script>
 		<script type="text/javascript" src="<?php echo base_url("js/jquery-ui-1.8.16.custom.min.js");?>"></script>
-		<script src=<?= base_url("js/main.js") ?>></script>
-		<link rel="manifest" href="<?= base_url("js/manifest.json") ?>">
-		<script src="<?= base_url("socket.io/socket.io.js") ?>"></script>
-		<script>
-		  var socket = io('http://localhost');
-		  socket.on('news', function (data) {
-			console.log(data);
-			socket.emit('my other event', { my: 'data' });
-		  });
-		</script>
+
 <script type="text/javascript">
 $(document).ready(function(){
   

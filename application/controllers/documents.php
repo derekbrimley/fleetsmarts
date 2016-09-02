@@ -5,7 +5,8 @@
 class Documents extends MY_Controller 
 {
 
-	function index(){	
+	function index()
+	{	
 		//NO DRIVERS ALLOWED
 		if ($this->session->userdata('role') == 'Client')
 		{
@@ -55,7 +56,8 @@ class Documents extends MY_Controller
 	}
 	
 	//LOAD ESIGN_DOCS REPORT
-	function load_esign_docs_report(){
+	function load_esign_docs_report()
+	{
 		$search_input = $_POST['document_search_input'];
 		$signer_input = $_POST['signer_input'];
 		$category_input = $_POST['category_input'];
@@ -254,7 +256,8 @@ class Documents extends MY_Controller
 		$this->load->view("generate_documents_view",$data);
 	}
 	
-	function generate_document(){
+	function generate_document()
+	{
 		date_default_timezone_set('America/Denver');
 		
 		$document_id = $_POST['documentSelect'];
@@ -316,6 +319,52 @@ class Documents extends MY_Controller
 			$this->load->view('documents/receipt_of_bylaws',$data);
 			$this->load->view('documents/collect_manage_funds',$data);
 			$this->load->view('documents/umcc_authorization',$data);
+		}
+	}
+	
+	function fix_file_path()
+	{
+		set_time_limit(0);
+		
+		$CI =& get_instance();
+	
+		//SET UP CONNECTION TO FTP SERVER
+		$CI->load->library('ftp');
+		$config['hostname'] = 'ftp.integratedlogicsticssolutions.co';
+		$config['username'] = 'covax13';
+		$config['password'] = 'Retret13!';
+		$config['debug']	= TRUE;
+		$config['debug']	= TRUE;
+		
+		$CI->ftp->connect($config);
+		$server_path = '/edocuments/production/2014/';
+		echo $server_path."<br>";
+		$files = $CI->ftp->list_files($server_path);
+		
+		foreach($files as $file)
+		{
+			//FIND SECURE FILE IN DB
+			$where = null;
+			$where["name"] = $file;
+			$secure_file = db_select_secure_file($where);
+			if(!empty($secure_file))
+			{
+				echo $file;
+				//UPDATE SECURE FILE WITH NEW SERVER PATH
+				$update = null;
+				$update["server_path"] = $server_path;
+				$where = null;
+				$where["id"] = $secure_file["id"];
+				//db_update_secure_file($update,$where);
+				
+				echo " - UPDATED ";
+				echo "<br>";
+			}
+			else
+			{
+				echo " ************************************ NOT FOUND";
+				echo "<br>";
+			}
 		}
 	}
 }

@@ -21,7 +21,7 @@
 				<div style="width:100%;height:30px;">
 					<span><?=$available_person["company_name"] ?><span>
 					<span>
-						<img title="Give user permission" src="<?=base_url("images/blue_arrow.png") ?>" style="cursor:pointer;float:right;height:15px;" onclick="add_user(<?=$available_person["id"] ?>,<?=$permission['id']?>)"/>
+						<img title="Give user permission" src="/images/blue_arrow.png" style="cursor:pointer;float:right;height:15px;" onclick="add_user(<?=$available_person["id"] ?>,<?=$permission['id']?>)"/>
 					</span>
 				</div>
 			<?php endforeach ?>
@@ -39,7 +39,7 @@
 				<div style="width:100%;height:30px;">
 					<span><?=$current_person['company_name'] ?></span>
 					<span>
-						<img title="Take permission from user" src="<?=base_url("images/red_arrow.png") ?>" style="cursor:pointer;float:right;height:15px;" onclick="delete_user(<?=$current_person['id'] ?>,<?=$permission['id']?>)"/>
+						<img title="Take permission from user" src="/images/red_arrow.png" style="cursor:pointer;float:right;height:15px;" onclick="delete_user(<?=$current_person['id'] ?>,<?=$permission['id']?>)"/>
 					</span>
 				</div>
 			<?php endforeach ?>

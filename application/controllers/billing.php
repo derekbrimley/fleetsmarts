@@ -7,9 +7,9 @@ class Billing extends MY_Controller
 	{
 		//GET FLEET MANAGERS
 		$where = null;
-		$where["role"] = "Fleet Manager";
+		//$where["role"] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where,"f_name");
-		
 		$fleet_managers_dropdown_options = array();
 		$fleet_managers_dropdown_options["All"] = "All FMs";
 		foreach($fleet_managers as $fleet_manager)
@@ -31,9 +31,9 @@ class Billing extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
-		
 		$dm_filter_dropdown_options = array();
 		$dm_filter_dropdown_options['All'] = "All DMs";
 		foreach ($driver_managers as $manager)
@@ -363,7 +363,8 @@ class Billing extends MY_Controller
 		
 		//GET FLEET MANAGERS
 		$where = null;
-		$where["role"] = "Fleet Manager";
+		//$where["role"] = "Fleet Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$fleet_managers = db_select_persons($where,"f_name");
 		$fleet_managers_dropdown_options = array();
 		$fleet_managers_dropdown_options["All"] = "All FMs";
@@ -386,7 +387,8 @@ class Billing extends MY_Controller
 		
 		//GET OPTIONS FOR DRIVER MANAGER DROPDOWN LIST
 		$where = null;
-		$where['role'] = "Driver Manager";
+		//$where['role'] = "Driver Manager";
+		$where = " role = 'Fleet Manager' OR role = 'Driver Manager' ";
 		$driver_managers = db_select_persons($where);
 		$dm_filter_dropdown_options = array();
 		$dm_filter_dropdown_options['Select'] = "Select";
@@ -463,7 +465,10 @@ class Billing extends MY_Controller
 			$ars_dropdown_options[$u_p["user_id"]] = $ars_user["person"]["f_name"];
 		}
 		
-		
+		//GET GOALPOINTS
+		$where = null;
+		$where = " load_id = $load_id AND gp_type <> 'Current Geopoint' ";
+		$goalpoints = db_select_goalpoints($where,"gp_order");
 		
 		//GET ALL ATTACHMENTS FOR THIS TRAILER
 		$where = null;
@@ -471,7 +476,9 @@ class Billing extends MY_Controller
 		$where['attached_to_id'] = $load['id'];
 		$attachments = db_select_attachments($where);
 		
+		
 		$data['attachments'] = $attachments;
+		$data['goalpoints'] = $goalpoints;
 		$data['ars_dropdown_options'] = $ars_dropdown_options;
 		$data['clients_dropdown_options'] = $clients_dropdown_options;
 		$data['billed_under_options'] = $billed_under_options;
@@ -770,7 +777,7 @@ class Billing extends MY_Controller
 			$insert_process_audit["load_pic_arrive"] = $_POST["load_pic_arrive"];
 			$insert_process_audit["seal_intact"] = $_POST["seal_intact"];
 			$insert_process_audit["clean_bills"] = $_POST["clean_bills"];
-			$insert_process_audit["easy_sign_bills"] = $_POST["easy_sign_bills"];
+			//$insert_process_audit["easy_sign_bills"] = $_POST["easy_sign_bills"];
 			
 			db_insert_load_process_audit($insert_process_audit);
 			
@@ -781,7 +788,7 @@ class Billing extends MY_Controller
 				$_POST["seal_pic_depart"] == "Fail" ||
 				$_POST["load_pic_depart"] == "Fail" ||
 				$_POST["seal_number"] == "Fail" ||
-				$_POST["defer_toseal_pic_arrive_tarriff"] == "Fail" ||
+				$_POST["seal_pic_arrive"] == "Fail" ||
 				$_POST["load_pic_arrive"] == "Fail" ||
 				$_POST["seal_intact"] == "Fail" ||
 				$_POST["clean_bills"] == "Fail"
@@ -1198,20 +1205,22 @@ class Billing extends MY_Controller
 			}
 			else if($action == "invoice_closed")
 			{
-				$update_load["invoice_closed_datetime"] = date("Y-m-d G:i:s",strtotime($_POST["reimbursed_date_$load_id"]));
-				$where = null;
-				$where["id"] = $load_id;
-				db_update_load($update_load,$where);
-				
-				
-				//INSERT NEW NOTE
-				$insert_note = null;
-				$insert_note["note_type"] = "load_billing";
-				$insert_note["note_for_id"] = $load_id;
-				$insert_note["note_datetime"] = date("Y-m-d H:i");
-				$insert_note["user_id"] = $this->session->userdata('user_id');
-				$insert_note["note_text"] = "Load marked Closed";
-				db_insert_note($insert_note);
+				if(user_has_permission('close out load in billing'))
+				{
+					$update_load["invoice_closed_datetime"] = date("Y-m-d G:i:s",strtotime($_POST["reimbursed_date_$load_id"]));
+					$where = null;
+					$where["id"] = $load_id;
+					db_update_load($update_load,$where);
+					
+					//INSERT NEW NOTE
+					$insert_note = null;
+					$insert_note["note_type"] = "load_billing";
+					$insert_note["note_for_id"] = $load_id;
+					$insert_note["note_datetime"] = date("Y-m-d H:i");
+					$insert_note["user_id"] = $this->session->userdata('user_id');
+					$insert_note["note_text"] = "Load marked Closed";
+					db_insert_note($insert_note);
+				}
 			}
 			
 			//UPDATE BILLING STATUS

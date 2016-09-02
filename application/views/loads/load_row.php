@@ -72,7 +72,7 @@
 	{
 		$action_title = "Dispatch Load";
 		$action = "open_dispatch_dialog";
-		$img = "/images/dispatch_load_icon.png";
+		$img = "/images/green_envelope_box.png";
 		
 	}
 	else if ($load["status_number"] == 3) //PICK PENDING
@@ -191,26 +191,57 @@
 		$geopoint = null;
 	}
 	
-	
+	$row_color_style = "";
+	//DETERMINE IF TRUCK AS ENTERED OR EXITED GEOFENCE OF NEXT GOALPOINT
+	if(!empty($geopoint) && !empty($next_gp))
+	{
+		$next_gp_latlng = explode(",",$next_gp["gps"]);
+		if(count($next_gp_latlng) == 2)
+		{
+			$next_gp_lat = trim($next_gp_latlng[0]);
+			$next_gp_lng = trim($next_gp_latlng[1]);
+			
+			$radius = .0075;
+			//IF GEOPOINT IS IN GEOFENCE OF NEXT GOALPOINT
+			if(abs($next_gp_lat - $geopoint["latitude"]) < $radius && abs($next_gp_lng - $geopoint["longitude"]) < $radius)
+			{
+				if($next_gp["arrival_departure"] == 'Arrival')
+				{
+					$row_color_style = "background:rgba(0,255,0,0.3);";//COLOR ROW GREEN
+				}
+				elseif($next_gp["arrival_departure"] == 'Departure')
+				{
+					$row_color_style = "background:rgba(255, 165, 0, 0.77);";//COLOR ROW RED
+				}
+			}
+			else
+			{
+				if($next_gp["arrival_departure"] == 'Departure')
+				{
+					$row_color_style = "background:rgba(255, 0, 0, 0.3);";//COLOR ROW RED
+				}
+			}
+		}
+	}
 	
 	//GET NEXT PICK OR DROP GOALPOINT
 	$where = null;
 	$where = "load_id = $load_url AND completion_time IS NULL AND (gp_type = 'Pick' OR gp_type = 'Drop')";
 	$next_pick_drop_gp = db_select_goalpoint($where,"gp_order DESC");
 	
-	//GET MOST RECENT DISPATCH UPDATE
+	//GET MOST RECENT CHECK CALL
 	$where = null;
 	$where["load_id"] = $load["id"];
-	$most_recent_dispatch_update = db_select_dispatch_update($where);
+	$most_recent_check_call = db_select_load_check_call($where,"recorded_datetime");
 	
 	//echo $most_recent_dispatch_update["id"];
 	
 	$update_text = "00:00";
 	$update_style = "";
-	if(!empty($most_recent_dispatch_update))
+	if(!empty($most_recent_check_call))
 	{
 		//GET TIME DIFFERENCE BETWEEN NOW AND MOST RECENT DISPATCH UPDATE
-		$seconds_diff = time() - strtotime($most_recent_dispatch_update["update_datetime"]);
+		$seconds_diff = time() - strtotime($most_recent_check_call["recorded_datetime"]);
 		
 		if($seconds_diff < (2*60*60))//2 hours
 		{
@@ -239,8 +270,16 @@
 			$driver_style = "color:red;";
 		}
 	}
+	
+	//GET MOST RECENT TRAILER GEOPOINT
+	$current_trailer_geopoint = get_most_recent_trailer_geopoint($load["load_trailer_id"]);
+	if(strtotime($current_trailer_geopoint["datetime_occurred"]) < (time() - 60*60))
+	{
+		$current_trailer_geopoint = null;
+	}
+	
 ?>
-<div style="height:20px; padding-top:5px; padding-bottom:3px;" class="clickable_row" onclick="">
+<div style="height:20px; padding-top:5px; padding-bottom:3px; <?=$row_color_style?>" class="clickable_row" onclick="">
 	<input type="hidden" id="next_pick_drop_goalpoint_id_<?=$load_url?>" value="<?=$next_pick_drop_gp["id"]?>"/>
 	<table style="font-size:10px; margin-left:5px;">
 		<tr style="line-height:18px;">
@@ -267,18 +306,27 @@
 			<td style="overflow:hidden; min-width:30px; max-width:30px; line-height:18px;" VALIGN="top" onclick="" title=""><img id="notes_icon_<?=$load["id"]?>" name="notes_icon_<?=$load["id"]?>" title="<?=$load["load_desc"].$load['load_notes']?>" onclick="open_notes('<?=$load["id"]?>')" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="<?=$notes_img?>" /></td>
 			<td style="overflow:hidden; min-width:30px; max-width:30px; line-height:18px;" VALIGN="top" onclick="" title="">
 				<?php if(!empty($geopoint)):?>
-					<a href="http://maps.google.com/maps?q=<?=$geopoint["latitude"].",".$geopoint["longitude"]?>" target="_blank">
-						<?php if($geopoint["speed"] == 0):?>
-							<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="<?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/geopoint_stop_icon.png" />
-						<?php else:?>
-							<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="<?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/geopoint_icon.png" />
-						<?php endif;?>
-					</a>
+					<?php if($geopoint["is_oor"] == "Yes"):?>
+						<a href="<?=$geopoint["oor_url"]?>" target="_blank">
+							<?php if($geopoint["speed"] == 0):?>
+								<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="OOR <?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/blinking_red_triangle.gif" />
+							<?php else:?>
+								<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="OOR <?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/blinking_green_triangle.gif" />
+							<?php endif;?>
+						</a>
+					<?php else:?>
+						<a href="http://maps.google.com/maps?q=<?=$geopoint["latitude"].",".$geopoint["longitude"]?>" target="_blank">
+							<?php if($geopoint["speed"] == 0):?>
+								<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="<?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/geopoint_stop_icon.png" />
+							<?php else:?>
+								<img id="geopoint_<?=$load["id"]?>" name="geopoint_<?=$load["id"]?>" title="<?=date('m/d H:i',strtotime($geopoint["datetime"]))." ".round($geopoint["speed"])."MPH"?>" onclick="" style="cursor:pointer; position:relative; left:2px; height:16px; width:16px" src="/images/geopoint_icon.png" />
+							<?php endif;?>
+						</a>
+					<?php endif;?>
 				<?php endif;?>
 			</td>
 			<td style="overflow:hidden; min-width:30px; max-width:30px; line-height:18px;" VALIGN="top" onclick="row_clicked('<?=$load_url?>')" title="">
 				<?php
-					
 					
 					$load_id = $load["id"];
 					
@@ -291,33 +339,33 @@
 				<!-- SET ALERT INDICATOR -- THIS WILL OVERRIDE ANY NON-ALERT INDICATORS !-->
 				<?php if((empty($load["rcr_datetime"]) && !empty($load["rc_link"])) || (empty($load["rc_link"]) && time() > (strtotime($load["booking_datetime"]) + 15*60))):?>
 					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Rate Con is overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_rate_con_icon.gif" />
-				<?php elseif(!empty($load["ready_for_dispatch_datetime"]) && empty($load["initial_dispatch_datetime"]) && strtotime($load["ready_for_dispatch_datetime"]) > strtotime(time() + 15*60)):?>
-					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Initial Dispatch is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_dispatch_icon.gif" />
-				<?php elseif(!empty($most_recent_dispatch_update) && !empty($completed_picks) && $load["is_reefer"] == "Reefer" && ($most_recent_dispatch_update["reefer_temp"] < ($load["reefer_low_set"] - 1) || $most_recent_dispatch_update["reefer_temp"] > ($load["reefer_high_set"] + 5)) ):?>
+				<?php elseif(!empty($current_trailer_geopoint) && !empty($completed_picks) && $load["is_reefer"] == "Reefer" && ((abs($current_trailer_geopoint["set_temperature"] - $current_trailer_geopoint["return_temperature"]) > 8) || ($current_trailer_geopoint["set_temperature"] < ($load["reefer_low_set"] - .5) || $current_trailer_geopoint["set_temperature"] > ($load["reefer_high_set"] + .5))) && !($next_pick_drop_gp["arrival_departure"] == 'Departure' && $geopoint["speed"] == 0) ):?>
 					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Reefer Temp is out of spec" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_blue_alert.gif" />
-				<?php elseif(!empty($most_recent_dispatch_update) && $load["is_reefer"] == "Reefer" && $most_recent_dispatch_update["trailer_fuel"] < 20 ):?>
-					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Reefer is low on fuel" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_red_exclamation.gif" />
-				<?php elseif(!empty($most_recent_dispatch_update) && $most_recent_dispatch_update["truck_fuel"] < .25 ):?>
-					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Truck is low on fuel" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_red_exclamation.gif" />
+				<?php elseif(!empty($current_trailer_geopoint) && $load["is_reefer"] == "Reefer" && $current_trailer_geopoint["fuel_level"] < 20 ):?>
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Reefer is low on fuel" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_blue_fuel.gif" />
+				<?php elseif(!empty($most_recent_check_call) && $most_recent_check_call["truck_fuel_level"] < .25 ):?>
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Truck is low on fuel" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_red_fuel.gif" />
+				<?php elseif((!empty($load["ready_for_dispatch_datetime"]) || !empty($completed_picks)) && empty($load["initial_dispatch_datetime"])):?>
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Initial Dispatch is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_green_envelope.gif" />
 					<?php /**
-					<?php elseif(!empty($most_recent_dispatch_update) && $most_recent_dispatch_update["trailer_codes"] == "Bad" ):?>
-						<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Trailer has bad codes" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_red_exclamation.gif" />	
-					<?php elseif(!empty($most_recent_dispatch_update) && $most_recent_dispatch_update["truck_codes"] == "Bad" ):?>
+					<?php elseif(!empty($most_recent_check_call) && $most_recent_check_call["truck_code_status"] == "Bad" ):?>
 						<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Truck has bad codes" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_red_exclamation.gif" />		
 					**/?>
-				<?php elseif(!empty($most_recent_dispatch_update) &&  time() > (strtotime($most_recent_dispatch_update["update_datetime"]) + 3*60*60)):?>
-					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Dispatch Update is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_dispatch_icon.gif" />
-					<?php /**
-					<?php elseif($load["status"] == "Drop Pending" && empty($load["unsigned_bol_guid"])):?>
-						<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Pre-drop BoL is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_blue_doc.gif" />
-					**/?>
-				<?php elseif(!empty($most_recent_dispatch_update) && empty($load["signed_load_plan_guid"])):?>
+				<?php elseif((!empty($load["initial_dispatch_datetime"]) && empty($most_recent_check_call)) || (!empty($most_recent_check_call) &&  time() > (strtotime($most_recent_check_call["recorded_datetime"]) + 3*60*60)) || (!empty($most_recent_check_call) && $most_recent_check_call["driver_answered"] == 'No Answer' &&  time() > (strtotime($most_recent_check_call["recorded_datetime"]) + 15*60))):?>
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Check Call is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_dispatch_icon.gif" />
+				<?php /**
+				<?php elseif($load["status"] == "Drop Pending" && empty($load["unsigned_bol_guid"])):?>
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Pre-drop BoL is Overdue" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_blue_doc.gif" />
+				**/?>
+				<?php /**
+				<?php elseif(!empty($load["initial_dispatch_datetime"]) && empty($load["signed_load_plan_guid"])):?>
 					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Missing Accepted Load Plan" onclick="" style="position:relative; left:2px; height:16px;" src="/images/blinking_orange_doc.gif" />
+				**/?>
 				<!-- SET NON-ALERT INDICATOR -- THIS WILL BE OVERRIDDEN BY AN ALERT INDICATORS !-->
 				<?php elseif(empty($load["rcr_datetime"])):?>
 					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Waiting for Rate Con" onclick="" style="position:relative; left:4px; height:14px;" src="/images/red_document_shape.png" />
 				<?php elseif(empty($load["load_truck_id"])):?>
-					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Waiting on Truck to be assigned" onclick="" style="position:relative; right:2px; height:16px;" src="/images/orange_truck.png" />
+					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Waiting on Truck to be assigned" onclick="" style="position:relative; right:2px; height:15px;" src="/images/orange_truck.png" />
 				<?php elseif(empty($load["initial_dispatch_datetime"])):?>
 					<img id="indicator_icon_<?=$load["id"]?>" name="indicator_icon_<?=$load["id"]?>" title="Waiting on Initial Dispatch" onclick="" style="position:relative; left:2px; height:14px;" src="/images/orange_headset.png" />
 				<?php elseif($next_gp["gp_type"] == "Pick"):?>
@@ -340,4 +388,4 @@
 			</td>
 		</tr>
 	</table>
-</div>        
+</div>

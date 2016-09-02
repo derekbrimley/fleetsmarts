@@ -138,6 +138,15 @@
 						<input type="text" class="edit_<?=$row_id?> edit_input" id="edit_expected_rate_<?=$row_id?>" name="edit_expected_rate" value="<?=$load["expected_revenue"]?>"/>
 					</td>
 				</tr>
+				<tr>
+					<td style="width:100px;" class="field_name">	
+						Expected Miles
+					</td>
+					<td>
+						<span class="details_<?=$row_id?>"><?=number_format($load["expected_miles"])?></span>
+						<input type="text" class="edit_<?=$row_id?> edit_input" id="edit_expected_miles_<?=$row_id?>" name="edit_expected_miles" value="<?=$load["expected_miles"]?>"/>
+					</td>
+				</tr>
 			</table>
 			<table class="load_details_table" style="float:left; margin-left:80px; width:250px;">
 				<tr>
@@ -203,11 +212,12 @@
 				</tr>
 				<tr>
 					<td style="width:100px;" class="field_name">	
-						Expected Miles
+						Unsigned BOL
 					</td>
 					<td>
-						<span class="details_<?=$row_id?>"><?=number_format($load["expected_miles"])?></span>
-						<input type="text" class="edit_<?=$row_id?> edit_input" id="edit_expected_miles_<?=$row_id?>" name="edit_expected_miles" value="<?=$load["expected_miles"]?>"/>
+						<?php if(!empty($load["unsigned_bol_guid"])):?>
+							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$load["unsigned_bol_guid"]?>'>Unsigned BOL</a>
+						<?php endif;?>
 					</td>
 				</tr>
 			</table>
@@ -219,6 +229,14 @@
 					<td style="max-width:150px;" class="ellipsis" title="<?=$load["broker"]["customer_name"]?>">
 						<span class="details_<?=$row_id?>"><?=$load["broker"]["customer_name"]?></span>
 						<?php echo form_dropdown('edit_broker',$broker_dropdown_options,$load['broker_id'],"id='edit_broker_$row_id' class='edit_$row_id edit_input' style=''");?>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100px;" class="field_name">	
+						Broker MC
+					</td>
+					<td style="max-width:150px;" class="ellipsis" title="<?=$load["broker"]["customer_name"]?>">
+						<span class=""><?=$load["broker"]["mc_number"]?></span>
 					</td>
 				</tr>
 				<tr>
@@ -273,16 +291,6 @@
 					</td>
 					<td>
 						<span class="" >$<?=number_format($rate_per_mile,2)?></span>
-					</td>
-				</tr>
-				<tr>
-					<td style="width:100px;" class="field_name">	
-						Unsigned BOL
-					</td>
-					<td>
-						<?php if(!empty($load["unsigned_bol_guid"])):?>
-							<a target="_blank" href='<?=base_url("/index.php/documents/download_file")."/".$load["unsigned_bol_guid"]?>'>Unsigned BOL</a>
-						<?php endif;?>
 					</td>
 				</tr>
 			</table>
@@ -532,6 +540,56 @@
 			</table>
 		</div>
 	</form>
+	<div style="clear:both;"></div>
+	<div class="heading">
+		Load History
+	</div>
+	<hr style="">
+	<div style="font-size:12px;">
+		<table style="margin-left:0px; margin-top:5px; line-height:10px; font-size:10px;">
+			<tr style="font-weight:bold;">
+				<td style="width:110px;">
+					Goalpoint<br>Type
+				</td>
+				<td style="width:80px;">
+					Complete
+				</td>
+				<td style="width:70px;">
+					Deadline
+				</td>
+				<td style="width:80px; padding-right:10px;">
+					Driver
+				</td>
+				<td style="width:80px;">
+					Truck
+				</td>
+				<td style="width:80px;">
+					Trailer
+				</td>
+				<td style="width:70px;">
+					GPS
+				</td>
+				<td style="width:105px; padding-right:5px;">
+					Location
+				</td>
+				<td style="width:200px;; padding-right:5px;">
+					Notes
+				</td>
+				<td style="width:30px;">
+				</td>
+			</tr>
+		</table>
+		<?php
+			$i = 0;
+		?>
+		<?php if(!empty($goalpoints)):?>
+			<table style="margin-left:0px; margin-top:5px; margin-bottom:10px; line-height:10px; font-size:10px;">
+			<?php foreach($goalpoints as $goalpoint):?>
+				<?php include("billing_goalpoint_row.php"); ?>
+			<?php endforeach;?>
+			</table>
+		<?php endif;?>
+	</div>
 	<div style="clear:both;"></div>
 	<div id="truck_attachments" style="margin-top:20px;">
 		<span class="heading">Attachments</span>

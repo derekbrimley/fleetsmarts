@@ -10,10 +10,10 @@
 
 <div id="main_content_header">
 	<span style="font-weight:bold;">Trailer <?=$trailer["trailer_number"]?></span>
-	<img src="<?=base_url("images/edit.png")?>" style="cursor:pointer;float:right;margin-top:4px;height:20px; margin-left:10px;" id="edit_trailer" onclick="load_trailer_edit('<?=$trailer["id"]?>')" />
-	<img src="<?=base_url("images/back.png")?>" style="cursor:pointer;float:right;margin-top:4px;height:20px;" id="back_btn" onclick="load_trailer_summary()" />
-	<img src="<?=base_url("images/paper_clip2.png")?>" style="cursor:pointer;float:right;margin-right:10px;margin-top:2px;width:11px;" id="attachment_btn" onclick="open_file_upload(<?=$trailer["id"]?>,'trailer')" />
-	<img src="<?=base_url("images/loading.gif")?>" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
+	<img src="/images/edit.png" style="cursor:pointer;float:right;margin-top:4px;height:20px; margin-left:10px;" id="edit_trailer" onclick="load_trailer_edit('<?=$trailer["id"]?>')" />
+	<img src="/images/back.png" style="cursor:pointer;float:right;margin-top:4px;height:20px;" id="back_btn" onclick="load_trailer_summary()" />
+	<img src="/images/paper_clip2.png" style="cursor:pointer;float:right;margin-right:10px;margin-top:2px;width:11px;" id="attachment_btn" onclick="open_file_upload(<?=$trailer["id"]?>,'trailer')" />
+	<img src="/images/loading.gif" style="display:none;float:right;margin-top:4px;height:20px;" id="loading_img"/>
 </div>
 
 <div id="scrollable_content" class="scrollable_div">
@@ -162,6 +162,10 @@
 			<tr>
 				<td>Last Service (mileage)</td>
 				<td><?=number_format($trailer['last_service']); ?></td>
+			</tr>
+			<tr>
+				<td>iBright ID</td>
+				<td><?=$trailer['ibright_id']; ?></td>
 			</tr>
 		</table>
 		<div id="trailer_attachments" style="margin-top:15px;">
